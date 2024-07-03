@@ -1972,7 +1972,7 @@
                    </reference>
                 <reference anchor="hotRPKI" target="https://dl.acm.org/doi/pdf/10.1145/2535771.2535787">
                      <front>
-                       <title></title>
+                       <title>On the risk of misbehaving RPKI authorities</title>
                        <seriesInfo name="DOI" value="10.1145/2535771.2535787"/>
                        <author initials="D" surname="Cooper" fullname="Danny">
                          <organization/>
@@ -1995,65 +1995,30 @@
                 <reference anchor="I-D.ietf-grow-as-path-prepending" target="https://datatracker.ietf.org/doc/draft-ietf-grow-as-path-prepending/">
                     <front>
                         <title>AS Path Prepending</title>
+                        <seriesInfo name="Internet-Draft" value="draft-ietf-grow-as-path-prepending-13"/>
                         <author fullname="Mike McBride" initials="M" surname="McBride">
                             <organization>Futurewei</organization>
-                            <address>
-                                <email>michael.mcbride@futurewei.com</email>
-                            </address>
                         </author>
                         <author fullname="Doug Madory" initials="D" surname="Madory">
                             <organization>Kentik</organization>
-                            <address>
-                                <email>dmadory@kentik.com</email>
-                            </address>
                         </author>
                         <author fullname="Jeff Tantsura" initials="J" surname="Tantsura">
                             <organization>Nvidia</organization>
-                            <address>
-                                <email>jefftant.ietf@gmail.com</email>
-                            </address>
                         </author>
                         <author fullname='Robert Raszuk' initials='R' surname='Raszuk'>
                             <organization>NTT Network Innovations</organization>
-                            <address>
-                                <postal>
-                                    <street>940 Stewart Dr</street>
-                                    <city>Sunnyvale</city>
-                                    <region>CA</region>
-                                    <code>94085</code>
-                                    <country>USA</country>
-                                </postal>
-                                <email>robert@raszuk.net</email>
-                            </address>
                         </author>
                         <author fullname="Hongwei Li" initials="H." surname="Li">
                             <organization>HPE</organization>
-                            <address>
-                                <email>flycoolman@gmail.com</email>
-                            </address>
                         </author>
                         <author fullname="Jakob Heitz" initials="J. " surname="Heitz">
                             <organization>Cisco</organization>
-                            <address>
-                                <postal>
-                                    <street>170 West Tasman Drive</street>
-                                    <city>San Jose</city>
-                                    <region>CA</region>
-                                    <code>95134</code>
-                                    <country>USA</country>
-                                </postal>
-                                <email>jheitz@cisco.com</email>
-                            </address>
                         </author>
                         <author fullname="Gyan Mishra" initials="G. " surname="Mishra">
                             <organization>Verizon Inc.</organization>
-                            <address>
-                                <email>gyan.s.mishra@verizon.com</email>
-                            </address>
                         </author>
                         <date day="16" month="January" year="2024"/>
                     </front>
-                    <seriesInfo name="Internet-Draft" value="draft-ietf-grow-as-path-prepending-13"/>
                 </reference>
             </references>
         </references>
