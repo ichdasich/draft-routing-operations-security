@@ -2362,7 +2362,8 @@ Table of Contents
               <https://github.com/bgp/bgpq4>.
 
    [hotRPKI]  Cooper, D., Heilman, E., Brogle, K., Reyzin, L., and S.
-              Goldberg, "", DOI 10.1145/2535771.2535787, November 2013,
+              Goldberg, "On the risk of misbehaving RPKI authorities",
+              DOI 10.1145/2535771.2535787, November 2013,
               <https://dl.acm.org/doi/pdf/10.1145/2535771.2535787>.
 
    [I-D.ietf-grow-as-path-prepending]
