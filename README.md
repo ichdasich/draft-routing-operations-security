@@ -2,10 +2,10 @@
 
 This is the working area for the individual Internet-Draft, "Current Options for Securing Global Routing".
 
-* [Editor's Copy](https://ichdasich.github.io/draft-routing-operations-security/#go.draft-fiebig-grow-routing-operations-security.html)
-* [Datatracker Page](https://datatracker.ietf.org/doc/draft-fiebig-grow-routing-operations-security)
-* [Individual Draft](https://datatracker.ietf.org/doc/html/draft-fiebig-grow-routing-operations-security)
-* [Compare Editor's Copy to Individual Draft](https://ichdasich.github.io/draft-routing-operations-security/#go.draft-fiebig-grow-routing-operations-security.diff)
+* [Editor's Copy](https://ichdasich.github.io/draft-routing-operations-security/#go.draft-fiebig-grow-routing-ops-sec-inform.html)
+* [Datatracker Page](https://datatracker.ietf.org/doc/draft-fiebig-grow-routing-ops-sec-inform)
+* [Individual Draft](https://datatracker.ietf.org/doc/html/draft-fiebig-grow-routing-ops-sec-inform)
+* [Compare Editor's Copy to Individual Draft](https://ichdasich.github.io/draft-routing-operations-security/#go.draft-fiebig-grow-routing-ops-sec-inform.diff)
 
 
 ## Contributing
