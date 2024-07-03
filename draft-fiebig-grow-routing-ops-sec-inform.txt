@@ -4,12 +4,12 @@
 
 Global Routing Operations                                      T. Fiebig
 Internet-Draft                                                   MPI-INF
-Intended status: Informational                             12 April 2024
-Expires: 14 October 2024
+Intended status: Informational                               3 July 2024
+Expires: 4 January 2025
 
 
               Current Options for Securing Global Routing
-          draft-fiebig-grow-routing-operations-security-latest
+            draft-fiebig-grow-routing-ops-sec-inform-latest
 
 Abstract
 
@@ -22,7 +22,7 @@ Abstract
    securing BGP.
 
    This document lists available options for securing BGP, serving as a
-   contempory, non-exhaustive, repository of options and methods.  The
+   contemporary, non-exhaustive, repository of options and methods.  The
    document explicitly does not make value statements on the efficacy of
    individual techniques, not does it mandate or prescribe the use of
    specific technique or implementations.
@@ -49,7 +49,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 14 October 2024.
+   This Internet-Draft will expire on 4 January 2025.
 
 Copyright Notice
 
@@ -2147,15 +2147,15 @@ Table of Contents
               J., and K. Sriram, "BGP AS_PATH Verification Based on
               Autonomous System Provider Authorization (ASPA) Objects",
               Work in Progress, Internet-Draft, draft-ietf-sidrops-aspa-
-              verification-16, 29 August 2023,
-              <https://datatracker.ietf.org/doc/html/draft-ietf-sidrops-
-              aspa-verification-16>.
+              verification-17, 29 August 2023,
+              <https://datatracker.ietf.org/doc/draft-ietf-sidrops-aspa-
+              verification/>.
 
    [I-D.spaghetti-sidrops-avoid-rpki-state-in-bgp]
               Snijders, J., Fiebig, T., and M. A. Stucchi, "Guidance to
               Avoid Carrying RPKI Validation States in Transitive BGP
               Path Attributes", Work in Progress, Internet-Draft, draft-
-              spaghetti-sidrops-avoid-rpki-state-in-bgp-00, 8 February
+              spaghetti-sidrops-avoid-rpki-state-in-bgp-01, 8 February
               2024, <https://datatracker.ietf.org/doc/draft-spaghetti-
               sidrops-avoid-rpki-state-in-bgp/>.
 
@@ -2369,9 +2369,9 @@ Table of Contents
               McBride, M., Madory, D., Tantsura, J., Raszuk, R., Li, H.,
               Heitz, J., and G. Mishra, "AS Path Prepending", Work in
               Progress, Internet-Draft, draft-ietf-grow-as-path-
-              prepending-10, 16 January 2024,
-              <https://datatracker.ietf.org/doc/html/draft-ietf-grow-as-
-              path-prepending-10>.
+              prepending-13, 16 January 2024,
+              <https://datatracker.ietf.org/doc/draft-ietf-grow-as-path-
+              prepending/>.
 
 Acknowledgements
 
