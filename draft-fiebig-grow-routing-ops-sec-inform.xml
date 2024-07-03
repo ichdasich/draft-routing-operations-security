@@ -7,10 +7,10 @@
         <!ENTITY wj     "&#8288;">
 ]>
 <rfc xmlns:xi="http://www.w3.org/2001/XInclude"
-     ipr="trust200902" submissionType="IETF" category="info" consensus="true" version="3" docName="draft-fiebig-grow-routing-operations-security-latest">
+     ipr="trust200902" submissionType="IETF" category="info" consensus="true" version="3" docName="draft-fiebig-grow-routing-ops-sec-inform-latest">
     <front>
         <title abbrev="BGP SECOPTS">Current Options for Securing Global Routing</title>
-        <seriesInfo name="Internet-Draft" status="standard" value="draft-fiebig-grow-routing-operations-security-latest"/>
+        <seriesInfo name="Internet-Draft" status="standard" value="draft-fiebig-grow-routing-ops-sec-inform-latest"/>
         <author fullname="Tobias Fiebig" initials="T." surname="Fiebig">
             <organization abbrev="MPI-INF">Max-Planck-Institut fuer Informatik</organization>
             <address>
@@ -33,7 +33,7 @@
                 While these general principles are outlined in BCP194, it does not provide a list of technical and implementation options for securing BGP.
             </t>
             <t>
-                This document lists available options for securing BGP, serving as a contempory, non-exhaustive, repository of options and methods.
+                This document lists available options for securing BGP, serving as a contemporary, non-exhaustive, repository of options and methods.
                 The document explicitly does not make value statements on the efficacy of individual techniques, not does it mandate or prescribe the use of specific technique or implementations.
             </t>
             <t>
@@ -1629,7 +1629,7 @@
                 <xi:include href="https://xml2rfc.ietf.org/public/rfc/bibxml/reference.RFC.8704.xml"/>
                 <xi:include href="https://xml2rfc.ietf.org/public/rfc/bibxml/reference.RFC.9234.xml"/>
                 <xi:include href="https://xml2rfc.ietf.org/public/rfc/bibxml/reference.RFC.9319.xml"/>
-                <reference anchor="I-D.ietf-sidrops-aspa-verification" target="https://datatracker.ietf.org/doc/html/draft-ietf-sidrops-aspa-verification-16">
+                <reference anchor="I-D.ietf-sidrops-aspa-verification" target="https://datatracker.ietf.org/doc/draft-ietf-sidrops-aspa-verification/">
                     <front>
                         <title>BGP AS_PATH Verification Based on Autonomous System Provider Authorization (ASPA) Objects</title>
                         <author initials="A." surname="Azimov" fullname="Alexander Azimov">
@@ -1652,7 +1652,7 @@
                         </author>
                         <date month="August" day="29" year="2023"/>
                     </front>
-                    <seriesInfo name="Internet-Draft" value="draft-ietf-sidrops-aspa-verification-16"/>
+                    <seriesInfo name="Internet-Draft" value="draft-ietf-sidrops-aspa-verification-17"/>
                 </reference>
                 <reference anchor="I-D.spaghetti-sidrops-avoid-rpki-state-in-bgp" target="https://datatracker.ietf.org/doc/draft-spaghetti-sidrops-avoid-rpki-state-in-bgp/">
                     <front>
@@ -1668,7 +1668,7 @@
                         </author>
                         <date month="February" day="8" year="2024"/>
                     </front>
-                    <seriesInfo name="Internet-Draft" value="draft-spaghetti-sidrops-avoid-rpki-state-in-bgp-00"/>
+                    <seriesInfo name="Internet-Draft" value="draft-spaghetti-sidrops-avoid-rpki-state-in-bgp-01"/>
                 </reference>
             </references>
             <references>
@@ -1992,7 +1992,7 @@
                        <date month="November" year="2013"/>
                      </front>
                    </reference>
-                <reference anchor="I-D.ietf-grow-as-path-prepending" target="https://datatracker.ietf.org/doc/html/draft-ietf-grow-as-path-prepending-10">
+                <reference anchor="I-D.ietf-grow-as-path-prepending" target="https://datatracker.ietf.org/doc/draft-ietf-grow-as-path-prepending/">
                     <front>
                         <title>AS Path Prepending</title>
                         <author fullname="Mike McBride" initials="M" surname="McBride">
@@ -2053,7 +2053,7 @@
                         </author>
                         <date day="16" month="January" year="2024"/>
                     </front>
-                    <seriesInfo name="Internet-Draft" value="draft-ietf-grow-as-path-prepending-10"/>
+                    <seriesInfo name="Internet-Draft" value="draft-ietf-grow-as-path-prepending-13"/>
                 </reference>
             </references>
         </references>
