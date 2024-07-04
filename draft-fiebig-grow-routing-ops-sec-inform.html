@@ -1039,7 +1039,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
 </tr></thead>
 <tfoot><tr>
 <td class="left">Fiebig</td>
-<td class="center">Expires 4 January 2025</td>
+<td class="center">Expires 5 January 2025</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1052,12 +1052,12 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <dd class="internet-draft">draft-fiebig-grow-routing-ops-sec-inform-latest</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2024-07-03" class="published">3 July 2024</time>
+<time datetime="2024-07-04" class="published">4 July 2024</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Informational</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2025-01-04">4 January 2025</time></dd>
+<dd class="expires"><time datetime="2025-01-05">5 January 2025</time></dd>
 <dt class="label-authors">Author:</dt>
 <dd class="authors">
 <div class="author">
@@ -1100,7 +1100,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 4 January 2025.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 5 January 2025.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1233,6 +1233,9 @@ svg :is([fill="white"], [fill^="#fff"]) {
 </li>
                   <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6.2.2.2.2">
                     <p id="section-toc.1-1.6.2.2.2.2.1"><a href="#section-6.2.2" class="auto internal xref">6.2.2</a>.  <a href="#name-autonomous-system-provider-" class="internal xref">Autonomous System Provider Authorization (ASPA)</a></p>
+</li>
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6.2.2.2.3">
+                    <p id="section-toc.1-1.6.2.2.2.3.1"><a href="#section-6.2.3" class="auto internal xref">6.2.3</a>.  <a href="#name-running-an-rpki-validator" class="internal xref">Running an RPKI Validator</a></p>
 </li>
                 </ul>
 </li>
@@ -1911,6 +1914,16 @@ svg :is([fill="white"], [fill^="#fff"]) {
                             If a route's AS_PATH is evaluated as UNKNOWN, then the prefix <span class="bcp14">SHOULD</span> be accepted, and the event logged. The corresponding route <span class="bcp14">MAY</span> be given a low preference.<a href="#section-6.2.2-5.3" class="pilcrow">¶</a>
 </li>
           </ul>
+</section>
+</div>
+<div id="sec-sidr-own-validator">
+<section id="section-6.2.3">
+          <h4 id="name-running-an-rpki-validator">
+<a href="#section-6.2.3" class="section-number selfRef">6.2.3. </a><a href="#name-running-an-rpki-validator" class="section-name selfRef">Running an RPKI Validator</a>
+          </h4>
+<p id="section-6.2.3-1">
+                        A key component of RPKI ROV is a validator that collates ROAs from the RIR TAs and distributes this information to routes (via the RTR protocol, or others per operator preference).
+                        Operators <span class="bcp14">SHOULD</span> run their own validator and <span class="bcp14">SHOULD NOT</span> outsource the collection and validation of ROAs to a third party.<a href="#section-6.2.3-1" class="pilcrow">¶</a></p>
 </section>
 </div>
 </section>

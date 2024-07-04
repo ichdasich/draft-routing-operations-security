@@ -4,8 +4,8 @@
 
 Global Routing Operations                                      T. Fiebig
 Internet-Draft                                                   MPI-INF
-Intended status: Informational                               3 July 2024
-Expires: 4 January 2025
+Intended status: Informational                               4 July 2024
+Expires: 5 January 2025
 
 
               Current Options for Securing Global Routing
@@ -49,7 +49,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 4 January 2025.
+   This Internet-Draft will expire on 5 January 2025.
 
 Copyright Notice
 
@@ -97,6 +97,7 @@ Table of Contents
      6.2.  SIDR - Secure Inter-Domain Routing: RPKI and ASPA
        6.2.1.  Route Origin Validation (ROV)
        6.2.2.  Autonomous System Provider Authorization (ASPA)
+       6.2.3.  Running an RPKI Validator
      6.3.  Inbound Filtering Prefixes Belonging to the Local AS
      6.4.  Inbound Filtering Prefixes Belonging to Downstreams
      6.5.  Outbound Filtering Prefixes Based on Learned-From
@@ -736,6 +737,14 @@ Table of Contents
    *  If a route's AS_PATH is evaluated as UNKNOWN, then the prefix
       SHOULD be accepted, and the event logged.  The corresponding route
       MAY be given a low preference.
+
+6.2.3.  Running an RPKI Validator
+
+   A key component of RPKI ROV is a validator that collates ROAs from
+   the RIR TAs and distributes this information to routes (via the RTR
+   protocol, or others per operator preference).  Operators SHOULD run
+   their own validator and SHOULD NOT outsource the collection and
+   validation of ROAs to a third party.
 
 6.3.  Inbound Filtering Prefixes Belonging to the Local AS
 
