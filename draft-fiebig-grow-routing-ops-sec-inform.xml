@@ -502,6 +502,13 @@
                         </li>
                     </ul>
                 </section>
+                <section anchor="sec-sidr-own-validator">
+                    <name>Running an RPKI Validator</name>
+                    <t>
+                        A key component of RPKI ROV is a validator that collates ROAs from the RIR TAs and distributes this information to routes (via the RTR protocol, or others per operator preference).
+                        Operators <bcp14>SHOULD</bcp14> run their own validator and <bcp14>SHOULD NOT</bcp14> outsource the collection and validation of ROAs to a third party.
+                    </t>
+                </section>
             </section>
 
             <section  anchor="sec-filtering-prefixes-belonging-to-the-local-as">
