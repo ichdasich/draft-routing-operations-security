@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-07-04T00:05:59.541008+00:00",
+  "timestamp": "2024-07-07T00:06:54.301764+00:00",
   "repo": "ichdasich/draft-routing-operations-security",
   "labels": [
     {
@@ -49,6 +49,108 @@
       "color": "ffffff"
     }
   ],
-  "issues": [],
-  "pulls": []
+  "issues": [
+    {
+      "number": 1,
+      "id": "I_kwDOLtSgm86Od28l",
+      "title": "Adjust suggestions for 8.2.2 as per comment on ML to focus on monitoring",
+      "url": "https://github.com/ichdasich/draft-routing-operations-security/issues/1",
+      "state": "OPEN",
+      "author": "ichdasich",
+      "authorAssociation": "OWNER",
+      "assignees": [],
+      "labels": [],
+      "body": "```\r\nOn 26/10/2023 15:10, Tobias Fiebig wrote:\r\n > [..]\r\n >\r\n>> The global limits seem to offer no real benefit in addition to\r\n>> per-session limits. The referenced paper mentions Per-Origin AS\r\n>> limits, not the per-Neighbor AS limits mentioned in the draft. This\r\n>> also seems to be unimplementable, given that routers act\r\n>> independently on prefixes they receive.\r\n>\r\n> I think there are two points in here:\r\n> - The paper mentions per-origin, which i consider even more un-\r\n>    implementable than per-neighbor, which is why I restricted it to\r\n>    direct neighbors (similar to the idea of BCP38, that things 'should'\r\n>    be fine if everyone filters their downstreams.)\r\n> - Your implementability point is very valid.\r\n>\r\n> To address both points, it might make sense to move this to a softer\r\n> recommendation to \"Monitoring the global number of prefixes ingested\r\n> from each peer/downstream, and alerting if that number increases too\r\n> quickly\" or something similar;\r\n\r\nI think a recommendation for prefix limit monitoring and alerting for\r\nall peers would be a good replacement of section 8.2.2.\r\n\r\nSection 8.2.1 already mentions placing a prefix limit on upstreams, so\r\nthis should limit the risk of the attack described in 8.2.2 somewhat.\r\nBut it will have to be combined with monitoring, so that a customer AS\r\ndoes not cut itself off if the BGP table on all of their upstreams\r\neventually grows too large.\r\n\r\nKind regards,\r\nMartin\r\n```",
+      "createdAt": "2024-07-04T07:49:26Z",
+      "updatedAt": "2024-07-04T07:49:26Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 2,
+      "id": "I_kwDOLtSgm86Od3HG",
+      "title": "Revisit handling of RFC8097 Communities (non-transitive)",
+      "url": "https://github.com/ichdasich/draft-routing-operations-security/issues/2",
+      "state": "OPEN",
+      "author": "ichdasich",
+      "authorAssociation": "OWNER",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2024-07-04T07:49:48Z",
+      "updatedAt": "2024-07-04T07:49:49Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 3,
+      "id": "I_kwDOLtSgm86Od3Wk",
+      "title": "Add note on running own RPKI / and/or IRR validator",
+      "url": "https://github.com/ichdasich/draft-routing-operations-security/issues/3",
+      "state": "CLOSED",
+      "author": "ichdasich",
+      "authorAssociation": "OWNER",
+      "assignees": [],
+      "labels": [],
+      "body": "Currently, there is no note on running one's own RPKI validator; This may, however, be prudent, see: https://github.com/job/draft-rpki-communities-harmful/pull/3\r\n\r\nAdditionally, there was a comment regarding the citation of bgpq4, which caches from NTT, usually. Similar notes may apply there, and--as noted re: irrd--features currently needing bgpq4 _should_ be part of irrd soon.",
+      "createdAt": "2024-07-04T07:50:18Z",
+      "updatedAt": "2024-07-04T09:31:21Z",
+      "closedAt": "2024-07-04T09:31:21Z",
+      "comments": [
+        {
+          "author": "ichdasich",
+          "authorAssociation": "OWNER",
+          "body": "Fixed by #5 ",
+          "createdAt": "2024-07-04T09:31:21Z",
+          "updatedAt": "2024-07-04T09:31:21Z"
+        }
+      ]
+    },
+    {
+      "number": 4,
+      "id": "I_kwDOLtSgm86Od3o_",
+      "title": "Some terms need additional unification",
+      "url": "https://github.com/ichdasich/draft-routing-operations-security/issues/4",
+      "state": "OPEN",
+      "author": "ichdasich",
+      "authorAssociation": "OWNER",
+      "assignees": [],
+      "labels": [],
+      "body": "There is still a pending comment saying:\r\n\r\n```\r\nSome terms should be unified, e.g., \"upstream\" \"upstream provider\"; \"Internet peer\" \"lateral peer\" \"peer\"; etc.\r\n```\r\n\r\nAdditionally, terms like NLRI etc need a full clean-run.\r\n\r\nHowever, this should be postponed until the document is feature-complete.",
+      "createdAt": "2024-07-04T07:50:56Z",
+      "updatedAt": "2024-07-04T07:50:56Z",
+      "closedAt": null,
+      "comments": []
+    }
+  ],
+  "pulls": [
+    {
+      "number": 5,
+      "id": "PR_kwDOLtSgm850aZoM",
+      "title": "Notes on running one's own RPKI validator",
+      "url": "https://github.com/ichdasich/draft-routing-operations-security/pull/5",
+      "state": "MERGED",
+      "author": "TheEnbyperor",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Adds the notes requested in #3.",
+      "createdAt": "2024-07-04T08:08:48Z",
+      "updatedAt": "2024-07-04T09:31:07Z",
+      "baseRepository": "ichdasich/draft-routing-operations-security",
+      "baseRefName": "main",
+      "baseRefOid": "471ec835b4b0d48cfc72b723f8f6143ccfb058d1",
+      "headRepository": "TheEnbyperor/draft-routing-operations-security",
+      "headRefName": "own-rpki-validator",
+      "headRefOid": "1fca93547c347399bcc349770c4b2e992275942d",
+      "closedAt": "2024-07-04T09:31:07Z",
+      "mergedAt": "2024-07-04T09:31:07Z",
+      "mergedBy": "ichdasich",
+      "mergeCommit": {
+        "oid": "bbfb7d8c1edaad66288c647b65e6af46e34292fd"
+      },
+      "comments": [],
+      "reviews": []
+    }
+  ]
 }
