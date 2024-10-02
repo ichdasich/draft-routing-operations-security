@@ -111,7 +111,7 @@ Table of Contents
      7.1.  BGP Route Flap Dampening
      7.2.  Maximum Prefixes
        7.2.1.  Maximum Prefixes on a Single Session
-       7.2.2.  Maximum Prefixes per Neighboring AS
+       7.2.2.  Continuously Monitoring Prefix Limits
      7.3.  AS_PATH Handling
        7.3.1.  AS_PATH Filtering
        7.3.2.  AS_PATH Manipulation
@@ -1011,26 +1011,34 @@ Table of Contents
    log and can be used to passively adjust limits based on observations
    made on the network.
 
-7.2.2.  Maximum Prefixes per Neighboring AS
+7.2.2.  Continuously Monitoring Prefix Limits
 
-   With RPKI allowing operators to sign ROAs specifying a minimum and
-   maximum prefix length (contrary to ROUTE/ROUTE6 objects), researchers
-   noted that this allows deaggregation attacks ([KIRIN-22]).  By
-   configuring a ROA that cover an, e.g., /32, one can effectively
-   authorize an AS to announce 65536 unique prefixes.  Leveraging the by
-   now large availability of free and/or cheap opportunities to obtain
-   IPv6 upstream, a malicious party could leverage this to cause
-   significant Internet wide route churn and GRT growth.  By constantly
-   advertising and withdrawing prefixes, churn exceeding the size of the
-   IPv6 fulltable at the time of writing (around 200k prefixes) could be
-   created by constantly announcing and withdrawing prefixes to upstream
-   ASes at various PoPs.
+   When enforcing limits on the number of prefixes sent by neighbors,
+   including upstreams, an operator may lose connectivity to one or
+   multiple peers if, e.g., the GRT or the number of routes in the
+   peer's cone suddenly increases.  Such a sudden growth might occur due
+   to organic effects, but could also be triggered by a malicious actor.
 
-   It is therefore RECOMMENDED that operators, in addition to per-
-   session prefix limits, implement a global limit to the number of
-   prefixes they accept per neighboring AS.  As with the per-session
-   limits, these SHOULD be sensible and regularly updated in
-   coordination with operators from neighboring ASes.
+   For example, with RPKI allowing operators to sign ROAs specifying a
+   minimum and maximum prefix length (contrary to ROUTE/ROUTE6 objects),
+   researchers noted that this allows deaggregation attacks
+   ([KIRIN-22]).  By configuring a ROA that cover an, e.g., /32, one can
+   effectively authorize an AS to announce 65536 unique prefixes.
+   Leveraging the by now large availability of free and/or cheap
+   opportunities to obtain IPv6 upstream, a malicious party could
+   leverage this to cause significant Internet wide route churn and GRT
+   growth.  By constantly advertising and withdrawing prefixes, churn
+   exceeding the size of the IPv6 fulltable at the time of writing
+   (around 200k prefixes) could be created by constantly announcing and
+   withdrawing prefixes to upstream ASes at various PoPs.
+
+   It is therefore RECOMMENDED that operators implement continuous
+   monitoring of all prefix limits configured on BGP sessions.  That
+   monitoring SHOULD include verifying configured prefix limits against
+   published information on suggested prefix limits by neighbors, if
+   available.  Furthermore, the monitoring SHOULD notify operators of
+   sudden changes in the number of received prefixes, as well as of
+   limits being gradually approached over time.
 
 7.3.  AS_PATH Handling
 
