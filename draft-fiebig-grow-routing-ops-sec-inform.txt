@@ -4,8 +4,8 @@
 
 Global Routing Operations                                      T. Fiebig
 Internet-Draft                                                   MPI-INF
-Intended status: Informational                               4 July 2024
-Expires: 5 January 2025
+Intended status: Informational                            2 October 2024
+Expires: 5 April 2025
 
 
               Current Options for Securing Global Routing
@@ -49,7 +49,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 5 January 2025.
+   This Internet-Draft will expire on 5 April 2025.
 
 Copyright Notice
 
@@ -1199,7 +1199,9 @@ Table of Contents
    prefixes in the absence of ASPA/OTC.  While usually more focused on
    L2VPN and L3VPN scenarios, extended BGP communities may also find
    specific use when interacting with external neighbors, see, e.g.,
-   [RFC4364], Inter-AS VPN Option B.
+   [RFC4364], Inter-AS VPN Option B.  Hence, while they should generally
+   should not act transitively, operators SHOULD nevertheless ensure
+   that these communities do not accidentally leak.
 
    However, as they may carry instructive information, external
    unauthorized neighbors should not be allowed to send NLRI with AS
