@@ -835,6 +835,7 @@
                     For example, BGP communities are often used by operators to allow neighbors to signal additional traffic engineering requirements, e.g., asking an upstream not to announce a specific NLRI to one of its neighbors.
                     Similarly, BGP communities are essential for proper filtering of downstreams' prefixes in the absence of ASPA/OTC.
                     While usually more focused on L2VPN and L3VPN scenarios, extended BGP communities may also find specific use when interacting with external neighbors, see, e.g., <xref target="RFC4364" format="default"/>, Inter-AS VPN Option B.
+                    Hence, while they should generally should not act transitively, operators <bcp14>SHOULD</bcp14> nevertheless ensure that these communities do not accidentally leak.
                 </t>
                 <t>
                     However, as they may carry instructive information, external unauthorized neighbors should not be allowed to send NLRI with AS specific BGP communities.
