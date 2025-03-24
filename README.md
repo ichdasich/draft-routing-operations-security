@@ -1,3 +1,5 @@
+<!-- regenerate: on (set to off if you edit this file) -->
+
 # Current Options for Securing Global Routing
 
 This is the working area for the individual Internet-Draft, "Current Options for Securing Global Routing".
