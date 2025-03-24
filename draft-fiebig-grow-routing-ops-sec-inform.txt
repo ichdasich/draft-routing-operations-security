@@ -4,8 +4,8 @@
 
 Global Routing Operations                                      T. Fiebig
 Internet-Draft                                                   MPI-INF
-Intended status: Informational                            2 October 2024
-Expires: 5 April 2025
+Intended status: Informational                             24 March 2025
+Expires: 25 September 2025
 
 
               Current Options for Securing Global Routing
@@ -49,11 +49,11 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 5 April 2025.
+   This Internet-Draft will expire on 25 September 2025.
 
 Copyright Notice
 
-   Copyright (c) 2024 IETF Trust and the persons identified as the
+   Copyright (c) 2025 IETF Trust and the persons identified as the
    document authors.  All rights reserved.
 
    This document is subject to BCP 78 and the IETF Trust's Legal
@@ -915,7 +915,7 @@ Table of Contents
    the ASes cone, and not a full-table or default-route.  This reduces
    the chance of accidental route leaks and prevents other IXP members
    from pointing default routes via the IXP LAN to such a router.
-   Alternative, MAY use a separate routing context (e.g.  VRF) for IXP
+   Alternative, MAY use a separate routing context (e.g. VRF) for IXP
    peerings, which only containins routes form the local AS cone.
 
 6.6.3.  PMTUD and the Loose uRPF Problem
@@ -1263,7 +1263,7 @@ Table of Contents
       state of previously valid NLRI, and thereby the applied community
       for those NLRI, triggering an update message.  For further details
       on why BGP communities MUST NOT be used to signal RPKI ROV state,
-      please see [I-D.spaghetti-sidrops-avoid-rpki-state-in-bgp].
+      please see [I-D.ietf-sidrops-avoid-rpki-state-in-bgp].
 
 7.5.2.  Outbound BGP Community Scrubbing
 
@@ -1287,17 +1287,17 @@ Table of Contents
       neighbors, see, e.g., [RFC4364], Inter-AS VPN Option B.
 
    *  Operators MUST NOT use BGP communities to signal RPKI ROV state,
-      see [I-D.spaghetti-sidrops-avoid-rpki-state-in-bgp].  If an
-      operator is still in a migration phase discontinuing this
-      practice, they MUST scrub any such community they use for
-      signaling RPKI-ROV state before sending NLRI to their external
-      neighbors.  This is done to prevent the propagation of BGP update
-      storms in case one of their BGP speakers looses the connection to
-      its validator, changing the validation state of previously valid
-      NLRI, and thereby the applied community for those NLRI, triggering
-      an update message.  For further details on why BGP communities
-      MUST NOT be used to signal RPKI ROV state, please see
-      [I-D.spaghetti-sidrops-avoid-rpki-state-in-bgp].
+      see [I-D.ietf-sidrops-avoid-rpki-state-in-bgp].  If an operator is
+      still in a migration phase discontinuing this practice, they MUST
+      scrub any such community they use for signaling RPKI-ROV state
+      before sending NLRI to their external neighbors.  This is done to
+      prevent the propagation of BGP update storms in case one of their
+      BGP speakers looses the connection to its validator, changing the
+      validation state of previously valid NLRI, and thereby the applied
+      community for those NLRI, triggering an update message.  For
+      further details on why BGP communities MUST NOT be used to signal
+      RPKI ROV state, please see
+      [I-D.ietf-sidrops-avoid-rpki-state-in-bgp].
 
 7.6.  Handling BGP Attributes
 
@@ -2166,17 +2166,17 @@ Table of Contents
               J., and K. Sriram, "BGP AS_PATH Verification Based on
               Autonomous System Provider Authorization (ASPA) Objects",
               Work in Progress, Internet-Draft, draft-ietf-sidrops-aspa-
-              verification-17, 29 August 2023,
+              verification-17, 23 March 2025,
               <https://datatracker.ietf.org/doc/draft-ietf-sidrops-aspa-
               verification/>.
 
-   [I-D.spaghetti-sidrops-avoid-rpki-state-in-bgp]
+   [I-D.ietf-sidrops-avoid-rpki-state-in-bgp]
               Snijders, J., Fiebig, T., and M. A. Stucchi, "Guidance to
               Avoid Carrying RPKI Validation States in Transitive BGP
               Path Attributes", Work in Progress, Internet-Draft, draft-
-              spaghetti-sidrops-avoid-rpki-state-in-bgp-01, 8 February
-              2024, <https://datatracker.ietf.org/doc/draft-spaghetti-
-              sidrops-avoid-rpki-state-in-bgp/>.
+              ietf-sidrops-avoid-rpki-state-in-bgp-01, 3 October 2024,
+              <https://datatracker.ietf.org/doc/draft-ietf-sidrops-
+              avoid-rpki-state-in-bgp/>.
 
 11.2.  Informative References
 
