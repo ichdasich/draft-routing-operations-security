@@ -1,13 +1,12 @@
 *~
 /*-[0-9][0-9].xml
 archive.json
-draft-fiebig-grow-routing-operations-security.xml
 draft-fiebig-grow-routing-ops-sec-inform.xml
-draft-todo-yourname-protocol.xml
 Gemfile.lock
 /.gems/
 *.html
 /lib
+/.*.mk
 /node_modules/
 package-lock.json
 *.pdf
@@ -16,7 +15,6 @@ package-lock.json
 report.xml
 *.swp
 .tags
-/.targets.mk
 *.txt
 *.upload
 /.venv/
