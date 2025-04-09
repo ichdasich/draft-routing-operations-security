@@ -4,12 +4,12 @@
 
 Global Routing Operations                                      T. Fiebig
 Internet-Draft                                                   MPI-INF
-Intended status: Informational                             24 March 2025
-Expires: 25 September 2025
+Intended status: Informational                              9 April 2025
+Expires: 11 October 2025
 
 
               Current Options for Securing Global Routing
-            draft-fiebig-grow-routing-ops-sec-inform-latest
+             draft-ietf-grow-routing-ops-sec-inform-latest
 
 Abstract
 
@@ -49,7 +49,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 25 September 2025.
+   This Internet-Draft will expire on 11 October 2025.
 
 Copyright Notice
 
