@@ -4,8 +4,8 @@
 
 Global Routing Operations                                      T. Fiebig
 Internet-Draft                                                   MPI-INF
-Intended status: Informational                            7 October 2025
-Expires: 10 April 2026
+Intended status: Informational                              3 April 2026
+Expires: 5 October 2026
 
 
               Current Options for Securing Global Routing
@@ -49,11 +49,11 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 10 April 2026.
+   This Internet-Draft will expire on 5 October 2026.
 
 Copyright Notice
 
-   Copyright (c) 2025 IETF Trust and the persons identified as the
+   Copyright (c) 2026 IETF Trust and the persons identified as the
    document authors.  All rights reserved.
 
    This document is subject to BCP 78 and the IETF Trust's Legal
@@ -354,7 +354,9 @@ Table of Contents
    Segment Size) clamping.  Given that IPv6 requires an MTU of at least
    1280b [RFC8200], and to keep clamping consistent between IPv4 and
    IPv6, an MTU of 1280b, i.e., an MSS of 1240b for IPv4 and 1220b for
-   IPv6, is the RECOMMENDED minimum.
+   IPv6, is the RECOMMENDED minimum.  Please note that a too low MSS may
+   negatively impact BGP convergence due to low TCP performance,
+   especially on high-latency long-haul links.
 
 4.2.  BGP TTL Security (GTSM)
 
