@@ -33,7 +33,7 @@
                 While the general principles for securing BGP operations are outlined in RFC 7454, that document does not detail the technical and implementation options for securing BGP.
             </t>
             <t>
-	        This document serves as a contemporary, non-exhaustive repository of options and methods for securing BGP.
+                This document serves as a contemporary, non-exhaustive repository of options and methods for securing BGP.
                 This document explicitly does not make value statements on the efficacy of individual techniques, nor does it mandate or prescribe the use of specific techniques or implementation details.
             </t>
             <t>
@@ -97,7 +97,7 @@
                 </t>
 
                 <t>
-		    If supported, an ACL specific to the control plane (distinct from the data plane) of the router <bcp14>SHOULD</bcp14> be used.
+                    If supported, an ACL specific to the control plane (distinct from the data plane) of the router <bcp14>SHOULD</bcp14> be used.
                 </t>
 
                 <t>
@@ -109,7 +109,7 @@
                     In addition to strict filtering, rate-limiting MAY be configured for accepted BGP traffic.
                     Rate-limiting BGP traffic consists in permitting only a certain quantity of bits per second (or packets per second) of BGP traffic to the control plane.
                     This protects the BGP router control plane in case the amount of BGP traffic surpasses platform capabilities.
-		    Rate limiting mechanisms that preferentially protect established BGP sessions <bcp14>SHOULD</bcp14> be used to avoid having the established sessions from being negatively impacted during denial of service attacks.
+                    Rate limiting mechanisms that preferentially protect established BGP sessions <bcp14>SHOULD</bcp14> be used to avoid having the established sessions from being negatively impacted during denial of service attacks.
                 </t>
 
                 <t>
@@ -185,7 +185,7 @@
                         Similarly, the considerations for using non globally reachable addresses for links handling BGP sessions from <xref target="sec-protection-of-the-bgp-speaker-net" format="default"/> apply accordingly.
                     </t>
                     <t>
-			iBGP sessions <bcp14>SHOULD</bcp14> also be protected using the authentication mechanisms discussed above.
+                        iBGP sessions <bcp14>SHOULD</bcp14> also be protected using the authentication mechanisms discussed above.
                     </t>
                 </section>
                 <section  anchor="sec-protection-of-tcp-sessions-used-by-bgp-pmtud">
@@ -193,20 +193,20 @@
                     <t>
                         In 2018, an attack on BGP was described which claims to enable BGP route injection without Layer 2 adjacency by leveraging PMTUD, see <xref target="FENG-22" format="default"/>.
                         The attack leverages packet fragmentation to bypass standard TCP protection mechanisms, such that routes can be injected into an established BGP session.
-		    </t>
+                    </t>
                     <t>
                         While the attack would be mitigated by the integrity mechanisms suggested in <xref target="sec-protection-of-tcp-sessions-used-by-bgp-integrity" format="default"/>, operators <bcp14>SHOULD</bcp14> additionally take precautions to defend against these attacks, especially if authentication mechanisms are not in use.
-		    </t>
+                    </t>
                     <t>
                         To mitigate this attack, BGP speakers should not allow packet fragmentation on the control plane for BGP traffic between themselves and their neighbors.
                         This is feasible, since even on multi-hop sessions, the path MTU should be known to the operators, meaning that it can be statically and consistently configured for both speakers involved in a session to prevent the need for fragmentation.
-		    </t>
+                    </t>
                     <t>
                         Operators <bcp14>SHOULD</bcp14> ensure that fragmentation is neither allowed nor necessary for BGP packets between two BGP speakers.
                         If this is not possible, a strict lower limit for the MTU <bcp14>SHOULD</bcp14> be configured.
                         This is usually done for TCP packets like those for a BGP session using MSS (Maximum Segment Size) clamping.
                         Given that IPv6 requires an MTU of at least 1280b <xref target="RFC8200" format="default"/>, and to keep clamping consistent between IPv4 and IPv6, an MTU of 1280b, i.e., an MSS of 1240b for IPv4 and 1220b for IPv6, is the <bcp14>RECOMMENDED</bcp14> minimum.
-		    </t>
+                    </t>
                     <t>
                         Please note that a too low MSS may negatively impact BGP convergence due to low TCP performance, especially on high-latency long-haul links.
                     </t>
@@ -265,14 +265,14 @@
                     IANA allocates prefixes to RIRs that in turn allocate prefixes to LIRs (Local Internet Registries).
                     While it is in general sensible to not accept routing table prefixes that are not allocated by IANA and/or RIRs, it is important to understand that filtering unallocated prefixes requires constant updates, as prefixes are continually allocated.
                     Therefore, automation of such prefix filters is key for the success of this approach.
-		</t>
+                </t>
                 <t>
                     Operators <bcp14>SHOULD NOT</bcp14> consider solutions described in this section if they are not capable of maintaining updated prefix filters; the damage would probably be worse than the intended security policy.
-		</t>
+                </t>
                 <t>
                     In this section we focus on IP address space allocated to RIRs by IANA.
                     Allocations by RIRs are generally more dynamic.
-		</t>
+                </t>
                 <t>
                     RIR level prefix filtering is discussed later in <xref target="sec-rir-allocated-prefix-filters" format="default"/>.
                 </t>
@@ -365,7 +365,7 @@
                 <t>
                     An Internet Routing Registry (IRR) is a database containing Internet routing information, described using Routing Policy Specification Language objects as described in <xref target="RFC4012" format="default"/>.
                     Operators are given privileges to describe routing policies of their own networks in the IRR, and that information is published, usually publicly.
-		</t>
+                </t>
                 <t>
                     A majority of Regional Internet Registries do also operate an IRR and can control whether registered routes conform to the prefixes that are allocated or directly assigned.
                     However, it should be noted that the list of such prefixes is not necessarily a complete list, and as such the list of routes in an IRR is not the same as the set of RIR-allocated prefixes.
