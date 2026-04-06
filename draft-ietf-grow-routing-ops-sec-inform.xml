@@ -183,7 +183,7 @@
                     <t>
                         Implementations often use simple, reverse-decryptable mechanisms to store shared secrets keys for BGP (and other routing protocols) in configuration files.
                         While this practice simplifies shared secret management tasks, since the secrets can easily be deciphered, it carries the risk of leaking this information if a configuration is shared. Examples include, sharing the configuration with a vendor for a support case, or if the device is decommissioned and later resold without having been wiped.
-                        When implementatins offer more secure storage mechanisms for secrets, these <bcp14>SHOULD</bcp14> be used.
+                        When implementations offer more secure storage mechanisms for secrets, these <bcp14>SHOULD</bcp14> be used.
                     </t>
                     <t>
                         Operators <bcp14>SHOULD</bcp14> block spoofed packets (packets with a source IP address not belonging to their IP address space) at all edges of their network (see <xref target="RFC2827" format="default"/>  and <xref target="RFC3704" format="default"/> ).
@@ -1214,7 +1214,7 @@
                     </t>
                     <t>
                         In case of such a failure, each administrator <bcp14>MAY</bcp14> decide which actions they will take.
-                        Options include re-using the previously active rule set, or either accepting or rejecting all routes depending on routing policy.
+                        Options include reusing the previously active rule set, or either accepting or rejecting all routes depending on routing policy.
                         Generally accepting all routes during that time frame could break BGP routing security.
                         However, rejecting them might re-route too much traffic towards upstreams, and could cause more harm than accepting invalid prefixes.
                         Similarly, reusing the previously active rule set may lead to prefixes being wrongfully accepted or rejected, despite on a smaller scale than for a general accept or reject decision.
