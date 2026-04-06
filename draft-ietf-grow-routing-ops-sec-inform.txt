@@ -4,8 +4,8 @@
 
 Global Routing Operations                                      T. Fiebig
 Internet-Draft                                                   MPI-INF
-Intended status: Informational                              3 April 2026
-Expires: 5 October 2026
+Intended status: Informational                              6 April 2026
+Expires: 8 October 2026
 
 
               Current Options for Securing Global Routing
@@ -13,25 +13,22 @@ Expires: 5 October 2026
 
 Abstract
 
-   The Border Gateway Protocol (BGP) is the protocol is a critical
-   component in the Internet to exchange routing information between
-   network domains.  Due to this central nature, it is an accepted best
-   practice to ensure basic security properties for BGP and BGP speaking
-   routers.  While these general principles are outlined in BCP194, it
-   does not provide a list of technical and implementation options for
-   securing BGP.
+   The Border Gateway Protocol (BGP) is used for exchanging routing
+   information between Autonomous Systems in the Internet.  Due to its
+   importance, it is necessary to ensure the basic security properties
+   for BGP and BGP speaking routers.  While the general principles for
+   securing BGP operations are outlined in RFC 7454, that document does
+   not detail the technical and implementation options for securing BGP.
 
-   This document lists available options for securing BGP, serving as a
-   contemporary, non-exhaustive, repository of options and methods.  The
-   document explicitly does not make value statements on the efficacy of
-   individual techniques, not does it mandate or prescribe the use of
-   specific technique or implementations.
+   This document serves as a contemporary, non-exhaustive repository of
+   options and methods for securing BGP.  This document explicitly does
+   not make value statements on the efficacy of individual techniques,
+   nor does it mandate or prescribe the use of specific techniques or
+   implementation details.
 
    Operators are advised to carefully consider whether the listed
-   methods are applicable for their use-case to ensure best current
-   practices are followed in terms of which security properties need to
-   be ensured when operating BGP speakers.  Furthermore, the listed
-   options in this document may change over time, and should not be used
+   methods are applicable for their use-cases.  Furthermore, the options
+   listed in this document may change over time, and should not be used
    as a timeless ground-truth of applicable or sufficient methods.
 
 Status of This Memo
@@ -49,7 +46,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 5 October 2026.
+   This Internet-Draft will expire on 8 October 2026.
 
 Copyright Notice
 
@@ -94,7 +91,7 @@ Table of Contents
        6.1.1.  Route Objects
        6.1.2.  AS-SETs
        6.1.3.  Recursively Computing Filters
-     6.2.  SIDR - Secure Inter-Domain Routing: RPKI and ASPA
+     6.2.  SIDR - Secure Inter-Domain Routing: RPKI
        6.2.1.  Route Origin Validation (ROV)
        6.2.2.  Autonomous System Provider Authorization (ASPA)
        6.2.3.  Running an RPKI Validator
@@ -154,12 +151,12 @@ Table of Contents
 
 1.  Introduction
 
-   The Border Gateway Protocol (BGP), specified in [RFC4271], is the
-   protocol used in the Internet to exchange routing information between
-   network domains.  BGP does not directly include mechanisms that
-   control whether the routes exchanged conform to the various
-   guidelines defined by the Internet community.  Besides, BGP itself,
-   by its design, does not have any direct way to protect itself against
+   The Border Gateway Protocol (BGP) [RFC4271], is the protocol used in
+   the Internet to exchange routing information between Autonomous
+   Systems .  BGP does not directly include mechanisms that control
+   whether the exchanged routes conform to the various guidelines
+   defined by the Internet community.  Besides, BGP itself, by its
+   design, does not have any direct way to protect itself against
    possible security-related threats.  This document intends to serve as
    a snapshot of currently available methods for ensuring BGP security.
 
@@ -174,9 +171,9 @@ Table of Contents
 2.  Scope of the Document
 
    The methods listed in this document are intended for BGP sessions
-   carrying generic Internet routing information within the DFZ.  It
-   specifically does not cover security mechanics for other uses of BGP,
-   e.g., when using BGP for NLRI exchange in a data-center context.
+   carrying generic Internet routing information within the default-free
+   zone (DFZ).  It specifically does not cover security mechanics for
+   other uses of BGP, such as using BGP in a data-center context.
 
    This document is a non-exhaustive and non-authoritative repository of
    available tools, methods, and techniques.  When consulting this
@@ -186,19 +183,19 @@ Table of Contents
 
    The document does not make specific recommendations for the use of
    specific mechanisms, implementations, or configurations.  Instead,
-   operators are advised to carefully weigh the implications of listed
-   methods and to apply their own judgement to assess whether these
-   methods are appropriate for their network to ensure BGP security
-   properties.
+   operators are advised to carefully weigh the implications of the
+   methods listed and to apply their own judgement to assess whether
+   these methods are appropriate for their network to ensure BGP
+   security properties.
 
 3.  Protection of the BGP Speaker
 
    The BGP speaker needs to be protected from external attempts to
    subvert the BGP session.  Furthermore, access to management services
    of the BGP speaker should be limited to neighbors, as these services
-   usually share resources with the control plane and, e.g., automated
-   attacks on management ports may impact the BGP speaker's ability to
-   execute BGP related tasks.
+   usually share resources with the control plane.  For example, attacks
+   on management ports may impact the BGP speaker's ability to execute
+   BGP related tasks.
 
 3.1.  BGP Network Layer Protection
 
@@ -207,42 +204,41 @@ Table of Contents
    addresses that are permitted to become a BGP neighbor.  Experience
    has shown that the natural protection TCP should offer is not always
    sufficient, as it is sometimes run in control-plane software.  In the
-   absence of ACLs, it is possible to attack a BGP speaker by simply
-   sending a high volume of connection requests to it.  This protection
-   SHOULD be implemented by using an Access Control List (ACL) to limit
-   access to TCP port 179 to authorized hosts.
+   absence of access control lists (ACL), it is possible to attack a BGP
+   speaker by simply sending a high volume of connection requests to it.
+   This protection SHOULD be implemented by using an ACL to limit access
+   to TCP port 179 to authorized hosts.
 
-   If supported, an ACL specific to the control plane of the router
-   SHOULD be used (receive-ACL, control-plane policing, etc.), to avoid
-   configuration of data-plane filters for packets transiting through
-   the router (and therefore not reaching the control plane).  If the
-   hardware cannot do that, interface ACLs can be used to block packets
-   addressed to the local router.
+   If supported, an ACL specific to the control plane (distinct from the
+   data plane) of the router SHOULD be used.
 
-   Some routers automatically program such an ACL upon BGP
-   configuration.  On other devices, this ACL should be configured and
-   maintained manually or using scripts.
+   Some routers automatically provision such an ACL upon BGP
+   configuration.  On devices without such automatic provisioning, this
+   ACL should be provisioned manually or by using scripts.
 
    In addition to strict filtering, rate-limiting MAY be configured for
    accepted BGP traffic.  Rate-limiting BGP traffic consists in
    permitting only a certain quantity of bits per second (or packets per
    second) of BGP traffic to the control plane.  This protects the BGP
    router control plane in case the amount of BGP traffic surpasses
-   platform capabilities.
+   platform capabilities.  Rate limiting mechanisms that preferentially
+   protect established BGP sessions SHOULD be used to avoid having the
+   established sessions from being negatively impacted during denial of
+   service attacks.
 
-   Furthermore, it is possible to use non-gloablly reachable addresses
-   for BGP session links.  Options include using IPv4 routes with an
-   IPv6 next hop in IPv4 sessions (see [RFC9229]), using prefixes not
-   advertised in the GRT ([TBD]), using unnumbered BGP/Link-Local
-   addresses (also using [RFC9229]), or using [RFC1918] addresses for
-   IPv4 sessions.  Even though routing based network layer protection
-   MAY be implemented, it SHOULD only be done in addition to deploying
-   ACLs.  If any of these approaches is utilized, it MUST be ensured
-   that the BGP speaker originates Path MTU Discovery related packets
-   (see [RFC1191] for IPv4 and [RFC8201] for IPv6) from a globally
-   reachable address, to ensure that Reverse Path Filtering of external
-   parties does not interfere with PMTUD discovery for transiting
-   traffic.
+   Furthermore, it is possible to use non-gloablly reachable IP
+   addresses for BGP sessions.  Options include using IPv4 routes with
+   an IPv6 next hop in IPv4 sessions (see [RFC9229]), using prefixes not
+   advertised in the global routing table (GRT) ([TBD]), using
+   unnumbered BGP/Link-Local addresses (also using [RFC9229]), or using
+   [RFC1918] addresses for IPv4 sessions.  Even though routing based
+   network layer protection MAY be implemented, it SHOULD only be done
+   in addition to deploying ACLs.  If any of these approaches are
+   utilized, they MUST ensure that the BGP speaker originates Path MTU
+   Discovery related packets (see [RFC1191] for IPv4 and [RFC8201] for
+   IPv6) from a globally reachable address, to ensure that Reverse Path
+   Filtering of external parties does not interfere with PMTUD discovery
+   for transiting traffic.
 
 3.2.  BGP Speaker Management Interface Protection
 
@@ -250,11 +246,11 @@ Table of Contents
    band, i.e., via the default routing domain / VRF (Virtual Routing
    Fabric) of the control plane.  To make it easier to separate BGP and
    management related control plane traffic, management traffic SHOULD
-   be exclusively handled via dedicated out-of-band management.  This
-   network SHOULD be protected from unauthorized connections by ACLs not
-   handled on the BGP speaker itself to ensure that the control plane
-   cannot be overloaded by attacks on the management interfaces of the
-   BGP speaker.
+   be exclusively handled via dedicated out-of-band management network.
+   This management network SHOULD be protected from unauthorized
+   connections by ACLs not handled on the BGP speaker itself to ensure
+   that the control plane cannot be overloaded by attacks on the
+   management interfaces of the BGP speaker.
 
    Please note that, in general, filtering and rate-limiting of control-
    plane traffic is a wider topic than "just for BGP".  For further
@@ -270,11 +266,11 @@ Table of Contents
 
 4.1.  Protection of TCP Sessions Used by BGP
 
-   Attacks on TCP sessions used by BGP (aka BGP sessions), for example,
-   sending spoofed TCP RST packets, could bring down a BGP session.
-   Following a successful ARP spoofing attack (or other similar man-in-
-   the-middle attack), the attacker might even be able to inject packets
-   into the TCP stream (routing attacks).
+   Attacks on TCP sessions used by BGP (i.e., BGP sessions) could bring
+   down the BGP session.  For example, sending spoofed TCP RST packets.
+   Following a successful ARP spoofing attack, or other similar on-path
+   attacks), an attacker might even be able to inject packets into the
+   TCP stream (routing attacks).
 
    BGP sessions can be secured with a variety of mechanisms.
 
@@ -291,85 +287,89 @@ Table of Contents
    Optionally, if TCP-AO is not supported, while both sides of the BGP
    session can support a stronger authentication algorithm than MD5,
    such as SHA-1 or SHA-256, using the stronger method SHOULD be
-   considered.  Aside from that, using keychain-based cryptographic keys
-   lifecycle management, as suggested in [RFC6518] is highly
-   RECOMMENDED.
+   considered.  Using keychain-based cryptographic keys lifecycle
+   management, as documented in [RFC6518], is highly RECOMMENDED.
 
    Additionally, IPsec could also be used for session protection.  At
    the time of publication, there has been no wide-spread adoption of
-   using IPsec for BGP sessions, and further analysis is required to
-   define guidelines.
+   using IPsec for Internet BGP sessions.  Further analysis is required
+   to define guidelines for such a profile.
 
-   The drawback of TCP session protection is additional configuration
-   and management overhead for the maintenance of authentication
-   information (for example, MD5 passwords).  In either case, protection
-   of TCP sessions used by BGP SHOULD be enabled when BGP sessions are
-   established over shared networks where the risk of spoofing is high
-   (like IXPs).  Operators are also RECOMMENDED to consider the trade-
-   offs and apply BGP session protection on all other external BGP
-   sessions as well.
+   TCP session protection creates additional configuration and
+   management overhead for the maintenance of authentication
+   information, such as shared secrets.  Protection of TCP sessions used
+   by BGP SHOULD be enabled when BGP sessions are established over
+   shared networks where the risk of spoofing is high, such as Internet
+   exchange points (IXPs).  Operators are also RECOMMENDED to consider
+   the trade-offs and apply BGP session protection on all other external
+   BGP sessions as well.
 
-   Aside of this, most vendors use simple, reverse-decryptable password
-   hash algorithm to store shared secrets keys for BGP (and other
-   routing protocols) in devices' configuration files.  While this
-   practice simplifies password management tasks, since the passwords
-   can always easily be deciphered, it carries the risk of leaking this
-   information if a configuration is shared, e.g., with a vendor for a
-   support case, or if the device is decommissioned and later resold
-   without having been wiped.  Hence, if a device offers more secure
-   storage mechanisms for secrets, these SHOULD be used.
+   Implementations often use simple, reverse-decryptable mechanisms to
+   store shared secrets keys for BGP (and other routing protocols) in
+   configuration files.  While this practice simplifies shared secret
+   management tasks, since the secrets can easily be deciphered, it
+   carries the risk of leaking this information if a configuration is
+   shared.  Examples include, sharing the configuration with a vendor
+   for a support case, or if the device is decommissioned and later
+   resold without having been wiped.  When implementatins offer more
+   secure storage mechanisms for secrets, these SHOULD be used.
 
-   Furthermore, operators SHOULD block spoofed packets (packets with a
-   source IP address not belonging to their IP address space) at all
-   edges of their network (see [RFC2827] and [RFC3704] ).  This protects
-   the TCP session used by Internal BGP (iBGP) from attackers outside
-   the Autonomous System.  Similarly, the considerations for using non
+   Operators SHOULD block spoofed packets (packets with a source IP
+   address not belonging to their IP address space) at all edges of
+   their network (see [RFC2827] and [RFC3704] ).  This protects the TCP
+   session used by Internal BGP (iBGP) from attackers outside the
+   Autonomous System.  Similarly, the considerations for using non
    globally reachable addresses for links handling BGP sessions from
    Section 3.1 apply accordingly.
 
-   Furthermore, as an additional security measure, iBGP sessions SHOULD
-   also be protected using the authentication mechanisms discussed
-   above.
+   iBGP sessions SHOULD also be protected using the authentication
+   mechanisms discussed above.
 
 4.1.2.  Defending Against PMTUD Related Attacks
 
-   In 2018 an attack on BGP was described in the literature which claims
-   to enable BGP route injection without Layer 2 adjacency by leveraging
-   PMTUD, see ([FENG-22]).  The attack leverages packet fragmentation to
-   bypass standard TCP protection mechanisms, so routes can be injected
-   into an established BGP session.  While the attack would be mitigated
-   by the integrity mechanisms suggested in Section 4.1.1, operators
-   SHOULD additionally take precautions to defend against these attacks,
-   especially if authentication mechanisms are not in use.  To mitigate
-   this attack, BGP speakers should not allow packet fragmentation on
-   the control plane for BGP traffic between themselves and their
-   neighbors.  This is feasible, as even on multi-hop sessions, the path
-   MTU should be known to the operators, meaning that it can be
-   statically and consistently configured for both speakers involved in
-   a session to prevent the need for fragmentation.  Hence, operators
-   SHOULD ensure that fragmentation is neither allowed nor necessary for
-   BGP packets between two BGP speakers.  If this is not possible, a
-   strict lower limit for the MTU SHOULD be configured.  This is usually
-   done for TCP packets like those for a BGP session using MSS (Maximum
-   Segment Size) clamping.  Given that IPv6 requires an MTU of at least
-   1280b [RFC8200], and to keep clamping consistent between IPv4 and
-   IPv6, an MTU of 1280b, i.e., an MSS of 1240b for IPv4 and 1220b for
-   IPv6, is the RECOMMENDED minimum.  Please note that a too low MSS may
-   negatively impact BGP convergence due to low TCP performance,
-   especially on high-latency long-haul links.
+   In 2018, an attack on BGP was described which claims to enable BGP
+   route injection without Layer 2 adjacency by leveraging PMTUD, see
+   [FENG-22].  The attack leverages packet fragmentation to bypass
+   standard TCP protection mechanisms, such that routes can be injected
+   into an established BGP session.
+
+   While the attack would be mitigated by the integrity mechanisms
+   suggested in Section 4.1.1, operators SHOULD additionally take
+   precautions to defend against these attacks, especially if
+   authentication mechanisms are not in use.
+
+   To mitigate this attack, BGP speakers should not allow packet
+   fragmentation on the control plane for BGP traffic between themselves
+   and their neighbors.  This is feasible, since even on multi-hop
+   sessions, the path MTU should be known to the operators, meaning that
+   it can be statically and consistently configured for both speakers
+   involved in a session to prevent the need for fragmentation.
+
+   Operators SHOULD ensure that fragmentation is neither allowed nor
+   necessary for BGP packets between two BGP speakers.  If this is not
+   possible, a strict lower limit for the MTU SHOULD be configured.
+   This is usually done for TCP packets like those for a BGP session
+   using MSS (Maximum Segment Size) clamping.  Given that IPv6 requires
+   an MTU of at least 1280b [RFC8200], and to keep clamping consistent
+   between IPv4 and IPv6, an MTU of 1280b, i.e., an MSS of 1240b for
+   IPv4 and 1220b for IPv6, is the RECOMMENDED minimum.
+
+   Please note that a too low MSS may negatively impact BGP convergence
+   due to low TCP performance, especially on high-latency long-haul
+   links.
 
 4.2.  BGP TTL Security (GTSM)
 
-   BGP sessions can be made harder to spoof with the Generalized TTL
-   Security Mechanisms (GTSM aka TTL security), defined in [RFC5082].
-   Instead of sending TCP packets with TTL value of 1, the BGP speakers
-   send the TCP packets with TTL value of 255, and the receiver checks
-   that the TTL value equals 255.  Since it's impossible to send an IP
-   packet with TTL of 255 to an IP host that is not directly connected,
-   BGP TTL security effectively prevents all spoofing attacks coming
-   from third parties not directly connected to the same subnet as the
-   BGP-speaking routers.  Operators SHOULD implement TTL security on
-   directly connected BGP neighbors.
+   Directly connected BGP sessions, such as eBGP, can be made more
+   difficult to spoof with the Generalized TTL Security Mechanisms (GTSM
+   aka TTL security), defined in [RFC5082].  Instead of sending TCP
+   packets with TTL value of 1, the BGP speakers send the TCP packets
+   with TTL value of 255, and the receiver verifies that the TTL value
+   equals 255.  Since it's impossible to send an IP packet with TTL of
+   255 to an IP host that is not directly connected, GTSM prevents all
+   spoofing attacks coming from third parties that not directly
+   connected to the same subnet as the BGP-speaking routers.  Operators
+   SHOULD implement GTSM on directly connected BGP neighbors.
 
    GTSM could also be applied to multi-hop BGP session as well.  To
    achieve this, TTL needs to be configured with a proper value
@@ -377,7 +377,7 @@ Table of Contents
    described above).  Nevertheless, it is not as effective because
    anyone inside the TTL diameter could spoof the TTL.
 
-   Like MD5 protection, TTL security has to be configured on both ends
+   Similar to authentication, GTSM needs to be configured on both ends
    of a BGP session.
 
 5.  Static Prefix Filtering
@@ -424,13 +424,16 @@ Table of Contents
    or RIRs, it is important to understand that filtering unallocated
    prefixes requires constant updates, as prefixes are continually
    allocated.  Therefore, automation of such prefix filters is key for
-   the success of this approach.  Operators SHOULD NOT consider
-   solutions described in this section if they are not capable of
-   maintaining updated prefix filters: the damage would probably be
-   worse than the intended security policy.  In this section we focus on
-   IP address space allocated to RIRs by IANA.  Allocations by RIRs are
-   generally more dynamic.  Therefore, we will discuss using RIR level
-   data in Section 6.1.
+   the success of this approach.
+
+   Operators SHOULD NOT consider solutions described in this section if
+   they are not capable of maintaining updated prefix filters; the
+   damage would probably be worse than the intended security policy.
+
+   In this section we focus on IP address space allocated to RIRs by
+   IANA.  Allocations by RIRs are generally more dynamic.
+
+   RIR level prefix filtering is discussed later in Section 6.1.
 
 5.2.1.  IANA-Allocated Prefix Filters
 
@@ -443,17 +446,19 @@ Table of Contents
 
    For IPv6, given the size of the address space, it can be seen as wise
    to accept only prefixes derived from those allocated by IANA.
-   Operators can dynamically build this list from the IANA- allocated
-   IPv6 space [IANAv6Reg].  As IANA keeps allocating prefixes to RIRs,
-   the aforementioned list should be checked regularly against changes,
-   and if they occur, prefix filters should be computed and pushed on
-   network devices.  The list could also be pulled directly by routers
-   when they implement such mechanisms.  As there is delay between the
-   time an RIR receives a new prefix and the moment it starts allocating
-   portions of it to its LIRs, there is no need for doing this step
-   quickly and frequently.  However, operators SHOULD ensure that all
-   IPv6 prefix filters are updated within a maximum of one month after
-   any change in the list of IPv6 prefixes allocated by IANA.
+   Operators can dynamically build this list from the IANA-allocated
+   IPv6 space [IANAv6Reg].  Since IANA keeps allocating prefixes to
+   RIRs, the aforementioned list should be checked regularly against
+   changes, and if they occur, prefix filters should be computed and
+   provisioned on network devices.  The list could also be pulled
+   directly by routers when they implement such mechanisms.  Since there
+   is a delay between the time an RIR receives a new prefix and the
+   moment it starts allocating portions of it to its LIRs, there is no
+   need for doing this step quickly and frequently.
+
+   Operators SHOULD ensure that all IPv6 prefix filters are updated
+   within a maximum of one month after any change in the list of IPv6
+   prefixes allocated by IANA.
 
    If the process in place (whether manual or automatic) cannot
    guarantee that the list is updated regularly, then it's better not to
@@ -468,8 +473,8 @@ Table of Contents
 5.3.  Prefixes That Are Too (Un)Specific
 
    Most ISPs will not accept advertisements beyond a certain level of
-   specificity (and in return, they do not announce prefixes they
-   consider to be too specific).  That acceptable specificity is decided
+   specificity.  In return, they do not announce prefixes they consider
+   to be too specific.  The level of acceptable specificity is decided
    for each session between two BGP neighbors.  Some ISP communities
    have tried to document acceptable specificity.  This document does
    not make any judgement on what the best approach is, it just notes
@@ -487,9 +492,9 @@ Table of Contents
    multiple locations, and/or to sub-delegate IPv4 address space smaller
    than a /24 from the AS' allocation to the customer.
 
-   In that case, the operators SHOULD add a specific accept rule for
-   these exact prefixes before Rule 11.  Routes of this type SHOULD be
-   annotated in away that ensures they are not re-exported to other
+   In such cases, operators SHOULD add a specific accept rule for these
+   exact prefixes before Rule 11.  Routes of this type SHOULD be
+   annotated in a way that ensures they are not re-exported to other
    neighbors (see Section 6.5.2).  Furthermore, in case of using more
    specifics for traffic steering, the customer SHOULD also announce at
    least the covering /24 to ensure global reachability of the prefix
@@ -523,8 +528,8 @@ Table of Contents
 6.  Dynamic Prefix Filtering
 
    In this section, we discuss dynamic prefix filters, i.e., filters
-   that decide whether a prefix should be im- or exported or not based
-   on frequently changing parameters and external resources.
+   that decide whether a prefix should be imported or exported or not
+   based on frequently changing parameters and external resources.
 
 6.1.  Prefix Filters Created from Internet Routing Registries (IRRs)
 
@@ -541,12 +546,13 @@ Table of Contents
    routing information, described using Routing Policy Specification
    Language objects as described in [RFC4012].  Operators are given
    privileges to describe routing policies of their own networks in the
-   IRR, and that information is published, usually publicly.  A majority
-   of Regional Internet Registries do also operate an IRR and can
-   control whether registered routes conform to the prefixes that are
-   allocated or directly assigned.  However, it should be noted that the
-   list of such prefixes is not necessarily a complete list, and as such
-   the list of routes in an IRR is not the same as the set of RIR-
+   IRR, and that information is published, usually publicly.
+
+   A majority of Regional Internet Registries do also operate an IRR and
+   can control whether registered routes conform to the prefixes that
+   are allocated or directly assigned.  However, it should be noted that
+   the list of such prefixes is not necessarily a complete list, and as
+   such the list of routes in an IRR is not the same as the set of RIR-
    allocated prefixes.  Furthermore, especially IRRs not operated by
    RIRs regularly list conflicting information, see Section 6.1.
 
@@ -635,7 +641,7 @@ Table of Contents
    the creation of automated filter configuration from policies stored
    in an IRR.
 
-6.2.  SIDR - Secure Inter-Domain Routing: RPKI and ASPA
+6.2.  SIDR - Secure Inter-Domain Routing: RPKI
 
    SIDR (Secure Inter-Domain Routing), described in [RFC6480], has been
    designed to secure Internet advertisements.  Even though technically
