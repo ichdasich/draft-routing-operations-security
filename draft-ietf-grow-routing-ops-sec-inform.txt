@@ -153,12 +153,22 @@ Table of Contents
 
    The Border Gateway Protocol (BGP) [RFC4271], is the protocol used in
    the Internet to exchange routing information between Autonomous
-   Systems .  BGP does not directly include mechanisms that control
+   Systems.  BGP does not directly include mechanisms that control
    whether the exchanged routes conform to the various guidelines
    defined by the Internet community.  Besides, BGP itself, by its
    design, does not have any direct way to protect itself against
-   possible security-related threats.  This document intends to serve as
-   a snapshot of currently available methods for ensuring BGP security.
+   possible security-related threats.
+
+   [RFC4272] provides an early overview of BGP security vulnerabilities,
+   both in terms of direct (in protocol) or via other protocols, e.g.,
+   attacks on TCP sessions over which BGP is spoken.  [RFC7454] then
+   provided an overview of technologies and best current practices to
+   mitigate these risks.  With [RFC7454] having been replaced with a
+   more succinct policy document, there is demand for a current document
+   listing options to protect BGP in practie.
+
+   This document intends to serve as a snapshot of currently available
+   methods for ensuring BGP security.
 
 1.1.  Requirements Language
 
@@ -192,10 +202,10 @@ Table of Contents
 
    The BGP speaker needs to be protected from external attempts to
    subvert the BGP session.  Furthermore, access to management services
-   of the BGP speaker should be limited to neighbors, as these services
-   usually share resources with the control plane.  For example, attacks
-   on management ports may impact the BGP speaker's ability to execute
-   BGP related tasks.
+   of the BGP speaker should be limited to strictly necessary hosts, as
+   these services usually share resources with the control plane.  For
+   example, attacks on management ports may impact the BGP speaker's
+   ability to execute BGP related tasks.
 
 3.1.  BGP Network Layer Protection
 
@@ -311,7 +321,7 @@ Table of Contents
    carries the risk of leaking this information if a configuration is
    shared.  Examples include, sharing the configuration with a vendor
    for a support case, or if the device is decommissioned and later
-   resold without having been wiped.  When implementatins offer more
+   resold without having been wiped.  When implementations offer more
    secure storage mechanisms for secrets, these SHOULD be used.
 
    Operators SHOULD block spoofed packets (packets with a source IP
@@ -370,12 +380,6 @@ Table of Contents
    spoofing attacks coming from third parties that not directly
    connected to the same subnet as the BGP-speaking routers.  Operators
    SHOULD implement GTSM on directly connected BGP neighbors.
-
-   GTSM could also be applied to multi-hop BGP session as well.  To
-   achieve this, TTL needs to be configured with a proper value
-   depending on the distance between BGP speakers (using the principle
-   described above).  Nevertheless, it is not as effective because
-   anyone inside the TTL diameter could spoof the TTL.
 
    Similar to authentication, GTSM needs to be configured on both ends
    of a BGP session.
@@ -493,12 +497,14 @@ Table of Contents
    than a /24 from the AS' allocation to the customer.
 
    In such cases, operators SHOULD add a specific accept rule for these
-   exact prefixes before Rule 11.  Routes of this type SHOULD be
+   exact prefixes before discarding prefixes more specific than the
+   currently agreed upon /24 and /48.  Routes of this type SHOULD be
    annotated in a way that ensures they are not re-exported to other
    neighbors (see Section 6.5.2).  Furthermore, in case of using more
    specifics for traffic steering, the customer SHOULD also announce at
-   least the covering /24 to ensure global reachability of the prefix
-   and prevent issues with uRPF (see also [RFC8704] and Section 6.6.3).
+   least the covering minimally routable network, i.e., currently /24 or
+   /48, to ensure global reachability of the prefix and prevent issues
+   with uRPF (see also [RFC8704] and Section 6.6.3).
 
    Similar to too specific routes, most ISPs will not accept
    advertisements beyond a certain level of aggregation.  The general
@@ -1645,7 +1651,7 @@ Table of Contents
    empty.
 
    In case of such a failure, each administrator MAY decide which
-   actions they will take.  Options include re-using the previously
+   actions they will take.  Options include reusing the previously
    active rule set, or either accepting or rejecting all routes
    depending on routing policy.  Generally accepting all routes during
    that time frame could break BGP routing security.  However, rejecting
