@@ -310,10 +310,9 @@
                     This can be to allow customers more fine-grained traffic steering in case of multiple BGP sessions between the AS and its customer in multiple locations, and/or to sub-delegate IPv4 address space smaller than a /24 from the AS' allocation to the customer.
                 </t>
                 <t>
-		    <!-- XXX JMH - rule 11? -->
-                    In such cases, operators <bcp14>SHOULD</bcp14> add a specific accept rule for these exact prefixes before Rule 11.
+                    In such cases, operators <bcp14>SHOULD</bcp14> add a specific accept rule for these exact prefixes before discarding prefixes more specific than the currently agreed upon /24 and /48.
                     Routes of this type <bcp14>SHOULD</bcp14> be annotated in a way that ensures they are not re-exported to other neighbors (see <xref target="sec-filtering-outbound-prefixes-communities" format="default"/>).
-                    Furthermore, in case of using more specifics for traffic steering, the customer <bcp14>SHOULD</bcp14> also announce at least the covering /24 to ensure global reachability of the prefix and prevent issues with uRPF (see also <xref target="RFC8704" format="default"/> and <xref target="sec-pmtud-and-the-loose-urpf-problem" format="default"/>).
+                    Furthermore, in case of using more specifics for traffic steering, the customer <bcp14>SHOULD</bcp14> also announce at least the covering minimally routable network, i.e., currently /24 or /48, to ensure global reachability of the prefix and prevent issues with uRPF (see also <xref target="RFC8704" format="default"/> and <xref target="sec-pmtud-and-the-loose-urpf-problem" format="default"/>).
                 </t>
                 <t>
                     Similar to too specific routes, most ISPs will not accept advertisements beyond a certain level of aggregation.
