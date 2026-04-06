@@ -83,8 +83,7 @@
 
             <t>
                 The BGP speaker needs to be protected from external attempts to subvert the BGP session.
-		    <!-- XXX JMH 'limited to neighbors' probably isn't right here. -->
-                Furthermore, access to management services of the BGP speaker should be limited to neighbors, as these services usually share resources with the control plane. For example, attacks on management ports may impact the BGP speaker's ability to execute BGP related tasks.
+                Furthermore, access to management services of the BGP speaker should be limited to strictly necessary hosts, as these services usually share resources with the control plane. For example, attacks on management ports may impact the BGP speaker's ability to execute BGP related tasks.
             </t>
 
             <section  anchor="sec-protection-of-the-bgp-speaker-net">
