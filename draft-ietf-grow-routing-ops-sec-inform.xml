@@ -220,12 +220,6 @@
                     Operators <bcp14>SHOULD</bcp14> implement GTSM on directly connected BGP neighbors.
                 </t>
                 <t>
-		    <!-- XXX JMH - I'm not sure I'd highlight this. Multi-hop eBGP is a constrained case where this can be somewhat safely applied.  Everything else tends to be a routed environment where the TTL diameter may vary depending on topological richness. -->
-                    GTSM could also be applied to multi-hop BGP session as well.
-                    To achieve this, TTL needs to be configured with a proper value depending on the distance between BGP speakers (using the principle described above).
-                    Nevertheless, it is not as effective because anyone inside the TTL diameter could spoof the TTL.
-                </t>
-                <t>
                     Similar to authentication, GTSM needs to be configured on both ends of a BGP session.
                 </t>
             </section>
