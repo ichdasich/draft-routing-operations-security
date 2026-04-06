@@ -97,7 +97,7 @@
                 </t>
 
                 <t>
-		    If supported, an ACL specific to the control plane (distinct from the data plane) of the router <bcp14>SHOULD</bcp14> be used. 
+		    If supported, an ACL specific to the control plane (distinct from the data plane) of the router <bcp14>SHOULD</bcp14> be used.
                 </t>
 
                 <t>
