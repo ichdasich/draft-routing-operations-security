@@ -481,7 +481,7 @@
                     </t>
                     <ul spacing="normal">
                         <li>
-                            If a corresponding ROA for the route is found and the orgin AS is valid, then the prefix <bcp14>SHOULD</bcp14> be accepted.
+                            If a corresponding ROA for the route is found and the origin AS is valid, then the prefix <bcp14>SHOULD</bcp14> be accepted.
                         </li>
                         <li>
                             If a corresponding ROA for the route is found and the origin AS is invalid, then the prefix <bcp14>SHOULD NOT</bcp14> be accepted.
