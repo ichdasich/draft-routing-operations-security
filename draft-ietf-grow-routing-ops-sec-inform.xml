@@ -528,8 +528,7 @@
                             If a route's AS_PATH is evaluated as INVALID, then the prefix <bcp14>SHOULD</bcp14> be discarded.
                         </li>
                         <li>
-			    <!-- XXX JMH - the low preference here is MAY rather than SHOULD? -->
-                            If a route's AS_PATH is evaluated as UNKNOWN, then the prefix <bcp14>SHOULD</bcp14> be accepted. The corresponding route <bcp14>MAY</bcp14> be given a low preference.
+                            If a route's AS_PATH is evaluated as UNKNOWN, then the prefix <bcp14>SHOULD</bcp14> be accepted. The corresponding route <bcp14>SHOULD</bcp14> be given a low preference.
                         </li>
                     </ul>
                 </section>
