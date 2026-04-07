@@ -484,8 +484,8 @@
                             If a corresponding ROA for the route is found and the orgin AS is valid, then the prefix <bcp14>SHOULD</bcp14> be accepted.
                         </li>
                         <li>
-			    <!-- XXX JMH - do we want to mention that simply not accepting the route but keeping it is appropriate?  This deals with the case where RPKI may eventually catch up and take a formerly invalid route is now valid. Discarded routes may only be recovered via route refresh or session reset. -->
-                            If a corresponding ROA for the route is found and the origin AS is invalid, then the prefix <bcp14>SHOULD</bcp14> be discarded.
+                            If a corresponding ROA for the route is found and the origin AS is invalid, then the prefix <bcp14>SHOULD NOT</bcp14> be accepted.
+                            A BGP speaker <bcp14>MAY</bcp14>, however, still keep the route in an inactive state in case it becomes RPKI valid at a later point.
                         </li>
                         <li>
                             If a ROA is not found for the route, then the route <bcp14>SHOULD</bcp14> be accepted, but <bcp14>SHOULD</bcp14> be given a low preference.
