@@ -438,64 +438,73 @@
             <section  anchor="sec-sidr-secure-inter-domain-routing">
                 <name>SIDR - Secure Inter-Domain Routing: RPKI</name>
                 <t>
-                    SIDR (Secure Inter-Domain Routing), described in <xref target="RFC6480" format="default"/>, has been designed to secure Internet advertisements.
-                    Even though technically incorrect, as it is only the name of an important component, the use of techniques entailed in SIDR is commonly referred to as RPKI (Resource Public Key Infrastructure).
+                    SIDR (Secure Inter-Domain Routing), described in <xref target="RFC6480" format="default"/>, has been designed to secure Internet routing.
+                    This RFC defines the Resource Public Key Infrastructure, RPKI.
                 </t>
                 <t>
-                    There are basically two services that SIDR offers:
+                    SIDR offers the following services:
                 </t>
                 <ul spacing="normal">
                     <li>
-                        Origin validation, described in <xref target="RFC6811" format="default"/>, seeks to make sure that attributes associated with routes are correct, see <xref target="sec-sidr-rov" format="default"/>.
-                        (The major point is the validation of the AS number originating a given route.)
-                        Origin validation is now operational (Internet registries, protocols, implementations on some routers), and in theory it can be implemented knowing that the number of signed resources is still low at the time of writing this document.
+                        BGP prefix origin validation, described in <xref target="RFC6811" format="default"/>, provides services to validate that the origin AS of a BGP route's AS Path is authorized to originate that route.  See <xref target="sec-sidr-rov" format="default"/>.
+                        Origin validation is now widely deployed, although not yet pervasive.
                     </li>
                     <li>
-                        Path validation provided by BGPsec <xref target="RFC7353" format="default"/>  seeks to make sure that no one announces fake/wrong BGP paths that would attract traffic for a given destination; see <xref target="RFC7132" format="default"/>.
-                        Even though the work on BGPsec has been concluded, adoption is still limited.
-                        Instead, the use of ASPA (Autonomous System Provider Authorization) <xref target="I-D.ietf-sidrops-aspa-verification" format="default"/> objects, see also <xref target="sec-sidr-aspa" format="default"/>, is likely to be more relevant within the context of BGP.
-                        Even though the draft on ASPA has not been finalized, first adoption of ASPA can be observed, and first implementations started to support it, following the development of <xref target="I-D.ietf-sidrops-aspa-verification" format="default"/>, see <xref target="OpenBGPd" format="default"/> and <xref target="rpki-client" format="default"/>.
+                        BGPsec <xref target="RFC7353" format="default"/> provides protection for a BGP route's AS Path against spoofed origination or propagation. See <xref target="RFC7132" format="default"/> for the threat model.
+			BGPsec is generally not deployed.  Cryptographic overhead for the mechanism is seen as an obstacle for deployment.
+		    </li>
+		    <li>
+			Autonomous System Provider Authorization (ASPA) <xref target="I-D.ietf-sidrops-aspa-verification" format="default"/> objects, intends to provide protection vs. BGP route leaks.  As of the writing of this document, specification of the feature is nearly complete and deployment is beginning to occur. See also <xref target="sec-sidr-aspa" format="default"/>,
                     </li>
                 </ul>
                 <t>
-                    Implementing SIDR mechanisms is expected to solve many of the BGP routing security problems in the long term, but it may take time for deployments to be made and objects to become signed.
-                    Also, note that the SIDR infrastructure is complementing (not replacing) the security best practices listed in this document.
-                    Therefore, operators <bcp14>SHOULD</bcp14> implement any SIDR proposed mechanism (for example, route origin validation) on top of the other existing mechanisms even if they could sometimes appear to be targeting the same goal.
+                    Implementing SIDR is expected to solve many BGP routing security problems in the long term. However, it may take time for the supporting features to be deployed and the contents of the RPKI to be populated.
+                    Note that SIDR infrastructure complements, but does not replace, the security best practices contained in this document.
+                    Operators <bcp14>SHOULD</bcp14> implement SIDR mechanism, such as route origin validation, in addition to other existing mechanisms even if they could sometimes appear to be targeting the same goal.
                 </t>
+		<t>
+		    One should understand that the RPKI model brings new, interesting challenges.
+		    The paper "On the Risk of Misbehaving RPKI Authorities" <xref target="hotRPKI" format="default"/> explains how the RPKI model can impact the Internet if authorities don't behave as they are supposed to.
+		</t>
+                <section anchor="sec-sidr-own-validator">
+                    <name>Operating an RPKI Validator</name>
+                    <t>
+			A key component of implementing SIDR is operating an RPKI validator.  This validator gathers RPKI objects from the RPKI ecosystem - for example, from RIRs - and distributes validated RPKI information to BGP speakers using mechanisms such as the RPKI-RTR protocol <xref target="I-D.ietf-sidrops-8210bis"/>.
+                        Operators <bcp14>SHOULD</bcp14> run their own validator and <bcp14>SHOULD NOT</bcp14> outsource the collection and validation of RPKI object to a third party.
+                    </t>
+                </section>
                 <section  anchor="sec-sidr-rov">
                     <name>Route Origin Validation (ROV)</name>
                     <t>
                         If route origin validation is implemented, the reader <bcp14>SHOULD</bcp14> refer to the rules described in <xref target="RFC7115" format="default"/>.
-                        In short, each external route received on a router <bcp14>SHOULD</bcp14> be checked against the Resource Public Key Infrastructure (RPKI) data set:
+                        Briefly, each externally learned eBGP route <bcp14>SHOULD</bcp14> be checked against RPKI Route Origin Authorization (ROA) records:
                     </t>
                     <ul spacing="normal">
                         <li>
-                            If a corresponding ROA (Route Origin Authorization) is found and is valid, then the prefix <bcp14>SHOULD</bcp14> be accepted.
+                            If a corresponding ROA for the route is found and the orgin AS is valid, then the prefix <bcp14>SHOULD</bcp14> be accepted.
                         </li>
                         <li>
-                            If the ROA is found and is INVALID, then the prefix <bcp14>SHOULD</bcp14> be discarded.
+			    <!-- XXX JMH - do we want to mention that simply not accepting the route but keeping it is appropriate?  This deals with the case where RPKI may eventually catch up and take a formerly invalid route is now valid. Discarded routes may only be recovered via route refresh or session reset. -->
+                            If a corresponding ROA for the route is found and the origin AS is invalid, then the prefix <bcp14>SHOULD</bcp14> be discarded.
                         </li>
                         <li>
-                            If a ROA is not found, then the prefix <bcp14>SHOULD</bcp14> be accepted, but the corresponding route <bcp14>SHOULD</bcp14> be given a low preference.
+                            If a ROA is not found for the route, then the route <bcp14>SHOULD</bcp14> be accepted, but <bcp14>SHOULD</bcp14> be given a low preference.
                         </li>
                     </ul>
 
                     <t>
-                        In addition to this, operators <bcp14>SHOULD</bcp14> sign their routing objects so their routes can be validated by other networks running origin validation.
-                        Please note that, when signing routing objects, operators <bcp14>SHOULD</bcp14> strive to create minimally covering ROAs for their intended announcements, see <xref target="RFC7115" format="default"/> and <xref target="RFC9319" format="default"/>, to reduce the attack surface of forged-origin hijacks and attempts to exhaust routers' route processing capacity in terms of memory and CPU <xref target="KIRIN-22" format="default"/>.
-                        For example, if an operator received a /29 allocation and intends to announce it in a deaggregation of /32, the corresponding ROA should cover the /29 with a longest allowed prefix of /32, instead of signing for a deaggregation up until /48.
-                    </t>
-                    <t>
-                        One should understand that the RPKI model brings new, interesting challenges.
-                        The paper "On the Risk of Misbehaving RPKI Authorities" <xref target="hotRPKI" format="default"/> explains how the RPKI model can impact the Internet if authorities don't behave as they are supposed to.
-                        Further analysis is certainly required on RPKI, which carries part of BGP security.
+                        Operators <bcp14>SHOULD</bcp14> create ROAs for their routes so that they can be validated by other networks running origin validation.
+		    </t>
+		    <t>
+                        Please note that, when creating ROAs, operators <bcp14>SHOULD</bcp14> strive to create minimally covering ROAs for their intended announcements to reduce the attack surface of forged-origin hijacks and attempts to exhaust routers' route processing capacity in terms of memory and CPU. (See <xref target="KIRIN-22" format="default"/>, <xref target="RFC7115" format="default"/>, and <xref target="RFC9319" format="default"/>.)
+                        For example, if an operator received an IPv6 /29 allocation and intends to announce more specific routes of length /32, the corresponding ROA should cover the /29 with a longest allowed prefix of /32, instead of the longer /48.
                     </t>
                 </section>
                 <section  anchor="sec-sidr-aspa">
                     <name>Autonomous System Provider Authorization (ASPA)</name>
                     <t>
                         If autonomous system provider authorization is implemented, the reader <bcp14>SHOULD</bcp14> refer to the rules described in <xref target="I-D.ietf-sidrops-aspa-verification" format="default"/>.
-                        In short, each external route received on a router <bcp14>SHOULD</bcp14> be checked against the ASPA record found in the Resource Public Key Infrastructure (RPKI) based on the relationship to the neighbor.
+                        Briefly, each externally learned eBGP route <bcp14>SHOULD</bcp14> be checked against the ASPA record found in the Resource Public Key Infrastructure (RPKI) based on the relationship to the neighbor.
                     </t>
                     <t>
                         In <xref target="I-D.ietf-sidrops-aspa-verification" format="default"/>, see following sections based on the neighbor relationship:
@@ -515,20 +524,15 @@
                         <li>
                             If a route's AS_PATH is evaluated as VALID, then the prefix <bcp14>SHOULD</bcp14> be accepted.
                         </li>
+			<!-- XXX JMH - this section recommends logging while the prior one did not? -->
                         <li>
                             If a route's AS_PATH is evaluated as INVALID, then the prefix <bcp14>SHOULD</bcp14> be discarded, and the event logged.
                         </li>
                         <li>
+			    <!-- XXX JMH - the low preference here is MAY rather than SHOULD? -->
                             If a route's AS_PATH is evaluated as UNKNOWN, then the prefix <bcp14>SHOULD</bcp14> be accepted, and the event logged. The corresponding route <bcp14>MAY</bcp14> be given a low preference.
                         </li>
                     </ul>
-                </section>
-                <section anchor="sec-sidr-own-validator">
-                    <name>Running an RPKI Validator</name>
-                    <t>
-                        A key component of RPKI ROV is a validator that collates ROAs from the RIR TAs and distributes this information to routes (via the RTR protocol, or others per operator preference).
-                        Operators <bcp14>SHOULD</bcp14> run their own validator and <bcp14>SHOULD NOT</bcp14> outsource the collection and validation of ROAs to a third party.
-                    </t>
                 </section>
             </section>
 
@@ -1663,6 +1667,7 @@
                 <xi:include href="https://xml2rfc.ietf.org/public/rfc/bibxml/reference.RFC.8704.xml"/>
                 <xi:include href="https://xml2rfc.ietf.org/public/rfc/bibxml/reference.RFC.9234.xml"/>
                 <xi:include href="https://xml2rfc.ietf.org/public/rfc/bibxml/reference.RFC.9319.xml"/>
+		<xi:include href="https://bib.ietf.org/public/rfc/bibxml3/reference.I-D.ietf-sidrops-8210bis.xml"/>
                 <reference anchor="I-D.ietf-sidrops-aspa-verification" target="https://datatracker.ietf.org/doc/draft-ietf-sidrops-aspa-verification/">
                     <front>
                         <title>BGP AS_PATH Verification Based on Autonomous System Provider Authorization (ASPA) Objects</title>
@@ -1977,22 +1982,6 @@
                        <title>Community-IX by IN-Berlin e.V., the connectivity-platform for non-commercial projects, ideas and organisations in Berlin and Frankfurt</title>
                        <author>
                          <organization>IN-Berlin e.V.</organization>
-                       </author>
-                     </front>
-                   </reference>
-                <reference anchor="rpki-client" target="https://marc.info/?l=openbsd-announce&amp;m=169645206105360">
-                     <front>
-                       <title>rpki-client 8.6 has been released</title>
-                       <author>
-                         <organization>OpenBSD Project</organization>
-                       </author>
-                     </front>
-                   </reference>
-                <reference anchor="OpenBGPd" target="https://marc.info/?l=openbsd-announce&amp;m=169624217322602">
-                     <front>
-                       <title>OpenBGPD 8.2 released</title>
-                       <author>
-                         <organization>OpenBSD Project</organization>
                        </author>
                      </front>
                    </reference>
