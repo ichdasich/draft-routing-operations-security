@@ -451,10 +451,10 @@
                     </li>
                     <li>
                         BGPsec <xref target="RFC7353" format="default"/> provides protection for a BGP route's AS Path against spoofed origination or propagation. See <xref target="RFC7132" format="default"/> for the threat model.
-			BGPsec is generally not deployed.  Cryptographic overhead for the mechanism is seen as an obstacle for deployment.
-		    </li>
-		    <li>
-			Autonomous System Provider Authorization (ASPA) <xref target="I-D.ietf-sidrops-aspa-verification" format="default"/> objects, intends to provide protection vs. BGP route leaks.  As of the writing of this document, specification of the feature is nearly complete and deployment is beginning to occur. See also <xref target="sec-sidr-aspa" format="default"/>,
+                        BGPsec is generally not deployed.  Cryptographic overhead for the mechanism is seen as an obstacle for deployment.
+                    </li>
+                    <li>
+                        Autonomous System Provider Authorization (ASPA) <xref target="I-D.ietf-sidrops-aspa-verification" format="default"/> objects, intends to provide protection vs. BGP route leaks.  As of the writing of this document, specification of the feature is nearly complete and deployment is beginning to occur. See also <xref target="sec-sidr-aspa" format="default"/>,
                     </li>
                 </ul>
                 <t>
@@ -462,14 +462,14 @@
                     Note that SIDR infrastructure complements, but does not replace, the security best practices contained in this document.
                     Operators <bcp14>SHOULD</bcp14> implement SIDR mechanism, such as route origin validation, in addition to other existing mechanisms even if they could sometimes appear to be targeting the same goal.
                 </t>
-		<t>
-		    One should understand that the RPKI model brings new, interesting challenges.
-		    The paper "On the Risk of Misbehaving RPKI Authorities" <xref target="hotRPKI" format="default"/> explains how the RPKI model can impact the Internet if authorities don't behave as they are supposed to.
-		</t>
+                <t>
+                    One should understand that the RPKI model brings new, interesting challenges.
+                    The paper "On the Risk of Misbehaving RPKI Authorities" <xref target="hotRPKI" format="default"/> explains how the RPKI model can impact the Internet if authorities don't behave as they are supposed to.
+                </t>
                 <section anchor="sec-sidr-own-validator">
                     <name>Operating an RPKI Validator</name>
                     <t>
-			A key component of implementing SIDR is operating an RPKI validator.  This validator gathers RPKI objects from the RPKI ecosystem - for example, from RIRs - and distributes validated RPKI information to BGP speakers using mechanisms such as the RPKI-RTR protocol <xref target="I-D.ietf-sidrops-8210bis"/>.
+                        A key component of implementing SIDR is operating an RPKI validator.  This validator gathers RPKI objects from the RPKI ecosystem - for example, from RIRs - and distributes validated RPKI information to BGP speakers using mechanisms such as the RPKI-RTR protocol <xref target="I-D.ietf-sidrops-8210bis"/>.
                         Operators <bcp14>SHOULD</bcp14> run their own validator and <bcp14>SHOULD NOT</bcp14> outsource the collection and validation of RPKI object to a third party.
                     </t>
                 </section>
@@ -494,8 +494,8 @@
 
                     <t>
                         Operators <bcp14>SHOULD</bcp14> create ROAs for their routes so that they can be validated by other networks running origin validation.
-		    </t>
-		    <t>
+                    </t>
+                    <t>
                         Please note that, when creating ROAs, operators <bcp14>SHOULD</bcp14> strive to create minimally covering ROAs for their intended announcements to reduce the attack surface of forged-origin hijacks and attempts to exhaust routers' route processing capacity in terms of memory and CPU. (See <xref target="KIRIN-22" format="default"/>, <xref target="RFC7115" format="default"/>, and <xref target="RFC9319" format="default"/>.)
                         For example, if an operator received an IPv6 /29 allocation and intends to announce more specific routes of length /32, the corresponding ROA should cover the /29 with a longest allowed prefix of /32, instead of the longer /48.
                     </t>
@@ -1665,7 +1665,7 @@
                 <xi:include href="https://xml2rfc.ietf.org/public/rfc/bibxml/reference.RFC.8704.xml"/>
                 <xi:include href="https://xml2rfc.ietf.org/public/rfc/bibxml/reference.RFC.9234.xml"/>
                 <xi:include href="https://xml2rfc.ietf.org/public/rfc/bibxml/reference.RFC.9319.xml"/>
-		<xi:include href="https://bib.ietf.org/public/rfc/bibxml3/reference.I-D.ietf-sidrops-8210bis.xml"/>
+                <xi:include href="https://bib.ietf.org/public/rfc/bibxml3/reference.I-D.ietf-sidrops-8210bis.xml"/>
                 <reference anchor="I-D.ietf-sidrops-aspa-verification" target="https://datatracker.ietf.org/doc/draft-ietf-sidrops-aspa-verification/">
                     <front>
                         <title>BGP AS_PATH Verification Based on Autonomous System Provider Authorization (ASPA) Objects</title>
