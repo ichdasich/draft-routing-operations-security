@@ -702,11 +702,13 @@ Table of Contents
    eBGP route SHOULD be checked against RPKI Route Origin Authorization
    (ROA) records:
 
-   *  If a corresponding ROA for the route is found and the orgin AS is
+   *  If a corresponding ROA for the route is found and the origin AS is
       valid, then the prefix SHOULD be accepted.
 
    *  If a corresponding ROA for the route is found and the origin AS is
-      invalid, then the prefix SHOULD be discarded.
+      invalid, then the prefix SHOULD NOT be accepted.  A BGP speaker
+      MAY, however, still keep the route in an inactive state in case it
+      becomes RPKI valid at a later point.
 
    *  If a ROA is not found for the route, then the route SHOULD be
       accepted, but SHOULD be given a low preference.
@@ -748,11 +750,11 @@ Table of Contents
       be accepted.
 
    *  If a route's AS_PATH is evaluated as INVALID, then the prefix
-      SHOULD be discarded, and the event logged.
+      SHOULD be discarded.
 
    *  If a route's AS_PATH is evaluated as UNKNOWN, then the prefix
-      SHOULD be accepted, and the event logged.  The corresponding route
-      MAY be given a low preference.
+      SHOULD be accepted.  The corresponding route SHOULD be given a low
+      preference.
 
 6.3.  Inbound Filtering Prefixes Belonging to the Local AS
 

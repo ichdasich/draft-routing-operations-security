@@ -1876,10 +1876,10 @@ svg :is([fill="white"], [fill^="#fff"]) {
 </li>
           <li class="normal" id="section-6.2-3.2">
                         BGPsec <span>[<a href="#RFC7353" class="cite xref">RFC7353</a>]</span> provides protection for a BGP route's AS Path against spoofed origination or propagation. See <span>[<a href="#RFC7132" class="cite xref">RFC7132</a>]</span> for the threat model.
- BGPsec is generally not deployed.  Cryptographic overhead for the mechanism is seen as an obstacle for deployment.<a href="#section-6.2-3.2" class="pilcrow">¶</a>
+                        BGPsec is generally not deployed.  Cryptographic overhead for the mechanism is seen as an obstacle for deployment.<a href="#section-6.2-3.2" class="pilcrow">¶</a>
 </li>
           <li class="normal" id="section-6.2-3.3">
- Autonomous System Provider Authorization (ASPA) <span>[<a href="#I-D.ietf-sidrops-aspa-verification" class="cite xref">I-D.ietf-sidrops-aspa-verification</a>]</span> objects, intends to provide protection vs. BGP route leaks.  As of the writing of this document, specification of the feature is nearly complete and deployment is beginning to occur. See also <a href="#sec-sidr-aspa" class="auto internal xref">Section 6.2.3</a>,<a href="#section-6.2-3.3" class="pilcrow">¶</a>
+                        Autonomous System Provider Authorization (ASPA) <span>[<a href="#I-D.ietf-sidrops-aspa-verification" class="cite xref">I-D.ietf-sidrops-aspa-verification</a>]</span> objects, intends to provide protection vs. BGP route leaks.  As of the writing of this document, specification of the feature is nearly complete and deployment is beginning to occur. See also <a href="#sec-sidr-aspa" class="auto internal xref">Section 6.2.3</a>,<a href="#section-6.2-3.3" class="pilcrow">¶</a>
 </li>
         </ul>
 <p id="section-6.2-4">
@@ -1887,15 +1887,15 @@ svg :is([fill="white"], [fill^="#fff"]) {
                     Note that SIDR infrastructure complements, but does not replace, the security best practices contained in this document.
                     Operators <span class="bcp14">SHOULD</span> implement SIDR mechanism, such as route origin validation, in addition to other existing mechanisms even if they could sometimes appear to be targeting the same goal.<a href="#section-6.2-4" class="pilcrow">¶</a></p>
 <p id="section-6.2-5">
-     One should understand that the RPKI model brings new, interesting challenges.
-     The paper "On the Risk of Misbehaving RPKI Authorities" <span>[<a href="#hotRPKI" class="cite xref">hotRPKI</a>]</span> explains how the RPKI model can impact the Internet if authorities don't behave as they are supposed to.<a href="#section-6.2-5" class="pilcrow">¶</a></p>
+                    One should understand that the RPKI model brings new, interesting challenges.
+                    The paper "On the Risk of Misbehaving RPKI Authorities" <span>[<a href="#hotRPKI" class="cite xref">hotRPKI</a>]</span> explains how the RPKI model can impact the Internet if authorities don't behave as they are supposed to.<a href="#section-6.2-5" class="pilcrow">¶</a></p>
 <div id="sec-sidr-own-validator">
 <section id="section-6.2.1">
           <h4 id="name-operating-an-rpki-validator">
 <a href="#section-6.2.1" class="section-number selfRef">6.2.1. </a><a href="#name-operating-an-rpki-validator" class="section-name selfRef">Operating an RPKI Validator</a>
           </h4>
 <p id="section-6.2.1-1">
- A key component of implementing SIDR is operating an RPKI validator.  This validator gathers RPKI objects from the RPKI ecosystem - for example, from RIRs - and distributes validated RPKI information to BGP speakers using mechanisms such as the RPKI-RTR protocol <span>[<a href="#I-D.ietf-sidrops-8210bis" class="cite xref">I-D.ietf-sidrops-8210bis</a>]</span>.
+                        A key component of implementing SIDR is operating an RPKI validator.  This validator gathers RPKI objects from the RPKI ecosystem - for example, from RIRs - and distributes validated RPKI information to BGP speakers using mechanisms such as the RPKI-RTR protocol <span>[<a href="#I-D.ietf-sidrops-8210bis" class="cite xref">I-D.ietf-sidrops-8210bis</a>]</span>.
                         Operators <span class="bcp14">SHOULD</span> run their own validator and <span class="bcp14">SHOULD NOT</span> outsource the collection and validation of RPKI object to a third party.<a href="#section-6.2.1-1" class="pilcrow">¶</a></p>
 </section>
 </div>
@@ -1909,11 +1909,11 @@ svg :is([fill="white"], [fill^="#fff"]) {
                         Briefly, each externally learned eBGP route <span class="bcp14">SHOULD</span> be checked against RPKI Route Origin Authorization (ROA) records:<a href="#section-6.2.2-1" class="pilcrow">¶</a></p>
 <ul class="normal">
 <li class="normal" id="section-6.2.2-2.1">
-                            If a corresponding ROA for the route is found and the orgin AS is valid, then the prefix <span class="bcp14">SHOULD</span> be accepted.<a href="#section-6.2.2-2.1" class="pilcrow">¶</a>
+                            If a corresponding ROA for the route is found and the origin AS is valid, then the prefix <span class="bcp14">SHOULD</span> be accepted.<a href="#section-6.2.2-2.1" class="pilcrow">¶</a>
 </li>
             <li class="normal" id="section-6.2.2-2.2">
-              
-                            If a corresponding ROA for the route is found and the origin AS is invalid, then the prefix <span class="bcp14">SHOULD</span> be discarded.<a href="#section-6.2.2-2.2" class="pilcrow">¶</a>
+                            If a corresponding ROA for the route is found and the origin AS is invalid, then the prefix <span class="bcp14">SHOULD NOT</span> be accepted.
+                            A BGP speaker <span class="bcp14">MAY</span>, however, still keep the route in an inactive state in case it becomes RPKI valid at a later point.<a href="#section-6.2.2-2.2" class="pilcrow">¶</a>
 </li>
             <li class="normal" id="section-6.2.2-2.3">
                             If a ROA is not found for the route, then the route <span class="bcp14">SHOULD</span> be accepted, but <span class="bcp14">SHOULD</span> be given a low preference.<a href="#section-6.2.2-2.3" class="pilcrow">¶</a>
@@ -1951,11 +1951,10 @@ svg :is([fill="white"], [fill^="#fff"]) {
                             If a route's AS_PATH is evaluated as VALID, then the prefix <span class="bcp14">SHOULD</span> be accepted.<a href="#section-6.2.3-5.1" class="pilcrow">¶</a>
 </li>
             <li class="normal" id="section-6.2.3-5.2">
-                            If a route's AS_PATH is evaluated as INVALID, then the prefix <span class="bcp14">SHOULD</span> be discarded, and the event logged.<a href="#section-6.2.3-5.2" class="pilcrow">¶</a>
+                            If a route's AS_PATH is evaluated as INVALID, then the prefix <span class="bcp14">SHOULD</span> be discarded.<a href="#section-6.2.3-5.2" class="pilcrow">¶</a>
 </li>
             <li class="normal" id="section-6.2.3-5.3">
-              
-                            If a route's AS_PATH is evaluated as UNKNOWN, then the prefix <span class="bcp14">SHOULD</span> be accepted, and the event logged. The corresponding route <span class="bcp14">MAY</span> be given a low preference.<a href="#section-6.2.3-5.3" class="pilcrow">¶</a>
+                            If a route's AS_PATH is evaluated as UNKNOWN, then the prefix <span class="bcp14">SHOULD</span> be accepted. The corresponding route <span class="bcp14">SHOULD</span> be given a low preference.<a href="#section-6.2.3-5.3" class="pilcrow">¶</a>
 </li>
           </ul>
 </section>
