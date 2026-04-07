@@ -1060,7 +1060,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
 </tr></thead>
 <tfoot><tr>
 <td class="left">Fiebig</td>
-<td class="center">Expires 8 October 2026</td>
+<td class="center">Expires 9 October 2026</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1073,12 +1073,12 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <dd class="internet-draft">draft-ietf-grow-routing-ops-sec-inform-latest</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2026-04-06" class="published">6 April 2026</time>
+<time datetime="2026-04-07" class="published">7 April 2026</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Informational</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2026-10-08">8 October 2026</time></dd>
+<dd class="expires"><time datetime="2026-10-09">9 October 2026</time></dd>
 <dt class="label-authors">Author:</dt>
 <dd class="authors">
 <div class="author">
@@ -1121,7 +1121,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 8 October 2026.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 9 October 2026.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1250,13 +1250,13 @@ svg :is([fill="white"], [fill^="#fff"]) {
                 <p id="section-toc.1-1.6.2.2.1"><a href="#section-6.2" class="auto internal xref">6.2</a>.  <a href="#name-sidr-secure-inter-domain-ro" class="internal xref">SIDR - Secure Inter-Domain Routing: RPKI</a></p>
 <ul class="compact toc ulBare ulEmpty">
 <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6.2.2.2.1">
-                    <p id="section-toc.1-1.6.2.2.2.1.1"><a href="#section-6.2.1" class="auto internal xref">6.2.1</a>.  <a href="#name-route-origin-validation-rov" class="internal xref">Route Origin Validation (ROV)</a></p>
+                    <p id="section-toc.1-1.6.2.2.2.1.1"><a href="#section-6.2.1" class="auto internal xref">6.2.1</a>.  <a href="#name-operating-an-rpki-validator" class="internal xref">Operating an RPKI Validator</a></p>
 </li>
                   <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6.2.2.2.2">
-                    <p id="section-toc.1-1.6.2.2.2.2.1"><a href="#section-6.2.2" class="auto internal xref">6.2.2</a>.  <a href="#name-autonomous-system-provider-" class="internal xref">Autonomous System Provider Authorization (ASPA)</a></p>
+                    <p id="section-toc.1-1.6.2.2.2.2.1"><a href="#section-6.2.2" class="auto internal xref">6.2.2</a>.  <a href="#name-route-origin-validation-rov" class="internal xref">Route Origin Validation (ROV)</a></p>
 </li>
                   <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6.2.2.2.3">
-                    <p id="section-toc.1-1.6.2.2.2.3.1"><a href="#section-6.2.3" class="auto internal xref">6.2.3</a>.  <a href="#name-running-an-rpki-validator" class="internal xref">Running an RPKI Validator</a></p>
+                    <p id="section-toc.1-1.6.2.2.2.3.1"><a href="#section-6.2.3" class="auto internal xref">6.2.3</a>.  <a href="#name-autonomous-system-provider-" class="internal xref">Autonomous System Provider Authorization (ASPA)</a></p>
 </li>
                 </ul>
 </li>
@@ -1865,97 +1865,99 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <a href="#section-6.2" class="section-number selfRef">6.2. </a><a href="#name-sidr-secure-inter-domain-ro" class="section-name selfRef">SIDR - Secure Inter-Domain Routing: RPKI</a>
         </h3>
 <p id="section-6.2-1">
-                    SIDR (Secure Inter-Domain Routing), described in <span>[<a href="#RFC6480" class="cite xref">RFC6480</a>]</span>, has been designed to secure Internet advertisements.
-                    Even though technically incorrect, as it is only the name of an important component, the use of techniques entailed in SIDR is commonly referred to as RPKI (Resource Public Key Infrastructure).<a href="#section-6.2-1" class="pilcrow">¶</a></p>
+                    SIDR (Secure Inter-Domain Routing), described in <span>[<a href="#RFC6480" class="cite xref">RFC6480</a>]</span>, has been designed to secure Internet routing.
+                    This RFC defines the Resource Public Key Infrastructure, RPKI.<a href="#section-6.2-1" class="pilcrow">¶</a></p>
 <p id="section-6.2-2">
-                    There are basically two services that SIDR offers:<a href="#section-6.2-2" class="pilcrow">¶</a></p>
+                    SIDR offers the following services:<a href="#section-6.2-2" class="pilcrow">¶</a></p>
 <ul class="normal">
 <li class="normal" id="section-6.2-3.1">
-                        Origin validation, described in <span>[<a href="#RFC6811" class="cite xref">RFC6811</a>]</span>, seeks to make sure that attributes associated with routes are correct, see <a href="#sec-sidr-rov" class="auto internal xref">Section 6.2.1</a>.
-                        (The major point is the validation of the AS number originating a given route.)
-                        Origin validation is now operational (Internet registries, protocols, implementations on some routers), and in theory it can be implemented knowing that the number of signed resources is still low at the time of writing this document.<a href="#section-6.2-3.1" class="pilcrow">¶</a>
+                        BGP prefix origin validation, described in <span>[<a href="#RFC6811" class="cite xref">RFC6811</a>]</span>, provides services to validate that the origin AS of a BGP route's AS Path is authorized to originate that route.  See <a href="#sec-sidr-rov" class="auto internal xref">Section 6.2.2</a>.
+                        Origin validation is now widely deployed, although not yet pervasive.<a href="#section-6.2-3.1" class="pilcrow">¶</a>
 </li>
           <li class="normal" id="section-6.2-3.2">
-                        Path validation provided by BGPsec <span>[<a href="#RFC7353" class="cite xref">RFC7353</a>]</span>  seeks to make sure that no one announces fake/wrong BGP paths that would attract traffic for a given destination; see <span>[<a href="#RFC7132" class="cite xref">RFC7132</a>]</span>.
-                        Even though the work on BGPsec has been concluded, adoption is still limited.
-                        Instead, the use of ASPA (Autonomous System Provider Authorization) <span>[<a href="#I-D.ietf-sidrops-aspa-verification" class="cite xref">I-D.ietf-sidrops-aspa-verification</a>]</span> objects, see also <a href="#sec-sidr-aspa" class="auto internal xref">Section 6.2.2</a>, is likely to be more relevant within the context of BGP.
-                        Even though the draft on ASPA has not been finalized, first adoption of ASPA can be observed, and first implementations started to support it, following the development of <span>[<a href="#I-D.ietf-sidrops-aspa-verification" class="cite xref">I-D.ietf-sidrops-aspa-verification</a>]</span>, see <span>[<a href="#OpenBGPd" class="cite xref">OpenBGPd</a>]</span> and <span>[<a href="#rpki-client" class="cite xref">rpki-client</a>]</span>.<a href="#section-6.2-3.2" class="pilcrow">¶</a>
+                        BGPsec <span>[<a href="#RFC7353" class="cite xref">RFC7353</a>]</span> provides protection for a BGP route's AS Path against spoofed origination or propagation. See <span>[<a href="#RFC7132" class="cite xref">RFC7132</a>]</span> for the threat model.
+ BGPsec is generally not deployed.  Cryptographic overhead for the mechanism is seen as an obstacle for deployment.<a href="#section-6.2-3.2" class="pilcrow">¶</a>
+</li>
+          <li class="normal" id="section-6.2-3.3">
+ Autonomous System Provider Authorization (ASPA) <span>[<a href="#I-D.ietf-sidrops-aspa-verification" class="cite xref">I-D.ietf-sidrops-aspa-verification</a>]</span> objects, intends to provide protection vs. BGP route leaks.  As of the writing of this document, specification of the feature is nearly complete and deployment is beginning to occur. See also <a href="#sec-sidr-aspa" class="auto internal xref">Section 6.2.3</a>,<a href="#section-6.2-3.3" class="pilcrow">¶</a>
 </li>
         </ul>
 <p id="section-6.2-4">
-                    Implementing SIDR mechanisms is expected to solve many of the BGP routing security problems in the long term, but it may take time for deployments to be made and objects to become signed.
-                    Also, note that the SIDR infrastructure is complementing (not replacing) the security best practices listed in this document.
-                    Therefore, operators <span class="bcp14">SHOULD</span> implement any SIDR proposed mechanism (for example, route origin validation) on top of the other existing mechanisms even if they could sometimes appear to be targeting the same goal.<a href="#section-6.2-4" class="pilcrow">¶</a></p>
-<div id="sec-sidr-rov">
+                    Implementing SIDR is expected to solve many BGP routing security problems in the long term. However, it may take time for the supporting features to be deployed and the contents of the RPKI to be populated.
+                    Note that SIDR infrastructure complements, but does not replace, the security best practices contained in this document.
+                    Operators <span class="bcp14">SHOULD</span> implement SIDR mechanism, such as route origin validation, in addition to other existing mechanisms even if they could sometimes appear to be targeting the same goal.<a href="#section-6.2-4" class="pilcrow">¶</a></p>
+<p id="section-6.2-5">
+     One should understand that the RPKI model brings new, interesting challenges.
+     The paper "On the Risk of Misbehaving RPKI Authorities" <span>[<a href="#hotRPKI" class="cite xref">hotRPKI</a>]</span> explains how the RPKI model can impact the Internet if authorities don't behave as they are supposed to.<a href="#section-6.2-5" class="pilcrow">¶</a></p>
+<div id="sec-sidr-own-validator">
 <section id="section-6.2.1">
-          <h4 id="name-route-origin-validation-rov">
-<a href="#section-6.2.1" class="section-number selfRef">6.2.1. </a><a href="#name-route-origin-validation-rov" class="section-name selfRef">Route Origin Validation (ROV)</a>
+          <h4 id="name-operating-an-rpki-validator">
+<a href="#section-6.2.1" class="section-number selfRef">6.2.1. </a><a href="#name-operating-an-rpki-validator" class="section-name selfRef">Operating an RPKI Validator</a>
           </h4>
 <p id="section-6.2.1-1">
+ A key component of implementing SIDR is operating an RPKI validator.  This validator gathers RPKI objects from the RPKI ecosystem - for example, from RIRs - and distributes validated RPKI information to BGP speakers using mechanisms such as the RPKI-RTR protocol <span>[<a href="#I-D.ietf-sidrops-8210bis" class="cite xref">I-D.ietf-sidrops-8210bis</a>]</span>.
+                        Operators <span class="bcp14">SHOULD</span> run their own validator and <span class="bcp14">SHOULD NOT</span> outsource the collection and validation of RPKI object to a third party.<a href="#section-6.2.1-1" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="sec-sidr-rov">
+<section id="section-6.2.2">
+          <h4 id="name-route-origin-validation-rov">
+<a href="#section-6.2.2" class="section-number selfRef">6.2.2. </a><a href="#name-route-origin-validation-rov" class="section-name selfRef">Route Origin Validation (ROV)</a>
+          </h4>
+<p id="section-6.2.2-1">
                         If route origin validation is implemented, the reader <span class="bcp14">SHOULD</span> refer to the rules described in <span>[<a href="#RFC7115" class="cite xref">RFC7115</a>]</span>.
-                        In short, each external route received on a router <span class="bcp14">SHOULD</span> be checked against the Resource Public Key Infrastructure (RPKI) data set:<a href="#section-6.2.1-1" class="pilcrow">¶</a></p>
+                        Briefly, each externally learned eBGP route <span class="bcp14">SHOULD</span> be checked against RPKI Route Origin Authorization (ROA) records:<a href="#section-6.2.2-1" class="pilcrow">¶</a></p>
 <ul class="normal">
-<li class="normal" id="section-6.2.1-2.1">
-                            If a corresponding ROA (Route Origin Authorization) is found and is valid, then the prefix <span class="bcp14">SHOULD</span> be accepted.<a href="#section-6.2.1-2.1" class="pilcrow">¶</a>
+<li class="normal" id="section-6.2.2-2.1">
+                            If a corresponding ROA for the route is found and the orgin AS is valid, then the prefix <span class="bcp14">SHOULD</span> be accepted.<a href="#section-6.2.2-2.1" class="pilcrow">¶</a>
 </li>
-            <li class="normal" id="section-6.2.1-2.2">
-                            If the ROA is found and is INVALID, then the prefix <span class="bcp14">SHOULD</span> be discarded.<a href="#section-6.2.1-2.2" class="pilcrow">¶</a>
+            <li class="normal" id="section-6.2.2-2.2">
+              
+                            If a corresponding ROA for the route is found and the origin AS is invalid, then the prefix <span class="bcp14">SHOULD</span> be discarded.<a href="#section-6.2.2-2.2" class="pilcrow">¶</a>
 </li>
-            <li class="normal" id="section-6.2.1-2.3">
-                            If a ROA is not found, then the prefix <span class="bcp14">SHOULD</span> be accepted, but the corresponding route <span class="bcp14">SHOULD</span> be given a low preference.<a href="#section-6.2.1-2.3" class="pilcrow">¶</a>
+            <li class="normal" id="section-6.2.2-2.3">
+                            If a ROA is not found for the route, then the route <span class="bcp14">SHOULD</span> be accepted, but <span class="bcp14">SHOULD</span> be given a low preference.<a href="#section-6.2.2-2.3" class="pilcrow">¶</a>
 </li>
           </ul>
-<p id="section-6.2.1-3">
-                        In addition to this, operators <span class="bcp14">SHOULD</span> sign their routing objects so their routes can be validated by other networks running origin validation.
-                        Please note that, when signing routing objects, operators <span class="bcp14">SHOULD</span> strive to create minimally covering ROAs for their intended announcements, see <span>[<a href="#RFC7115" class="cite xref">RFC7115</a>]</span> and <span>[<a href="#RFC9319" class="cite xref">RFC9319</a>]</span>, to reduce the attack surface of forged-origin hijacks and attempts to exhaust routers' route processing capacity in terms of memory and CPU <span>[<a href="#KIRIN-22" class="cite xref">KIRIN-22</a>]</span>.
-                        For example, if an operator received a /29 allocation and intends to announce it in a deaggregation of /32, the corresponding ROA should cover the /29 with a longest allowed prefix of /32, instead of signing for a deaggregation up until /48.<a href="#section-6.2.1-3" class="pilcrow">¶</a></p>
-<p id="section-6.2.1-4">
-                        One should understand that the RPKI model brings new, interesting challenges.
-                        The paper "On the Risk of Misbehaving RPKI Authorities" <span>[<a href="#hotRPKI" class="cite xref">hotRPKI</a>]</span> explains how the RPKI model can impact the Internet if authorities don't behave as they are supposed to.
-                        Further analysis is certainly required on RPKI, which carries part of BGP security.<a href="#section-6.2.1-4" class="pilcrow">¶</a></p>
+<p id="section-6.2.2-3">
+                        Operators <span class="bcp14">SHOULD</span> create ROAs for their routes so that they can be validated by other networks running origin validation.<a href="#section-6.2.2-3" class="pilcrow">¶</a></p>
+<p id="section-6.2.2-4">
+                        Please note that, when creating ROAs, operators <span class="bcp14">SHOULD</span> strive to create minimally covering ROAs for their intended announcements to reduce the attack surface of forged-origin hijacks and attempts to exhaust routers' route processing capacity in terms of memory and CPU. (See <span>[<a href="#KIRIN-22" class="cite xref">KIRIN-22</a>]</span>, <span>[<a href="#RFC7115" class="cite xref">RFC7115</a>]</span>, and <span>[<a href="#RFC9319" class="cite xref">RFC9319</a>]</span>.)
+                        For example, if an operator received an IPv6 /29 allocation and intends to announce more specific routes of length /32, the corresponding ROA should cover the /29 with a longest allowed prefix of /32, instead of the longer /48.<a href="#section-6.2.2-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="sec-sidr-aspa">
-<section id="section-6.2.2">
-          <h4 id="name-autonomous-system-provider-">
-<a href="#section-6.2.2" class="section-number selfRef">6.2.2. </a><a href="#name-autonomous-system-provider-" class="section-name selfRef">Autonomous System Provider Authorization (ASPA)</a>
-          </h4>
-<p id="section-6.2.2-1">
-                        If autonomous system provider authorization is implemented, the reader <span class="bcp14">SHOULD</span> refer to the rules described in <span>[<a href="#I-D.ietf-sidrops-aspa-verification" class="cite xref">I-D.ietf-sidrops-aspa-verification</a>]</span>.
-                        In short, each external route received on a router <span class="bcp14">SHOULD</span> be checked against the ASPA record found in the Resource Public Key Infrastructure (RPKI) based on the relationship to the neighbor.<a href="#section-6.2.2-1" class="pilcrow">¶</a></p>
-<p id="section-6.2.2-2">
-                        In <span>[<a href="#I-D.ietf-sidrops-aspa-verification" class="cite xref">I-D.ietf-sidrops-aspa-verification</a>]</span>, see following sections based on the neighbor relationship:<a href="#section-6.2.2-2" class="pilcrow">¶</a></p>
-<ul class="normal">
-<li class="normal" id="section-6.2.2-3.1">
-                            Section 6.1 for routes received from customer, lateral peer, by an RS from an RS-client, or by an RS-client from an RS.<a href="#section-6.2.2-3.1" class="pilcrow">¶</a>
-</li>
-            <li class="normal" id="section-6.2.2-3.2">
-                            Section 6.2 for routes received from an upstream or mutual-transit neighbor.<a href="#section-6.2.2-3.2" class="pilcrow">¶</a>
-</li>
-          </ul>
-<p id="section-6.2.2-4">
-                        ASPA validation can result in one of three outcomes, VALID, INVALID, and UNKNOWN.<a href="#section-6.2.2-4" class="pilcrow">¶</a></p>
-<ul class="normal">
-<li class="normal" id="section-6.2.2-5.1">
-                            If a route's AS_PATH is evaluated as VALID, then the prefix <span class="bcp14">SHOULD</span> be accepted.<a href="#section-6.2.2-5.1" class="pilcrow">¶</a>
-</li>
-            <li class="normal" id="section-6.2.2-5.2">
-                            If a route's AS_PATH is evaluated as INVALID, then the prefix <span class="bcp14">SHOULD</span> be discarded, and the event logged.<a href="#section-6.2.2-5.2" class="pilcrow">¶</a>
-</li>
-            <li class="normal" id="section-6.2.2-5.3">
-                            If a route's AS_PATH is evaluated as UNKNOWN, then the prefix <span class="bcp14">SHOULD</span> be accepted, and the event logged. The corresponding route <span class="bcp14">MAY</span> be given a low preference.<a href="#section-6.2.2-5.3" class="pilcrow">¶</a>
-</li>
-          </ul>
-</section>
-</div>
-<div id="sec-sidr-own-validator">
 <section id="section-6.2.3">
-          <h4 id="name-running-an-rpki-validator">
-<a href="#section-6.2.3" class="section-number selfRef">6.2.3. </a><a href="#name-running-an-rpki-validator" class="section-name selfRef">Running an RPKI Validator</a>
+          <h4 id="name-autonomous-system-provider-">
+<a href="#section-6.2.3" class="section-number selfRef">6.2.3. </a><a href="#name-autonomous-system-provider-" class="section-name selfRef">Autonomous System Provider Authorization (ASPA)</a>
           </h4>
 <p id="section-6.2.3-1">
-                        A key component of RPKI ROV is a validator that collates ROAs from the RIR TAs and distributes this information to routes (via the RTR protocol, or others per operator preference).
-                        Operators <span class="bcp14">SHOULD</span> run their own validator and <span class="bcp14">SHOULD NOT</span> outsource the collection and validation of ROAs to a third party.<a href="#section-6.2.3-1" class="pilcrow">¶</a></p>
+                        If autonomous system provider authorization is implemented, the reader <span class="bcp14">SHOULD</span> refer to the rules described in <span>[<a href="#I-D.ietf-sidrops-aspa-verification" class="cite xref">I-D.ietf-sidrops-aspa-verification</a>]</span>.
+                        Briefly, each externally learned eBGP route <span class="bcp14">SHOULD</span> be checked against the ASPA record found in the Resource Public Key Infrastructure (RPKI) based on the relationship to the neighbor.<a href="#section-6.2.3-1" class="pilcrow">¶</a></p>
+<p id="section-6.2.3-2">
+                        In <span>[<a href="#I-D.ietf-sidrops-aspa-verification" class="cite xref">I-D.ietf-sidrops-aspa-verification</a>]</span>, see following sections based on the neighbor relationship:<a href="#section-6.2.3-2" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="section-6.2.3-3.1">
+                            Section 6.1 for routes received from customer, lateral peer, by an RS from an RS-client, or by an RS-client from an RS.<a href="#section-6.2.3-3.1" class="pilcrow">¶</a>
+</li>
+            <li class="normal" id="section-6.2.3-3.2">
+                            Section 6.2 for routes received from an upstream or mutual-transit neighbor.<a href="#section-6.2.3-3.2" class="pilcrow">¶</a>
+</li>
+          </ul>
+<p id="section-6.2.3-4">
+                        ASPA validation can result in one of three outcomes, VALID, INVALID, and UNKNOWN.<a href="#section-6.2.3-4" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="section-6.2.3-5.1">
+                            If a route's AS_PATH is evaluated as VALID, then the prefix <span class="bcp14">SHOULD</span> be accepted.<a href="#section-6.2.3-5.1" class="pilcrow">¶</a>
+</li>
+            <li class="normal" id="section-6.2.3-5.2">
+                            If a route's AS_PATH is evaluated as INVALID, then the prefix <span class="bcp14">SHOULD</span> be discarded, and the event logged.<a href="#section-6.2.3-5.2" class="pilcrow">¶</a>
+</li>
+            <li class="normal" id="section-6.2.3-5.3">
+              
+                            If a route's AS_PATH is evaluated as UNKNOWN, then the prefix <span class="bcp14">SHOULD</span> be accepted, and the event logged. The corresponding route <span class="bcp14">MAY</span> be given a low preference.<a href="#section-6.2.3-5.3" class="pilcrow">¶</a>
+</li>
+          </ul>
 </section>
 </div>
 </section>
@@ -2020,7 +2022,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
           </h4>
 <p id="section-6.5.1-1">
                         To ensure that no prefixes leak via AS relationships (routes learned from peers or upstreams to other peers or upstreams), <span>[<a href="#RFC9234" class="cite xref">RFC9234</a>]</span> introduces BGP roles and the BGP Only to Customer (OTC) attribute.
-                        The OTC attribute forms a tandem with ASPA, see <a href="#sec-sidr-aspa" class="auto internal xref">Section 6.2.2</a>.
+                        The OTC attribute forms a tandem with ASPA, see <a href="#sec-sidr-aspa" class="auto internal xref">Section 6.2.3</a>.
                         Operators <span class="bcp14">SHOULD</span> configure appropriate roles according to Section 3 of <span>[<a href="#RFC9234" class="cite xref">RFC9234</a>]</span> to enable prefix filtering based on BGP relationships.
                         Furthermore, for prefixes imported from upstreams, the OTC attribute <span class="bcp14">SHOULD</span> be set and evaluated according to <span>[<a href="#RFC9234" class="cite xref">RFC9234</a>]</span>, Section 5:<a href="#section-6.5.1-1" class="pilcrow">¶</a></p>
 <div id="sec-filtering-outbound-prefixes-roles-import">
@@ -2370,7 +2372,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
                             However, there are operational circumstances where it <span class="bcp14">MAY</span> be reasonable to accept extended BGP communities from neighbors, see, e.g., <span>[<a href="#RFC4364" class="cite xref">RFC4364</a>]</span>, Inter-AS VPN Option B.<a href="#section-7.5.1-1.2" class="pilcrow">¶</a>
 </li>
             <li class="normal" id="section-7.5.1-1.3">
-                            When known, BGP communities used to signal RPKI ROV state (see <a href="#sec-sidr-rov" class="auto internal xref">Section 6.2.1</a>) received from eBGP neighbors <span class="bcp14">MUST</span> be scrubbed.
+                            When known, BGP communities used to signal RPKI ROV state (see <a href="#sec-sidr-rov" class="auto internal xref">Section 6.2.2</a>) received from eBGP neighbors <span class="bcp14">MUST</span> be scrubbed.
                             This is done to prevent BGP update storms in case a neighbor looses the connection to its validator, changing the validation state of previously valid NLRI, and thereby the applied community for those NLRI, triggering an update message.
                             For further details on why BGP communities <span class="bcp14">MUST NOT</span> be used to signal RPKI ROV state, please see <span>[<a href="#I-D.ietf-sidrops-avoid-rpki-state-in-bgp" class="cite xref">I-D.ietf-sidrops-avoid-rpki-state-in-bgp</a>]</span>.<a href="#section-7.5.1-1.3" class="pilcrow">¶</a>
 </li>
@@ -2754,10 +2756,10 @@ svg :is([fill="white"], [fill^="#fff"]) {
                                 2. Prefixes not allocated by IANA (IPv6 only) (<a href="#sec-iana-allocated-prefix-filters" class="auto internal xref">Section 5.2.1</a>)<a href="#section-8.2.1.1-3.2" class="pilcrow">¶</a>
 </li>
               <li class="normal" id="section-8.2.1.1-3.3">
-                                3. RPKI invalid prefixes (<a href="#sec-sidr-rov" class="auto internal xref">Section 6.2.1</a>)<a href="#section-8.2.1.1-3.3" class="pilcrow">¶</a>
+                                3. RPKI invalid prefixes (<a href="#sec-sidr-rov" class="auto internal xref">Section 6.2.2</a>)<a href="#section-8.2.1.1-3.3" class="pilcrow">¶</a>
 </li>
               <li class="normal" id="section-8.2.1.1-3.4">
-                                4. Prefixes with an invalid AS path (ASPA) (<a href="#sec-sidr-aspa" class="auto internal xref">Section 6.2.2</a>)<a href="#section-8.2.1.1-3.4" class="pilcrow">¶</a>
+                                4. Prefixes with an invalid AS path (ASPA) (<a href="#sec-sidr-aspa" class="auto internal xref">Section 6.2.3</a>)<a href="#section-8.2.1.1-3.4" class="pilcrow">¶</a>
 </li>
               <li class="normal" id="section-8.2.1.1-3.5">
                                 5. Prefixes with an invalid AS path (longer than 64 entries) (<a href="#sec-as-path-filtering" class="auto internal xref">Section 7.3.1</a>)<a href="#section-8.2.1.1-3.5" class="pilcrow">¶</a>
@@ -2817,10 +2819,10 @@ svg :is([fill="white"], [fill^="#fff"]) {
                                 3. Prefixes not allocated by IANA (IPv6 only) (<a href="#sec-iana-allocated-prefix-filters" class="auto internal xref">Section 5.2.1</a>)<a href="#section-8.2.1.2-3.3" class="pilcrow">¶</a>
 </li>
               <li class="normal" id="section-8.2.1.2-3.4">
-                                4. RPKI invalid prefixes (<a href="#sec-sidr-rov" class="auto internal xref">Section 6.2.1</a>)<a href="#section-8.2.1.2-3.4" class="pilcrow">¶</a>
+                                4. RPKI invalid prefixes (<a href="#sec-sidr-rov" class="auto internal xref">Section 6.2.2</a>)<a href="#section-8.2.1.2-3.4" class="pilcrow">¶</a>
 </li>
               <li class="normal" id="section-8.2.1.2-3.5">
-                                5. Prefixes with an invalid AS path (ASPA) (<a href="#sec-sidr-aspa" class="auto internal xref">Section 6.2.2</a>)<a href="#section-8.2.1.2-3.5" class="pilcrow">¶</a>
+                                5. Prefixes with an invalid AS path (ASPA) (<a href="#sec-sidr-aspa" class="auto internal xref">Section 6.2.3</a>)<a href="#section-8.2.1.2-3.5" class="pilcrow">¶</a>
 </li>
               <li class="normal" id="section-8.2.1.2-3.6">
                                 6. Prefixes with an invalid AS path (longer than 64 entries) (<a href="#sec-as-path-filtering" class="auto internal xref">Section 7.3.1</a>)<a href="#section-8.2.1.2-3.6" class="pilcrow">¶</a>
@@ -2878,10 +2880,10 @@ svg :is([fill="white"], [fill^="#fff"]) {
                                 2. Prefixes not allocated by IANA (IPv6 only) (<a href="#sec-iana-allocated-prefix-filters" class="auto internal xref">Section 5.2.1</a>)<a href="#section-8.2.2.1-2.2" class="pilcrow">¶</a>
 </li>
               <li class="normal" id="section-8.2.2.1-2.3">
-                                3. RPKI invalid prefixes (<a href="#sec-sidr-rov" class="auto internal xref">Section 6.2.1</a>)<a href="#section-8.2.2.1-2.3" class="pilcrow">¶</a>
+                                3. RPKI invalid prefixes (<a href="#sec-sidr-rov" class="auto internal xref">Section 6.2.2</a>)<a href="#section-8.2.2.1-2.3" class="pilcrow">¶</a>
 </li>
               <li class="normal" id="section-8.2.2.1-2.4">
-                                4. Prefixes with an invalid AS path (ASPA) (<a href="#sec-sidr-aspa" class="auto internal xref">Section 6.2.2</a>)<a href="#section-8.2.2.1-2.4" class="pilcrow">¶</a>
+                                4. Prefixes with an invalid AS path (ASPA) (<a href="#sec-sidr-aspa" class="auto internal xref">Section 6.2.3</a>)<a href="#section-8.2.2.1-2.4" class="pilcrow">¶</a>
 </li>
               <li class="normal" id="section-8.2.2.1-2.5">
                                 5. Prefixes with an invalid AS path (longer than 64 entries) (<a href="#sec-as-path-filtering" class="auto internal xref">Section 7.3.1</a>)<a href="#section-8.2.2.1-2.5" class="pilcrow">¶</a>
@@ -2932,10 +2934,10 @@ svg :is([fill="white"], [fill^="#fff"]) {
                                 1. Prefixes not allocated by IANA (IPv6 only) (<a href="#sec-iana-allocated-prefix-filters" class="auto internal xref">Section 5.2.1</a>)<a href="#section-8.2.2.2-3.1" class="pilcrow">¶</a>
 </li>
               <li class="normal" id="section-8.2.2.2-3.2">
-                                2. RPKI invalid prefixes (<a href="#sec-sidr-rov" class="auto internal xref">Section 6.2.1</a>)<a href="#section-8.2.2.2-3.2" class="pilcrow">¶</a>
+                                2. RPKI invalid prefixes (<a href="#sec-sidr-rov" class="auto internal xref">Section 6.2.2</a>)<a href="#section-8.2.2.2-3.2" class="pilcrow">¶</a>
 </li>
               <li class="normal" id="section-8.2.2.2-3.3">
-                                3. Prefixes with an invalid AS path (ASPA) (<a href="#sec-sidr-aspa" class="auto internal xref">Section 6.2.2</a>)<a href="#section-8.2.2.2-3.3" class="pilcrow">¶</a>
+                                3. Prefixes with an invalid AS path (ASPA) (<a href="#sec-sidr-aspa" class="auto internal xref">Section 6.2.3</a>)<a href="#section-8.2.2.2-3.3" class="pilcrow">¶</a>
 </li>
               <li class="normal" id="section-8.2.2.2-3.4">
                                 4. Prefixes with an invalid AS path (longer than 64 entries) (<a href="#sec-as-path-filtering" class="auto internal xref">Section 7.3.1</a>)<a href="#section-8.2.2.2-3.4" class="pilcrow">¶</a>
@@ -2990,10 +2992,10 @@ svg :is([fill="white"], [fill^="#fff"]) {
                                 1. Prefixes not allocated by IANA (IPv6 only) (<a href="#sec-iana-allocated-prefix-filters" class="auto internal xref">Section 5.2.1</a>)<a href="#section-8.2.3.1-3.1" class="pilcrow">¶</a>
 </li>
               <li class="normal" id="section-8.2.3.1-3.2">
-                                2. RPKI invalid prefixes (<a href="#sec-sidr-rov" class="auto internal xref">Section 6.2.1</a>)<a href="#section-8.2.3.1-3.2" class="pilcrow">¶</a>
+                                2. RPKI invalid prefixes (<a href="#sec-sidr-rov" class="auto internal xref">Section 6.2.2</a>)<a href="#section-8.2.3.1-3.2" class="pilcrow">¶</a>
 </li>
               <li class="normal" id="section-8.2.3.1-3.3">
-                                3. Prefixes with an invalid AS path (ASPA) (<a href="#sec-sidr-aspa" class="auto internal xref">Section 6.2.2</a>)<a href="#section-8.2.3.1-3.3" class="pilcrow">¶</a>
+                                3. Prefixes with an invalid AS path (ASPA) (<a href="#sec-sidr-aspa" class="auto internal xref">Section 6.2.3</a>)<a href="#section-8.2.3.1-3.3" class="pilcrow">¶</a>
 </li>
               <li class="normal" id="section-8.2.3.1-3.4">
                                 4. Prefixes with an invalid AS path (longer than 64 entries) (<a href="#sec-as-path-filtering" class="auto internal xref">Section 7.3.1</a>)<a href="#section-8.2.3.1-3.4" class="pilcrow">¶</a>
@@ -3108,10 +3110,10 @@ svg :is([fill="white"], [fill^="#fff"]) {
                         2. Prefixes not allocated by IANA (IPv6 only) (<a href="#sec-iana-allocated-prefix-filters" class="auto internal xref">Section 5.2.1</a>)<a href="#section-8.5-3.2" class="pilcrow">¶</a>
 </li>
           <li class="normal" id="section-8.5-3.3">
-                        3. RPKI invalid prefixes (<a href="#sec-sidr-rov" class="auto internal xref">Section 6.2.1</a>)<a href="#section-8.5-3.3" class="pilcrow">¶</a>
+                        3. RPKI invalid prefixes (<a href="#sec-sidr-rov" class="auto internal xref">Section 6.2.2</a>)<a href="#section-8.5-3.3" class="pilcrow">¶</a>
 </li>
           <li class="normal" id="section-8.5-3.4">
-                        4. Prefixes with an invalid AS path (ASPA) (<a href="#sec-sidr-aspa" class="auto internal xref">Section 6.2.2</a>)<a href="#section-8.5-3.4" class="pilcrow">¶</a>
+                        4. Prefixes with an invalid AS path (ASPA) (<a href="#sec-sidr-aspa" class="auto internal xref">Section 6.2.3</a>)<a href="#section-8.5-3.4" class="pilcrow">¶</a>
 </li>
           <li class="normal" id="section-8.5-3.5">
                         5. Prefixes with an invalid AS path (longer than 64 entries) (<a href="#sec-as-path-filtering" class="auto internal xref">Section 7.3.1</a>)<a href="#section-8.5-3.5" class="pilcrow">¶</a>
@@ -3254,6 +3256,10 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <dt id="RFC9319">[RFC9319]</dt>
         <dd>
 <span class="refAuthor">Gilad, Y.</span>, <span class="refAuthor">Goldberg, S.</span>, <span class="refAuthor">Sriram, K.</span>, <span class="refAuthor">Snijders, J.</span>, and <span class="refAuthor">B. Maddison</span>, <span class="refTitle">"The Use of maxLength in the Resource Public Key Infrastructure (RPKI)"</span>, <span class="seriesInfo">BCP 185</span>, <span class="seriesInfo">RFC 9319</span>, <span class="seriesInfo">DOI 10.17487/RFC9319</span>, <time datetime="2022-10" class="refDate">October 2022</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc9319">https://www.rfc-editor.org/info/rfc9319</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="I-D.ietf-sidrops-8210bis">[I-D.ietf-sidrops-8210bis]</dt>
+        <dd>
+<span class="refAuthor">Bush, R.</span>, <span class="refAuthor">Austein, R.</span>, and <span class="refAuthor">T. Harrison</span>, <span class="refTitle">"The Resource Public Key Infrastructure (RPKI) to Router Protocol, Version 2"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-sidrops-8210bis-25</span>, <time datetime="2026-03-02" class="refDate">2 March 2026</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-sidrops-8210bis-25">https://datatracker.ietf.org/doc/html/draft-ietf-sidrops-8210bis-25</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="I-D.ietf-sidrops-aspa-verification">[I-D.ietf-sidrops-aspa-verification]</dt>
         <dd>
@@ -3437,14 +3443,6 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <dt id="CommunityIX">[CommunityIX]</dt>
         <dd>
 <span class="refAuthor">IN-Berlin e.V.</span>, <span class="refTitle">"Community-IX by IN-Berlin e.V., the connectivity-platform for non-commercial projects, ideas and organisations in Berlin and Frankfurt"</span>, <span>&lt;<a href="https://www.community-ix.net/">https://www.community-ix.net/</a>&gt;</span>. </dd>
-<dd class="break"></dd>
-<dt id="rpki-client">[rpki-client]</dt>
-        <dd>
-<span class="refAuthor">OpenBSD Project</span>, <span class="refTitle">"rpki-client 8.6 has been released"</span>, <span>&lt;<a href="https://marc.info/?l=openbsd-announce&amp;m=169645206105360">https://marc.info/?l=openbsd-announce&amp;m=169645206105360</a>&gt;</span>. </dd>
-<dd class="break"></dd>
-<dt id="OpenBGPd">[OpenBGPd]</dt>
-        <dd>
-<span class="refAuthor">OpenBSD Project</span>, <span class="refTitle">"OpenBGPD 8.2 released"</span>, <span>&lt;<a href="https://marc.info/?l=openbsd-announce&amp;m=169624217322602">https://marc.info/?l=openbsd-announce&amp;m=169624217322602</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="bgpq4">[bgpq4]</dt>
         <dd>
