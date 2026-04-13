@@ -538,12 +538,25 @@
                 <name>Inbound Filtering Prefixes Belonging to the Local AS</name>
 
                 <t>
-                    A network <bcp14>SHOULD</bcp14> filter its own prefixes on BGP sessions with all its neighbors (inbound direction).
-                    This prevents local traffic (from a local source to a local destination) from leaking over an external BGP session, in case someone else is announcing the prefix over the Internet.
-                    This also protects the infrastructure that may directly suffer if the backbone's prefix is suddenly preferred over the Internet.
+                    A network <bcp14>SHOULD</bcp14> filter its own prefixes on BGP sessions with all of its external neighbors (inbound direction).
+		    This can prevent hijacking of local traffic in the event of an internal routing failure. 
+		    Operators <bcp14>SHOULD</bcp14> log such filtered prefixes as they may be evidence of a BGP route hijack for the provider's address space.
                 </t>
                 <t>
-                    In some cases, for example, multihoming scenarios, such filters <bcp14>SHOULD NOT</bcp14> be applied, as this would break the desired redundancy.
+		    Under some circumstances, such as repairing a partitioned
+		    AS, the provider's address space may be accepted over an
+		    external peering session.  In such cases, the AS_PATH is
+		    also looped and will require the use of an implementation's
+		    "loops" mechanism to accept such looped routes.
+                </t>
+                <t>
+		    Operators <bcp14>MAY</bcp14> wish to consider deploying
+		    null routes covering their address space to prevent
+		    forwarding loops in the event that internal traffic would
+		    otherwise be attracted to external peers; for example, due
+		    to BGP aggregation procedures.  See
+		    <xref target="RFC9774" section="Appendix C" sectionFormat="comma"/>
+		    for related discussion.
                 </t>
             </section>
             <section  anchor="sec-filtering-inbound-prefixes-belonging-to-ds">
@@ -1731,6 +1744,7 @@
                 <xi:include href="https://xml2rfc.ietf.org/public/rfc/bibxml/reference.RFC.7947.xml"/>
                 <xi:include href="https://xml2rfc.ietf.org/public/rfc/bibxml/reference.RFC.8195.xml"/>
                 <xi:include href="https://xml2rfc.ietf.org/public/rfc/bibxml/reference.RFC.9229.xml"/>
+                <xi:include href="https://xml2rfc.ietf.org/public/rfc/bibxml/reference.RFC.9774.xml"/>
                 <reference anchor="TBD" target="https://example.com">
                      <front>
                        <title>Reference still to be added</title>
