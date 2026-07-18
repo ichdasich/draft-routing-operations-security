@@ -318,7 +318,7 @@
                 </t>
                 <t>
                     In such cases, operators <bcp14>SHOULD</bcp14> add a specific accept rule for these exact prefixes before discarding prefixes more specific than the currently agreed upon /24 and /48.
-                    Routes of this type <bcp14>SHOULD</bcp14> be annotated in a way that ensures they are not re-exported to other neighbors (see <xref target="sec-filtering-outbound-prefixes-communities" format="default"/>).
+                    Routes of this type <bcp14>SHOULD</bcp14> be annotated in a way that ensures they are not re-exported to other neighbors (see <xref target="sec-filtering-outbound-prefixes-communities" format="default"/>), e.g., using the NO_EXPORT BGP community <xref target="RFC1997" format="default"/> or the NOPEER BGP community <xref target="RFC8092" format="default"/>.
                     Furthermore, in case of using more specifics for traffic steering, the customer <bcp14>SHOULD</bcp14> also announce at least the covering minimally routable network, i.e., currently /24 or /48, to ensure global reachability of the prefix and prevent issues with uRPF (see also <xref target="RFC8704" format="default"/> and <xref target="sec-pmtud-and-the-loose-urpf-problem" format="default"/>).
                 </t>
                 <t>
