@@ -453,8 +453,10 @@
                         Origin validation is now widely deployed, although not yet pervasive.
                     </li>
                     <li>
-                        BGPsec <xref target="RFC7353" format="default"/> provides protection for a BGP route's AS Path against spoofed origination or propagation. See <xref target="RFC7132" format="default"/> for the threat model.
-                        BGPsec is generally not deployed.  Cryptographic overhead for the mechanism is seen as an obstacle for deployment.
+                        BGPsec <xref target="RFC7353" format="default"/> provides protection for a BGP route's AS Path against spoofed origination or propagation.
+                        See <xref target="RFC7132" format="default"/> for the threat model.
+                        BGPsec, as of now, has not seen general deployment.
+                        Cryptographic overhead for the mechanism is seen as an obstacle for deployment.
                     </li>
                     <li>
                         Autonomous System Provider Authorization (ASPA) <xref target="I-D.ietf-sidrops-aspa-verification" format="default"/> objects, intends to provide protection vs. BGP route leaks.  As of the writing of this document, specification of the feature is nearly complete and deployment is beginning to occur. See also <xref target="sec-sidr-aspa" format="default"/>,
