@@ -969,14 +969,13 @@
                     <name>BGP Attribute Scrubbing</name>
                     <t>
                         Over the past years several instances of network disruptions due to routers being unable to process specific BGP attributes were encountered.
+                        Furthermore, the propagation of attributes intended for use in a limited scope has already been recognized as an ongoing problem <xref target="I-D.draft-ietf-idr-bgp-attribute-escape" format="default"/>.
                         As such, operators <bcp14>MAY</bcp14> opt to temporarily scrub specific BGP attributes known to cause service disruptions on their infrastructure.
                         Operators <bcp14>SHOULD NOT</bcp14> scrub unknown transitive attributes in general.
                     </t>
                     <t>
                         However, while being a very useful tool, BGP attribute scrubbing features may cause undesired effects and sometimes even large-scale outages as well.
                         Therefore, they <bcp14>MUST NOT</bcp14> be used as a permanent solution, but only as a last-resort temporary workaround.
-                        Furthermore, removing mandatory BGP attributes and optional attributes commonly used in the Internet, such as AS_PATH, Communities, MED etc. may have a significant negative impact beyond an operator's own AS.
-                        Hence, it is <bcp14>RECOMMENDED</bcp14> that such attributes are never removed when importing NLRI.
                     </t>
                     <t>
                         When sending NLRI to external neighbors, operators <bcp14>SHOULD</bcp14> avoid sending not yet standardized or only internally used attributes, i.e., scrub attributes they added which are not in public use before exporting NLRI.
@@ -1689,6 +1688,16 @@
                 <xi:include href="https://xml2rfc.ietf.org/public/rfc/bibxml/reference.RFC.9234.xml"/>
                 <xi:include href="https://xml2rfc.ietf.org/public/rfc/bibxml/reference.RFC.9319.xml"/>
                 <xi:include href="https://bib.ietf.org/public/rfc/bibxml3/reference.I-D.ietf-sidrops-8210bis.xml"/>
+                <reference anchor="I-D.draft-ietf-idr-bgp-attribute-escape" target="https://datatracker.ietf.org/doc/draft-ietf-idr-bgp-attribute-escape/">
+                    <front>
+                        <title>BGP Attribute Escape</title>
+                        <author initials="J." surname="Haas" fullname="Jeff Haas">
+                            <organization>HPE</organization>
+                        </author>
+                        <date month="June" day="16" year="2026"/>
+                    </front>
+                    <seriesInfo name="Internet-Draft" value="draft-ietf-idr-bgp-attribute-escape-00"/>
+                </reference>
                 <reference anchor="I-D.ietf-sidrops-aspa-verification" target="https://datatracker.ietf.org/doc/draft-ietf-sidrops-aspa-verification/">
                     <front>
                         <title>BGP AS_PATH Verification Based on Autonomous System Provider Authorization (ASPA) Objects</title>
