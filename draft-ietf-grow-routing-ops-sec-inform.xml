@@ -141,6 +141,41 @@
                 </t>
 
             </section>
+            <section  anchor="sec-protection-of-the-bgp-speaker-conf">
+                <name>BGP Speaker Configuration Handling</name>
+
+                <t>
+                    Beyond external influences, operators <bcp14>SHOULD</bcp14> be aware of different approaches to configuration management on BGP speakers.
+                </t>
+                <t>
+                    While some implementations offer configuration interfaces that implement a transaction based approach, i.e., configuration changes can be staged and then atomically comitted, other implementations will execute configuration commands in sequence.
+                    Sequential execution of configuration statements might lead to the submitted configuration temporarily having unintended semantics.
+                </t>
+                <t>
+                    For example, the following configuration action might be required to add a community on exported routes in an existing route map:
+                </t>
+                <ul spacing="normal">
+                    <li>
+                        # route-map PEER-EXPORT
+                    </li>
+                    <li>
+                        # rule 20
+                    </li>
+                    <li>
+                        # action permit
+                    </li>
+                    <li>
+                        # set large-community add 65536:0:0
+                    </li>
+                </ul>
+                <t>
+                    However, after the "action permit" statement, the configuration will already be active, i.e., all routes will be accepted.
+                    If "rule 20" is prior to a rule, e.g., rejecting routes learned from upstreams, the router will immediately start leaking upstream routes to peers.
+                </t>
+                <t>
+                    Note that this issue is related to the consistent and idempotent application of changes to prefix filters, see <xref target="sec-prefix-filtering-considerations-change" format="default"/> and <xref target="sec-prefix-filtering-considerations-idempotency" format="default"/>.
+                </t>
+            </section>
 
         </section>
         <section  anchor="sec-protection-of-the-bgp-sessions">
