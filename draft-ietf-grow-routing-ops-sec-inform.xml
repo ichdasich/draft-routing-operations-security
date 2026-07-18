@@ -745,6 +745,7 @@
                     </ul>
                     <t>
                         It is important to regularly review the limits that are configured as the Internet can quickly change over time.
+                        If the limit is reached, it will lead to a loss of the corresponding session.
                         Some vendors propose mechanisms to have two thresholds: while the higher number specified will shut down the session, the first threshold will only trigger a log and can be used to passively adjust limits based on observations made on the network.
                     </t>
                 </section>
