@@ -159,6 +159,12 @@
                 <t>
                     Hence, when a BGP speaker is connected to a dedicated management network, it <bcp14>SHOULD</bcp14> be ensured that packets are not forwarded to egress via the management interface.
                 </t>
+                <aside>
+                    <t>
+                        We acknowledge that there are specific conditions where a BGP speaker may only receive a partial BGP view, and requires a default route to be able to deliver packets with destinations not covered by a more specific prefix.
+                        In that case, operators <bcp14>SHOULD</bcp14> ensure that the default route for data plane traffic does egress via a dedicated port not used for management purposes.
+                    </t>
+                </aside>
 
             </section>
             <section  anchor="sec-protection-of-the-bgp-speaker-conf">
