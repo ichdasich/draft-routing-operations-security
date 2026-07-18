@@ -539,7 +539,7 @@
 
                 <t>
                     A network <bcp14>SHOULD</bcp14> filter its own prefixes on BGP sessions with all of its external neighbors (inbound direction).
-		    This can prevent hijacking of local traffic in the event of an internal routing failure. 
+		    This can prevent hijacking of local traffic in the event of an internal routing failure.
 		    Operators <bcp14>SHOULD</bcp14> log such filtered prefixes as they may be evidence of a BGP route hijack for the provider's address space.
                 </t>
                 <t>
