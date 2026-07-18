@@ -1149,9 +1149,9 @@
                 <section  anchor="sec-prefix-filtering-considerations-order">
                     <name>Complexity of Prefixfilters</name>
                     <t>
-						Beyond the complexity of the input set, see <xref target="sec-prefix-filtering-considerations-order" format="default"/>, the complexity of individual filters needs to be considered.
-						As an example, the majority of prefix list implementations will evaluate on the order of the depth of the generated binary tree.
-						Even for a fully populated tree, the evaluation work may be less expensive than a single regular expression.
+                        Beyond the complexity of the input set, see <xref target="sec-prefix-filtering-considerations-order" format="default"/>, the complexity of individual filters needs to be considered.
+                        As an example, the majority of prefix list implementations will evaluate on the order of the depth of the generated binary tree.
+                        Even for a fully populated tree, the evaluation work may be less expensive than a single regular expression.
                     </t>
                     <t>
                         In general, it is <bcp14>RECOMMENDED</bcp14> that the evaluation takes places in the following order:
@@ -1169,7 +1169,7 @@
                         <li>
                             4. Regular Expressions
                         </li>
-					</ul>
+                    </ul>
                     <t>
                         Note that the type of operation may be implementation dependent.
                     </t>
