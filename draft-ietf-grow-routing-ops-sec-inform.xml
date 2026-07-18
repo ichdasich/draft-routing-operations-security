@@ -1146,6 +1146,34 @@
                         Similar effects can occur when not filtering on, e.g., the OTC attribute first when sending prefixes to customers.
                     </t>
                 </section>
+                <section  anchor="sec-prefix-filtering-considerations-order">
+                    <name>Complexity of Prefixfilters</name>
+                    <t>
+						Beyond the complexity of the input set, see <xref target="sec-prefix-filtering-considerations-order" format="default"/>, the complexity of individual filters needs to be considered.
+						As an example, the majority of prefix list implementations will evaluate on the order of the depth of the generated binary tree.
+						Even for a fully populated tree, the evaluation work may be less expensive than a single regular expression.
+                    </t>
+                    <t>
+                        In general, it is <bcp14>RECOMMENDED</bcp14> that the evaluation takes places in the following order:
+                    </t>
+                    <ul spacing="normal">
+                        <li>
+                            1. Scalars
+                        </li>
+                        <li>
+                            2. Tree Lookups
+                        </li>
+                        <li>
+                            3. List Lookups
+                        </li>
+                        <li>
+                            4. Regular Expressions
+                        </li>
+					</ul>
+                    <t>
+                        Note that the type of operation may be implementation dependent.
+                    </t>
+                </section>
                 <section  anchor="sec-prefix-filtering-considerations-change">
                     <name>Ensuring Consistency when Changing Prefixfilters</name>
                     <t>
