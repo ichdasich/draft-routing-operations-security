@@ -141,6 +141,26 @@
                 </t>
 
             </section>
+            <section  anchor="sec-protection-of-the-bgp-speaker-routing">
+                <name>BGP Speaker Routing Isolation</name>
+
+                <t>
+                    When the BGP speaker is connected to a dedicated management network, see <xref target="sec-protection-of-the-bgp-speaker-mgmt" format="default"/>, it is important that traffic ingested via the dataplane cannot egress via the management port of the device.
+                </t>
+                <t>
+                    For example, assume a router that is connected to a neighbor, exchanging routing information for publically routable prefixes.
+                    In addition, the host is connected to a management interface for a dedicated management network, protected by a firewall following <xref target="sec-protection-of-the-bgp-speaker-mgmt" format="default"/>, e.g., using 2001:db8:1234::/48.
+                    The management network is explicitly not covered by any of the prefixes annonced or readvertised by the BGP speaker.
+                </t>
+                <t>
+                    If, in that case, the BGP speaker forwards packets for 2001:db8:1234::/48 received from its neighbor via its connection to the management network, e.g., because the route is punted through into the main dataplane VRF, or because both reside in the same VRF, it allows the neighbor to reach hosts in the isolated management network while bypassing the firewall.
+                    Responding hosts, despite egressing through the firewall, may then hit permissible outbound rules, assuming an already established connection, or may establish state due to a SYN-ACK being observed on the wire.
+                </t>
+                <t>
+                    Hence, when a BGP speaker is connected to a dedicated management network, it <bcp14>SHOULD</bcp14> be ensured that packets are not forwarded to egress via the management interface.
+                </t>
+
+            </section>
             <section  anchor="sec-protection-of-the-bgp-speaker-conf">
                 <name>BGP Speaker Configuration Handling</name>
 
