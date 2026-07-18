@@ -271,13 +271,12 @@ Table of Contents
 3.2.1.  Separation of Forwarding
 
    Ideally, BGP and management related control plane traffic SHOULD be
-   fully sepearated management traffic and be exclusively handled via
-   dedicated out-of-band management network.  This management network
-   SHOULD be protected from unauthorized connections by ACLs not handled
-   on the BGP speaker itself to ensure that the control plane cannot be
-   overloaded by attacks on the management interfaces of the BGP
-   speaker.  Forwarding of traffic between the two routing instances
-   SHOULD NOT be possible.
+   fully sepearated and be exclusively handled via a dedicated out-of-
+   band management network.  This management network SHOULD be protected
+   from unauthorized connections by ACLs not handled on the BGP speaker
+   itself to ensure that the control plane cannot be overloaded by
+   attacks on the management interfaces of the BGP speaker.  Forwarding
+   of traffic between the two routing instances SHOULD NOT be possible.
 
 3.2.2.  No Separation of Forwarding
 
@@ -288,16 +287,6 @@ Table of Contents
    is necessary to selectively leak routes between two VRFs to
    accomodate specific requirements.
 
-   Hence, when there is no separation of forwarding, operators SHOULD
-   ensure that ingested production traffic cannot be forwarded to egress
-   out of the management port towards destinations on the management
-   network.
-
-   Otherwise, directly connected hosts, i.e., neighbors, would be able
-   to have traffic forwarded to the management network via the BGP
-   speaker, without said traffic necessarily passing through a dedicated
-   firewall responsible for the management network.
-
       |  We acknowledge that there are specific conditions where a BGP
       |  speaker may only receive a partial BGP view, and requires a
       |  default route to be able to deliver packets with destinations
@@ -305,6 +294,13 @@ Table of Contents
       |  SHOULD ensure that the default route for data plane traffic
       |  does egress via a dedicated port not used for management
       |  purposes.
+
+   When there is no separation of forwarding, firewalling the management
+   network is more critical.  Hence, operators SHOULD ensure that
+   ingested production traffic cannot be forwarded out of the management
+   port towards destinations on the management network.  Otherwise,
+   directly connected hosts would be able to have traffic forwarded to
+   the management network.
 
 3.3.  BGP Speaker Configuration Handling
 
