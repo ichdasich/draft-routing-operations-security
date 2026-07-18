@@ -537,6 +537,15 @@
                         </li>
                     </ul>
                 </section>
+                <section anchor="sec-sidr-bgp-roles">
+                    <name>BGP Roles</name>
+                    <t>
+                        In addition to cryptographic methos to prevent route leaks and hijacks, <xref target="RFC9234" format="default"/> introduces BGP roles.
+                        Operators can attach a specific role, e.g., "peer", "upstream", or "downstream" to a BGP session.
+                        Based on the specific role, routes will then receive an OTC attribute when none is already set.
+                        NLRI with the OTC attribute set are then not announced to upstreams, and not accepted from peers and downstreams.
+                    </t>
+                </section>
             </section>
 
             <section  anchor="sec-filtering-prefixes-belonging-to-the-local-as">
