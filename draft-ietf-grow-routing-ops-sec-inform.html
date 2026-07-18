@@ -1171,6 +1171,14 @@ svg {
 </li>
               <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4.2.2">
                 <p id="section-toc.1-1.4.2.2.1"><a href="#section-4.2" class="auto internal xref">4.2</a>.  <a href="#name-bgp-speaker-management-inte" class="internal xref">BGP Speaker Management Interface Protection</a></p>
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4.2.2.2.1">
+                    <p id="section-toc.1-1.4.2.2.2.1.1"><a href="#section-4.2.1" class="auto internal xref">4.2.1</a>.  <a href="#name-separation-of-forwarding" class="internal xref">Separation of Forwarding</a></p>
+</li>
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4.2.2.2.2">
+                    <p id="section-toc.1-1.4.2.2.2.2.1"><a href="#section-4.2.2" class="auto internal xref">4.2.2</a>.  <a href="#name-no-separation-of-forwarding" class="internal xref">No Separation of Forwarding</a></p>
+</li>
+                </ul>
 </li>
             </ul>
 </li>
@@ -1572,12 +1580,41 @@ svg {
 <a href="#section-4.2" class="section-number selfRef">4.2. </a><a href="#name-bgp-speaker-management-inte" class="section-name selfRef">BGP Speaker Management Interface Protection</a>
         </h3>
 <p id="section-4.2-1">
-                    Usually, a BGP speaker's management interface is also reachable in-band, i.e., via the default routing domain / VRF (Virtual Routing Fabric) of the control plane.
-                    To make it easier to separate BGP and management related control plane traffic, management traffic <span class="bcp14">SHOULD</span> be exclusively handled via dedicated out-of-band management network.
-                    This management network <span class="bcp14">SHOULD</span> be protected from unauthorized connections by ACLs not handled on the BGP speaker itself to ensure that the control plane cannot be overloaded by attacks on the management interfaces of the BGP speaker.<a href="#section-4.2-1" class="pilcrow">¶</a></p>
+                    Usually, in default configurations, a BGP speaker's management interface is also reachable in-band, i.e., via the default routing domain / VRF (Virtual Routing Fabric) of the control plane.
+                    This also entails that there is no separation for forwarding between the data and management plane.<a href="#section-4.2-1" class="pilcrow">¶</a></p>
 <p id="section-4.2-2">
                     Please note that, in general, filtering and rate-limiting of control-plane traffic is a wider topic than "just for BGP".
                     For further recommendations on how to protect the router's control plane, see <span>[<a href="#RFC6192" class="cite xref">RFC6192</a>]</span> )<a href="#section-4.2-2" class="pilcrow">¶</a></p>
+<div id="sec-protection-of-the-bgp-speaker-fwd-sep">
+<section id="section-4.2.1">
+          <h4 id="name-separation-of-forwarding">
+<a href="#section-4.2.1" class="section-number selfRef">4.2.1. </a><a href="#name-separation-of-forwarding" class="section-name selfRef">Separation of Forwarding</a>
+          </h4>
+<p id="section-4.2.1-1">
+                        Ideally, BGP and management related control plane traffic <span class="bcp14">SHOULD</span> be fully sepearated and be exclusively handled via a dedicated out-of-band management network.
+                        This management network <span class="bcp14">SHOULD</span> be protected from unauthorized connections by ACLs not handled on the BGP speaker itself to ensure that the control plane cannot be overloaded by attacks on the management interfaces of the BGP speaker.
+                        Forwarding of traffic between the two routing instances <span class="bcp14">SHOULD NOT</span> be possible.<a href="#section-4.2.1-1" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="sec-protection-of-the-bgp-speaker-nofwd-sep">
+<section id="section-4.2.2">
+          <h4 id="name-no-separation-of-forwarding">
+<a href="#section-4.2.2" class="section-number selfRef">4.2.2. </a><a href="#name-no-separation-of-forwarding" class="section-name selfRef">No Separation of Forwarding</a>
+          </h4>
+<p id="section-4.2.2-1">
+                        In some cases, it may not be possible to fully restrict forwarding from the data plane to the management plane.
+                        Such a separation may not be supported by the implementation at hand, operators may consciously choose to not implement separation of forwarding, or it is necessary to selectively leak routes between two VRFs to accomodate specific requirements.<a href="#section-4.2.2-1" class="pilcrow">¶</a></p>
+<aside id="section-4.2.2-2">
+            <p id="section-4.2.2-2.1">
+                            We acknowledge that there are specific conditions where a BGP speaker may only receive a partial BGP view, and requires a default route to be able to deliver packets with destinations not covered by a more specific prefix.
+                            In that case, operators <span class="bcp14">SHOULD</span> ensure that the default route for data plane traffic does egress via a dedicated port not used for management purposes.<a href="#section-4.2.2-2.1" class="pilcrow">¶</a></p>
+</aside>
+<p id="section-4.2.2-3">
+                        When there is no separation of forwarding, firewalling the management network is more critical.
+                        Hence, operators <span class="bcp14">SHOULD</span> ensure that ingested production traffic cannot be forwarded out of the management port towards destinations on the management network.
+                        Otherwise, directly connected hosts would be able to have traffic forwarded to the management network.<a href="#section-4.2.2-3" class="pilcrow">¶</a></p>
+</section>
+</div>
 </section>
 </div>
 </section>
