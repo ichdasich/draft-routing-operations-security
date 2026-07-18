@@ -1082,7 +1082,7 @@ svg {
 <dd class="authors">
 <div class="author">
       <div class="author-name">T. Fiebig</div>
-<div class="org">MPI-INF</div>
+<div class="org">TU Wien</div>
 </div>
 </dd>
 </dl>
@@ -1168,6 +1168,9 @@ svg {
 </li>
               <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.2">
                 <p id="section-toc.1-1.3.2.2.1"><a href="#section-3.2" class="auto internal xref">3.2</a>.  <a href="#name-bgp-speaker-management-inte" class="internal xref">BGP Speaker Management Interface Protection</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.3">
+                <p id="section-toc.1-1.3.2.3.1"><a href="#section-3.3" class="auto internal xref">3.3</a>.  <a href="#name-bgp-speaker-configuration-h" class="internal xref">BGP Speaker Configuration Handling</a></p>
 </li>
             </ul>
 </li>
@@ -1256,6 +1259,9 @@ svg {
 </li>
                   <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6.2.2.2.3">
                     <p id="section-toc.1-1.6.2.2.2.3.1"><a href="#section-6.2.3" class="auto internal xref">6.2.3</a>.  <a href="#name-autonomous-system-provider-" class="internal xref">Autonomous System Provider Authorization (ASPA)</a></p>
+</li>
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6.2.2.2.4">
+                    <p id="section-toc.1-1.6.2.2.2.4.1"><a href="#section-6.2.4" class="auto internal xref">6.2.4</a>.  <a href="#name-bgp-roles" class="internal xref">BGP Roles</a></p>
 </li>
                 </ul>
 </li>
@@ -1374,16 +1380,19 @@ svg {
                     <p id="section-toc.1-1.8.2.1.2.2.1"><a href="#section-8.1.2" class="auto internal xref">8.1.2</a>.  <a href="#name-order-of-prefixfilters" class="internal xref">Order of Prefixfilters</a></p>
 </li>
                   <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.8.2.1.2.3">
-                    <p id="section-toc.1-1.8.2.1.2.3.1"><a href="#section-8.1.3" class="auto internal xref">8.1.3</a>.  <a href="#name-ensuring-consistency-when-c" class="internal xref">Ensuring Consistency when Changing Prefixfilters</a></p>
+                    <p id="section-toc.1-1.8.2.1.2.3.1"><a href="#section-8.1.3" class="auto internal xref">8.1.3</a>.  <a href="#name-complexity-of-prefixfilters" class="internal xref">Complexity of Prefixfilters</a></p>
 </li>
                   <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.8.2.1.2.4">
-                    <p id="section-toc.1-1.8.2.1.2.4.1"><a href="#section-8.1.4" class="auto internal xref">8.1.4</a>.  <a href="#name-ensuring-idempotency-for-pr" class="internal xref">Ensuring Idempotency for Prefixfilter Changes</a></p>
+                    <p id="section-toc.1-1.8.2.1.2.4.1"><a href="#section-8.1.4" class="auto internal xref">8.1.4</a>.  <a href="#name-ensuring-consistency-when-c" class="internal xref">Ensuring Consistency when Changing Prefixfilters</a></p>
 </li>
                   <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.8.2.1.2.5">
-                    <p id="section-toc.1-1.8.2.1.2.5.1"><a href="#section-8.1.5" class="auto internal xref">8.1.5</a>.  <a href="#name-ruleset-size-considerations" class="internal xref">Ruleset Size Considerations</a></p>
+                    <p id="section-toc.1-1.8.2.1.2.5.1"><a href="#section-8.1.5" class="auto internal xref">8.1.5</a>.  <a href="#name-ensuring-idempotency-for-pr" class="internal xref">Ensuring Idempotency for Prefixfilter Changes</a></p>
 </li>
                   <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.8.2.1.2.6">
-                    <p id="section-toc.1-1.8.2.1.2.6.1"><a href="#section-8.1.6" class="auto internal xref">8.1.6</a>.  <a href="#name-ruleset-generation-failure" class="internal xref">Ruleset Generation Failure</a></p>
+                    <p id="section-toc.1-1.8.2.1.2.6.1"><a href="#section-8.1.6" class="auto internal xref">8.1.6</a>.  <a href="#name-ruleset-size-considerations" class="internal xref">Ruleset Size Considerations</a></p>
+</li>
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.8.2.1.2.7">
+                    <p id="section-toc.1-1.8.2.1.2.7.1"><a href="#section-8.1.7" class="auto internal xref">8.1.7</a>.  <a href="#name-ruleset-generation-failure" class="internal xref">Ruleset Generation Failure</a></p>
 </li>
                 </ul>
 </li>
@@ -1538,6 +1547,39 @@ svg {
 <p id="section-3.2-2">
                     Please note that, in general, filtering and rate-limiting of control-plane traffic is a wider topic than "just for BGP".
                     For further recommendations on how to protect the router's control plane, see <span>[<a href="#RFC6192" class="cite xref">RFC6192</a>]</span> )<a href="#section-3.2-2" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="sec-protection-of-the-bgp-speaker-conf">
+<section id="section-3.3">
+        <h3 id="name-bgp-speaker-configuration-h">
+<a href="#section-3.3" class="section-number selfRef">3.3. </a><a href="#name-bgp-speaker-configuration-h" class="section-name selfRef">BGP Speaker Configuration Handling</a>
+        </h3>
+<p id="section-3.3-1">
+                    Beyond external influences, operators <span class="bcp14">SHOULD</span> be aware of different approaches to configuration management on BGP speakers.<a href="#section-3.3-1" class="pilcrow">¶</a></p>
+<p id="section-3.3-2">
+                    While some implementations offer configuration interfaces that implement a transaction based approach, i.e., configuration changes can be staged and then atomically comitted, other implementations will execute configuration commands in sequence.
+                    Sequential execution of configuration statements might lead to the submitted configuration temporarily having unintended semantics.<a href="#section-3.3-2" class="pilcrow">¶</a></p>
+<p id="section-3.3-3">
+                    For example, the following configuration action might be required to add a community on exported routes in an existing route map:<a href="#section-3.3-3" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="section-3.3-4.1">
+                        # route-map PEER-EXPORT<a href="#section-3.3-4.1" class="pilcrow">¶</a>
+</li>
+          <li class="normal" id="section-3.3-4.2">
+                        # rule 20<a href="#section-3.3-4.2" class="pilcrow">¶</a>
+</li>
+          <li class="normal" id="section-3.3-4.3">
+                        # action permit<a href="#section-3.3-4.3" class="pilcrow">¶</a>
+</li>
+          <li class="normal" id="section-3.3-4.4">
+                        # set large-community add 65536:0:0<a href="#section-3.3-4.4" class="pilcrow">¶</a>
+</li>
+        </ul>
+<p id="section-3.3-5">
+                    However, after the "action permit" statement, the configuration will already be active, i.e., all routes will be accepted.
+                    If "rule 20" is prior to a rule, e.g., rejecting routes learned from upstreams, the router will immediately start leaking upstream routes to peers.<a href="#section-3.3-5" class="pilcrow">¶</a></p>
+<p id="section-3.3-6">
+                    Note that this issue is related to the consistent and idempotent application of changes to prefix filters, see <a href="#sec-prefix-filtering-considerations-change" class="auto internal xref">Section 8.1.4</a> and <a href="#sec-prefix-filtering-considerations-idempotency" class="auto internal xref">Section 8.1.5</a>.<a href="#section-3.3-6" class="pilcrow">¶</a></p>
 </section>
 </div>
 </section>
@@ -1729,7 +1771,7 @@ svg {
                     This can be to allow customers more fine-grained traffic steering in case of multiple BGP sessions between the AS and its customer in multiple locations, and/or to sub-delegate IPv4 address space smaller than a /24 from the AS' allocation to the customer.<a href="#section-5.3-2" class="pilcrow">¶</a></p>
 <p id="section-5.3-3">
                     In such cases, operators <span class="bcp14">SHOULD</span> add a specific accept rule for these exact prefixes before discarding prefixes more specific than the currently agreed upon /24 and /48.
-                    Routes of this type <span class="bcp14">SHOULD</span> be annotated in a way that ensures they are not re-exported to other neighbors (see <a href="#sec-filtering-outbound-prefixes-communities" class="auto internal xref">Section 6.5.2</a>).
+                    Routes of this type <span class="bcp14">SHOULD</span> be annotated in a way that ensures they are not re-exported to other neighbors (see <a href="#sec-filtering-outbound-prefixes-communities" class="auto internal xref">Section 6.5.2</a>), e.g., using the NO_EXPORT BGP community <span>[<a href="#RFC1997" class="cite xref">RFC1997</a>]</span> or the NOPEER BGP community <span>[<a href="#RFC8092" class="cite xref">RFC8092</a>]</span>.
                     Furthermore, in case of using more specifics for traffic steering, the customer <span class="bcp14">SHOULD</span> also announce at least the covering minimally routable network, i.e., currently /24 or /48, to ensure global reachability of the prefix and prevent issues with uRPF (see also <span>[<a href="#RFC8704" class="cite xref">RFC8704</a>]</span> and <a href="#sec-pmtud-and-the-loose-urpf-problem" class="auto internal xref">Section 6.6.3</a>).<a href="#section-5.3-3" class="pilcrow">¶</a></p>
 <p id="section-5.3-4">
                     Similar to too specific routes, most ISPs will not accept advertisements beyond a certain level of aggregation.
@@ -1812,7 +1854,7 @@ svg {
           </h4>
 <p id="section-6.1.2-1">
                         An AS-SET is an object that contains AS numbers or other AS-SETs.
-                        The purpose of AS-SETs is creating a recursively queryable structure documenting the cone of an AS.
+                        The purpose of AS-SETs is creating a recursively queryable structure documenting the cone, i.e., the set of all prefixes announced by the AS itself, or any of its downstreams, of an AS.
                         An operator may create an AS-SET defining all AS numbers of its customers.
                         A transit provider might create an AS-SET listing the AS numbers or AS-SETS of those ASes it provides upstream to. In turn, these ASes describe the AS numbers/AS-SETS of their customers, etc.
                         Using recursion, it is possible to retrieve from an AS-SET the complete list of AS numbers that the neighbor is likely to announce.
@@ -1854,6 +1896,8 @@ svg {
                         Refreshing the filters on a daily basis <span class="bcp14">SHOULD</span> be considered because routing changes must sometimes be done in an emergency and registries may be updated at the very last moment.
                         Note that this approach significantly increases the complexity of the router configurations, as it can quickly add tens of thousands of configuration lines for some important neighbors, e.g., large peers or downstreams.
                         To manage this complexity, operators could use, for example, bgpq4 <span>[<a href="#bgpq4" class="cite xref">bgpq4</a>]</span>, a set of tools making it possible to simplify the creation of automated filter configuration from policies stored in an IRR.<a href="#section-6.1.3-4" class="pilcrow">¶</a></p>
+<p id="section-6.1.3-5">
+                        Please note that large BGP filters will negatively impact performance when ingesting routes, even when operators carefully craft and apply their filters to minimize the performance overhead, see <a href="#sec-prefix-filtering-considerations-order" class="auto internal xref">Section 8.1.2</a>.<a href="#section-6.1.3-5" class="pilcrow">¶</a></p>
 </section>
 </div>
 </section>
@@ -1874,8 +1918,10 @@ svg {
                         Origin validation is now widely deployed, although not yet pervasive.<a href="#section-6.2-3.1" class="pilcrow">¶</a>
 </li>
           <li class="normal" id="section-6.2-3.2">
-                        BGPsec <span>[<a href="#RFC7353" class="cite xref">RFC7353</a>]</span> provides protection for a BGP route's AS Path against spoofed origination or propagation. See <span>[<a href="#RFC7132" class="cite xref">RFC7132</a>]</span> for the threat model.
-                        BGPsec is generally not deployed.  Cryptographic overhead for the mechanism is seen as an obstacle for deployment.<a href="#section-6.2-3.2" class="pilcrow">¶</a>
+                        BGPsec <span>[<a href="#RFC7353" class="cite xref">RFC7353</a>]</span> provides protection for a BGP route's AS Path against spoofed origination or propagation.
+                        See <span>[<a href="#RFC7132" class="cite xref">RFC7132</a>]</span> for the threat model.
+                        BGPsec, as of now, has not seen general deployment.
+                        Cryptographic overhead for the mechanism is seen as an obstacle for deployment.<a href="#section-6.2-3.2" class="pilcrow">¶</a>
 </li>
           <li class="normal" id="section-6.2-3.3">
                         Autonomous System Provider Authorization (ASPA) <span>[<a href="#I-D.ietf-sidrops-aspa-verification" class="cite xref">I-D.ietf-sidrops-aspa-verification</a>]</span> objects, intends to provide protection vs. BGP route leaks.  As of the writing of this document, specification of the feature is nearly complete and deployment is beginning to occur. See also <a href="#sec-sidr-aspa" class="auto internal xref">Section 6.2.3</a>,<a href="#section-6.2-3.3" class="pilcrow">¶</a>
@@ -1958,6 +2004,18 @@ svg {
           </ul>
 </section>
 </div>
+<div id="sec-sidr-bgp-roles">
+<section id="section-6.2.4">
+          <h4 id="name-bgp-roles">
+<a href="#section-6.2.4" class="section-number selfRef">6.2.4. </a><a href="#name-bgp-roles" class="section-name selfRef">BGP Roles</a>
+          </h4>
+<p id="section-6.2.4-1">
+                        In addition to cryptographic methos to prevent route leaks and hijacks, <span>[<a href="#RFC9234" class="cite xref">RFC9234</a>]</span> introduces BGP roles.
+                        Operators can attach a specific role, e.g., "peer", "upstream", or "downstream" to a BGP session.
+                        Based on the specific role, routes will then receive an OTC attribute when none is already set.
+                        NLRI with the OTC attribute set are then not announced to upstreams, and not accepted from peers and downstreams.<a href="#section-6.2.4-1" class="pilcrow">¶</a></p>
+</section>
+</div>
 </section>
 </div>
 <div id="sec-filtering-prefixes-belonging-to-the-local-as">
@@ -1967,22 +2025,14 @@ svg {
         </h3>
 <p id="section-6.3-1">
                     A network <span class="bcp14">SHOULD</span> filter its own prefixes on BGP sessions with all of its external neighbors (inbound direction).
-     This can prevent hijacking of local traffic in the event of an internal routing failure.
-     Operators <span class="bcp14">SHOULD</span> log such filtered prefixes as they may be evidence of a BGP route hijack for the provider's address space.<a href="#section-6.3-1" class="pilcrow">¶</a></p>
+                    This can prevent hijacking of local traffic in the event of an internal routing failure.
+                    Operators <span class="bcp14">SHOULD</span> log such filtered prefixes as they may be evidence of a BGP route hijack for the provider's address space.<a href="#section-6.3-1" class="pilcrow">¶</a></p>
 <p id="section-6.3-2">
-     Under some circumstances, such as repairing a partitioned
-     AS, the provider's address space may be accepted over an
-     external peering session.  In such cases, the AS_PATH is
-     also looped and will require the use of an implementation's
-     "loops" mechanism to accept such looped routes.<a href="#section-6.3-2" class="pilcrow">¶</a></p>
+                    Under some circumstances, such as repairing a partitioned AS, the provider's address space may be accepted over an external peering session.
+                    In such cases, the AS_PATH is also looped and will require the use of an implementation's "loops" mechanism to accept such looped routes.<a href="#section-6.3-2" class="pilcrow">¶</a></p>
 <p id="section-6.3-3">
-     Operators <span class="bcp14">MAY</span> wish to consider deploying
-     null routes covering their address space to prevent
-     forwarding loops in the event that internal traffic would
-     otherwise be attracted to external peers; for example, due
-     to BGP aggregation procedures.  See
-     <span>[<a href="#RFC9774" class="cite xref">RFC9774</a>], <a href="https://rfc-editor.org/rfc/rfc9774#appendix-Appendix%20C" class="relref">Part Appendix C</a></span>
-     for related discussion.<a href="#section-6.3-3" class="pilcrow">¶</a></p>
+                    Operators <span class="bcp14">MAY</span> wish to consider deploying null routes covering their address space to prevent forwarding loops in the event that internal traffic would otherwise be attracted to external peers; for example, due to BGP aggregation procedures.
+                    See <span>[<a href="#RFC9774" class="cite xref">RFC9774</a>], <a href="https://rfc-editor.org/rfc/rfc9774#appendix-Appendix%20C" class="relref">Part Appendix C</a></span> for related discussion.<a href="#section-6.3-3" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="sec-filtering-inbound-prefixes-belonging-to-ds">
@@ -2199,6 +2249,7 @@ svg {
           </ul>
 <p id="section-7.2.1-3">
                         It is important to regularly review the limits that are configured as the Internet can quickly change over time.
+                        If the limit is reached, it will lead to a loss of the corresponding session.
                         Some vendors propose mechanisms to have two thresholds: while the higher number specified will shut down the session, the first threshold will only trigger a log and can be used to passively adjust limits based on observations made on the network.<a href="#section-7.2.1-3" class="pilcrow">¶</a></p>
 </section>
 </div>
@@ -2301,6 +2352,8 @@ svg {
                     The "AS Override" feature <span class="bcp14">MAY</span> still be used in closed environments, such as VPNs not directly exchanging any NLRIs with the Internet.
                     AS_PATH rewriting/deleting <span class="bcp14">SHOULD</span> be avoided.
                     Especially the practice of providing upstream to customers using a private ASN and then using rewriting on either side is strongly <span class="bcp14">NOT RECOMMENDED</span>.<a href="#section-7.3.2-4" class="pilcrow">¶</a></p>
+<p id="section-7.3.2-5">
+                    Please not that AS_PATH manipulation may be fragile in the presence of ASPA or other AS_PATH validation methos, see <a href="#sec-sidr-aspa" class="auto internal xref">Section 6.2.3</a>.<a href="#section-7.3.2-5" class="pilcrow">¶</a></p>
 </section>
 </div>
 </section>
@@ -2436,13 +2489,12 @@ svg {
           </h4>
 <p id="section-7.6.1-1">
                         Over the past years several instances of network disruptions due to routers being unable to process specific BGP attributes were encountered.
+                        Furthermore, the propagation of attributes intended for use in a limited scope has already been recognized as an ongoing problem <span>[<a href="#I-D.draft-ietf-idr-bgp-attribute-escape" class="cite xref">I-D.draft-ietf-idr-bgp-attribute-escape</a>]</span>.
                         As such, operators <span class="bcp14">MAY</span> opt to temporarily scrub specific BGP attributes known to cause service disruptions on their infrastructure.
                         Operators <span class="bcp14">SHOULD NOT</span> scrub unknown transitive attributes in general.<a href="#section-7.6.1-1" class="pilcrow">¶</a></p>
 <p id="section-7.6.1-2">
                         However, while being a very useful tool, BGP attribute scrubbing features may cause undesired effects and sometimes even large-scale outages as well.
-                        Therefore, they <span class="bcp14">MUST NOT</span> be used as a permanent solution, but only as a last-resort temporary workaround.
-                        Furthermore, removing mandatory BGP attributes and optional attributes commonly used in the Internet, such as AS_PATH, Communities, MED etc. may have a significant negative impact beyond an operator's own AS.
-                        Hence, it is <span class="bcp14">RECOMMENDED</span> that such attributes are never removed when importing NLRI.<a href="#section-7.6.1-2" class="pilcrow">¶</a></p>
+                        Therefore, they <span class="bcp14">MUST NOT</span> be used as a permanent solution, but only as a last-resort temporary workaround.<a href="#section-7.6.1-2" class="pilcrow">¶</a></p>
 <p id="section-7.6.1-3">
                         When sending NLRI to external neighbors, operators <span class="bcp14">SHOULD</span> avoid sending not yet standardized or only internally used attributes, i.e., scrub attributes they added which are not in public use before exporting NLRI.<a href="#section-7.6.1-3" class="pilcrow">¶</a></p>
 </section>
@@ -2625,108 +2677,137 @@ svg {
                         Similar effects can occur when not filtering on, e.g., the OTC attribute first when sending prefixes to customers.<a href="#section-8.1.2-10" class="pilcrow">¶</a></p>
 </section>
 </div>
-<div id="sec-prefix-filtering-considerations-change">
+<div id="sec-prefix-filtering-considerations-comp">
 <section id="section-8.1.3">
-          <h4 id="name-ensuring-consistency-when-c">
-<a href="#section-8.1.3" class="section-number selfRef">8.1.3. </a><a href="#name-ensuring-consistency-when-c" class="section-name selfRef">Ensuring Consistency when Changing Prefixfilters</a>
+          <h4 id="name-complexity-of-prefixfilters">
+<a href="#section-8.1.3" class="section-number selfRef">8.1.3. </a><a href="#name-complexity-of-prefixfilters" class="section-name selfRef">Complexity of Prefixfilters</a>
           </h4>
 <p id="section-8.1.3-1">
-                        As discussed in <a href="#sec-prefix-filtering-considerations-order" class="auto internal xref">Section 8.1.2</a>, many BGP implementations use a sequential order for applying different prefix filters to ingested routes.
-                        However, at the same time, several implementations do not perform atomic operations when applying rules.
-                        This means that, especially on resource constraint BGP speakers or BGP speakers under load consistency of a ruleset may be lost during a rule-set update.<a href="#section-8.1.3-1" class="pilcrow">¶</a></p>
+                        Beyond the complexity of the input set, see <a href="#sec-prefix-filtering-considerations-order" class="auto internal xref">Section 8.1.2</a>, the complexity of individual filters needs to be considered.
+                        As an example, the majority of prefix list implementations will evaluate on the order of the depth of the generated binary tree.
+                        Even for a fully populated tree, the evaluation work may be less expensive than a single regular expression.<a href="#section-8.1.3-1" class="pilcrow">¶</a></p>
 <p id="section-8.1.3-2">
-                        For example, consider the following simplified export rule-set towards a peer:<a href="#section-8.1.3-2" class="pilcrow">¶</a></p>
+                        In general, it is <span class="bcp14">RECOMMENDED</span> that the evaluation takes places in the following order:<a href="#section-8.1.3-2" class="pilcrow">¶</a></p>
 <ul class="normal">
 <li class="normal" id="section-8.1.3-3.1">
-                            1. Reject prefixes learned from upstreams<a href="#section-8.1.3-3.1" class="pilcrow">¶</a>
+                            1. Scalars<a href="#section-8.1.3-3.1" class="pilcrow">¶</a>
 </li>
             <li class="normal" id="section-8.1.3-3.2">
-                            2. Reject bogon prefixes<a href="#section-8.1.3-3.2" class="pilcrow">¶</a>
+                            2. Tree Lookups<a href="#section-8.1.3-3.2" class="pilcrow">¶</a>
 </li>
             <li class="normal" id="section-8.1.3-3.3">
-                            3. Reject RPKI invalid NLRI<a href="#section-8.1.3-3.3" class="pilcrow">¶</a>
+                            3. List Lookups<a href="#section-8.1.3-3.3" class="pilcrow">¶</a>
 </li>
             <li class="normal" id="section-8.1.3-3.4">
-                            4. Accept all remaining prefixes<a href="#section-8.1.3-3.4" class="pilcrow">¶</a>
+                            4. Regular Expressions<a href="#section-8.1.3-3.4" class="pilcrow">¶</a>
 </li>
           </ul>
 <p id="section-8.1.3-4">
-                        If one now wants to swap the order of Rule 2 and 3, an implementation applying rule updates not atomically would proceed as follows:<a href="#section-8.1.3-4" class="pilcrow">¶</a></p>
+                        Note that the type of operation may be implementation dependent.<a href="#section-8.1.3-4" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="sec-prefix-filtering-considerations-change">
+<section id="section-8.1.4">
+          <h4 id="name-ensuring-consistency-when-c">
+<a href="#section-8.1.4" class="section-number selfRef">8.1.4. </a><a href="#name-ensuring-consistency-when-c" class="section-name selfRef">Ensuring Consistency when Changing Prefixfilters</a>
+          </h4>
+<p id="section-8.1.4-1">
+                        As discussed in <a href="#sec-prefix-filtering-considerations-order" class="auto internal xref">Section 8.1.2</a>, many BGP implementations use a sequential order for applying different prefix filters to ingested routes.
+                        However, at the same time, several implementations do not perform atomic operations when applying rules.
+                        This means that, especially on resource constraint BGP speakers or BGP speakers under load consistency of a ruleset may be lost during a rule-set update.<a href="#section-8.1.4-1" class="pilcrow">¶</a></p>
+<p id="section-8.1.4-2">
+                        For example, consider the following simplified export rule-set towards a peer:<a href="#section-8.1.4-2" class="pilcrow">¶</a></p>
 <ul class="normal">
-<li class="normal" id="section-8.1.3-5.1">
-                            1. Delete Rule 2, Reject bogon prefixes<a href="#section-8.1.3-5.1" class="pilcrow">¶</a>
+<li class="normal" id="section-8.1.4-3.1">
+                            1. Reject prefixes learned from upstreams<a href="#section-8.1.4-3.1" class="pilcrow">¶</a>
 </li>
-            <li class="normal" id="section-8.1.3-5.2">
-                            2. Add Rule 2, Reject RPKI invalid NLRI<a href="#section-8.1.3-5.2" class="pilcrow">¶</a>
+            <li class="normal" id="section-8.1.4-3.2">
+                            2. Reject bogon prefixes<a href="#section-8.1.4-3.2" class="pilcrow">¶</a>
 </li>
-            <li class="normal" id="section-8.1.3-5.3">
-                            3. Delete Rule 3, Reject RPKI invalid NLRI<a href="#section-8.1.3-5.3" class="pilcrow">¶</a>
+            <li class="normal" id="section-8.1.4-3.3">
+                            3. Reject RPKI invalid NLRI<a href="#section-8.1.4-3.3" class="pilcrow">¶</a>
 </li>
-            <li class="normal" id="section-8.1.3-5.4">
-                            4. Add Rule 3, Reject bogon prefixes<a href="#section-8.1.3-5.4" class="pilcrow">¶</a>
+            <li class="normal" id="section-8.1.4-3.4">
+                            4. Accept all remaining prefixes<a href="#section-8.1.4-3.4" class="pilcrow">¶</a>
 </li>
           </ul>
-<p id="section-8.1.3-6">
+<p id="section-8.1.4-4">
+                        If one now wants to swap the order of Rule 2 and 3, an implementation applying rule updates not atomically would proceed as follows:<a href="#section-8.1.4-4" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="section-8.1.4-5.1">
+                            1. Delete Rule 2, Reject bogon prefixes<a href="#section-8.1.4-5.1" class="pilcrow">¶</a>
+</li>
+            <li class="normal" id="section-8.1.4-5.2">
+                            2. Add Rule 2, Reject RPKI invalid NLRI<a href="#section-8.1.4-5.2" class="pilcrow">¶</a>
+</li>
+            <li class="normal" id="section-8.1.4-5.3">
+                            3. Delete Rule 3, Reject RPKI invalid NLRI<a href="#section-8.1.4-5.3" class="pilcrow">¶</a>
+</li>
+            <li class="normal" id="section-8.1.4-5.4">
+                            4. Add Rule 3, Reject bogon prefixes<a href="#section-8.1.4-5.4" class="pilcrow">¶</a>
+</li>
+          </ul>
+<p id="section-8.1.4-6">
                         During the timeframe between the execution of Step 1 and 2, an NLRI for a bogon prefix would be passed by the filter.
                         While, technically, this timeframe should be negligibly small, a loaded control plane my create unexpected overhead allowing prefixes that should be filtered to pass.
-                        Similarly, an error during the application of a ruleset, making the application stop after the execution of Step 1 may have a similar effect if rule-set changes are not atomic.<a href="#section-8.1.3-6" class="pilcrow">¶</a></p>
-<p id="section-8.1.3-7">
+                        Similarly, an error during the application of a ruleset, making the application stop after the execution of Step 1 may have a similar effect if rule-set changes are not atomic.<a href="#section-8.1.4-6" class="pilcrow">¶</a></p>
+<p id="section-8.1.4-7">
                         Hence, it is <span class="bcp14">RECOMMENDED</span> that operators assess whether the application of changes to rule-sets on their BGP speakers is atomic.
                         If it is not atomic, operators <span class="bcp14">SHOULD</span> take special care in drafting rule-set updates concerning inconsistent state that could be created by a delayed or incomplete update.
                         If no atomicity is provided by the BGP speaker, and the load-conditions are uncertain, operators <span class="bcp14">SHOULD</span> consider creating a new complete rule-set with the desired changes, and then changing the referenced rule-set for a given neighbor instead of updating an existing rule-set in-place.
-                        Naturally, after the new rule-set has been activated, the old rule-set should be deleted.<a href="#section-8.1.3-7" class="pilcrow">¶</a></p>
+                        Naturally, after the new rule-set has been activated, the old rule-set should be deleted.<a href="#section-8.1.4-7" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="sec-prefix-filtering-considerations-idempotency">
-<section id="section-8.1.4">
+<section id="section-8.1.5">
           <h4 id="name-ensuring-idempotency-for-pr">
-<a href="#section-8.1.4" class="section-number selfRef">8.1.4. </a><a href="#name-ensuring-idempotency-for-pr" class="section-name selfRef">Ensuring Idempotency for Prefixfilter Changes</a>
+<a href="#section-8.1.5" class="section-number selfRef">8.1.5. </a><a href="#name-ensuring-idempotency-for-pr" class="section-name selfRef">Ensuring Idempotency for Prefixfilter Changes</a>
           </h4>
-<p id="section-8.1.4-1">
+<p id="section-8.1.5-1">
                         As prefix filters are changed regularly, idempotency is essential when issuing automated updates of prefix filters.
-                        Specifically, prefix filters <span class="bcp14">SHOULD NOT</span> be generated on routers itself.<a href="#section-8.1.4-1" class="pilcrow">¶</a></p>
-<p id="section-8.1.4-2">
+                        Specifically, prefix filters <span class="bcp14">SHOULD NOT</span> be generated on routers itself.<a href="#section-8.1.5-1" class="pilcrow">¶</a></p>
+<p id="section-8.1.5-2">
                         Instead, filter lists <span class="bcp14">SHOULD</span> be generated on dedicated systems.
                         These systems <span class="bcp14">SHOULD</span> ensure the idempotency of changes to filters applied to routers, i.e., they should only deploy a policy, if the policy changed.
-                        This ensures no unnecessary regular load is placed on the control plane of BGP speakers.<a href="#section-8.1.4-2" class="pilcrow">¶</a></p>
+                        This ensures no unnecessary regular load is placed on the control plane of BGP speakers.<a href="#section-8.1.5-2" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="sec-prefix-filtering-ruleset-size">
-<section id="section-8.1.5">
+<section id="section-8.1.6">
           <h4 id="name-ruleset-size-considerations">
-<a href="#section-8.1.5" class="section-number selfRef">8.1.5. </a><a href="#name-ruleset-size-considerations" class="section-name selfRef">Ruleset Size Considerations</a>
+<a href="#section-8.1.6" class="section-number selfRef">8.1.6. </a><a href="#name-ruleset-size-considerations" class="section-name selfRef">Ruleset Size Considerations</a>
           </h4>
-<p id="section-8.1.5-1">
+<p id="section-8.1.6-1">
                         Some BGP speaker implementations, and especially older BGP speakers, are restrained in terms of the number of prefixes and rules they can apply.
                         A common reaction of operators in such cases is reducing the number of filters applied on sessions.
-                        Even though it is <span class="bcp14">NOT RECOMMENDED</span> to aggregate prefix lists for filtering, operators <span class="bcp14">SHOULD</span> consider aggressive aggregation of prefix filter lists to restrict the perfixes accepted by neighbors if the alternative is not using filters at all.<a href="#section-8.1.5-1" class="pilcrow">¶</a></p>
-<p id="section-8.1.5-2">
+                        Even though it is <span class="bcp14">NOT RECOMMENDED</span> to aggregate prefix lists for filtering, operators <span class="bcp14">SHOULD</span> consider aggressive aggregation of prefix filter lists to restrict the perfixes accepted by neighbors if the alternative is not using filters at all.<a href="#section-8.1.6-1" class="pilcrow">¶</a></p>
+<p id="section-8.1.6-2">
                         Another approach that <span class="bcp14">MAY</span> be a suitable rule-set creation approach for downstreams and peers is offline validation.
                         In that case, a dedicated system regularly, e.g., every two hours, obtains the list of prefixes advertised by a given peer or downstream.
                         That list is then validated according to the applicable section below.
                         Subsequently, instead of using a full representation of the neighbors cone, a condensed prefix list matching the aggregate of the exact prefixes announced is generated and deployed to the BGP speaker.
-                        While this increases the timeframe for newly added prefixes to be accepted, and may be unsuitable for, e.g., DDoS defense services, it can also reduce the size of prefix lists significantly.<a href="#section-8.1.5-2" class="pilcrow">¶</a></p>
+                        While this increases the timeframe for newly added prefixes to be accepted, and may be unsuitable for, e.g., DDoS defense services, it can also reduce the size of prefix lists significantly.<a href="#section-8.1.6-2" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="sec-prefix-filtering-ruleset-failure">
-<section id="section-8.1.6">
+<section id="section-8.1.7">
           <h4 id="name-ruleset-generation-failure">
-<a href="#section-8.1.6" class="section-number selfRef">8.1.6. </a><a href="#name-ruleset-generation-failure" class="section-name selfRef">Ruleset Generation Failure</a>
+<a href="#section-8.1.7" class="section-number selfRef">8.1.7. </a><a href="#name-ruleset-generation-failure" class="section-name selfRef">Ruleset Generation Failure</a>
           </h4>
-<p id="section-8.1.6-1">
+<p id="section-8.1.7-1">
                         As noted in <a href="#sec-prefix-filters-created-from-internet-routing-registries-irrs-creating-filters" class="auto internal xref">Section 6.1.3</a>, the creation and application of filter rules should be automated to reduce the margin for error and misconfigurations.
-                        Nevertheless, the regeneration of filter rules may fail.<a href="#section-8.1.6-1" class="pilcrow">¶</a></p>
-<p id="section-8.1.6-2">
+                        Nevertheless, the regeneration of filter rules may fail.<a href="#section-8.1.7-1" class="pilcrow">¶</a></p>
+<p id="section-8.1.7-2">
                         Before applying a generated ruleset, an operator should check it for obvious errors and potentially require manual intervention to remediate the issue.
-                        Examples include a ruleset for a neighbor suddenly significantly increasing or decreasing in size, or being empty.<a href="#section-8.1.6-2" class="pilcrow">¶</a></p>
-<p id="section-8.1.6-3">
+                        Examples include a ruleset for a neighbor suddenly significantly increasing or decreasing in size, or being empty.<a href="#section-8.1.7-2" class="pilcrow">¶</a></p>
+<p id="section-8.1.7-3">
                         In case of such a failure, each administrator <span class="bcp14">MAY</span> decide which actions they will take.
                         Options include reusing the previously active rule set, or either accepting or rejecting all routes depending on routing policy.
                         Generally accepting all routes during that time frame could break BGP routing security.
                         However, rejecting them might re-route too much traffic towards upstreams, and could cause more harm than accepting invalid prefixes.
-                        Similarly, reusing the previously active rule set may lead to prefixes being wrongfully accepted or rejected, despite on a smaller scale than for a general accept or reject decision.<a href="#section-8.1.6-3" class="pilcrow">¶</a></p>
-<p id="section-8.1.6-4">
-                        Hence, to still provide sufficient protection for an individual AS experiencing issues with rule generation, and therefore deciding to deviate to more permissive inbound filters, it is strongly <span class="bcp14">RECOMMENDED</span> that all BGP speakers in general employ inbound and outbound filtering as described in this document.<a href="#section-8.1.6-4" class="pilcrow">¶</a></p>
+                        Similarly, reusing the previously active rule set may lead to prefixes being wrongfully accepted or rejected, despite on a smaller scale than for a general accept or reject decision.<a href="#section-8.1.7-3" class="pilcrow">¶</a></p>
+<p id="section-8.1.7-4">
+                        Hence, to still provide sufficient protection for an individual AS experiencing issues with rule generation, and therefore deciding to deviate to more permissive inbound filters, it is strongly <span class="bcp14">RECOMMENDED</span> that all BGP speakers in general employ inbound and outbound filtering as described in this document.<a href="#section-8.1.7-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 </section>
@@ -2924,7 +3005,7 @@ svg {
                             Technically, the inbound policy with end customers is pretty straightforward: only customer prefixes <span class="bcp14">SHOULD</span> be accepted, all others <span class="bcp14">SHOULD</span> be discarded.
                             For smaller downstreams, the list of accepted prefixes can be manually specified, after having verified that they are valid.
                             This validation can be done with the appropriate IP address management authorities.
-                            For larger downstreams, an approach as documented in <a href="#sec-prefix-filtering-ruleset-size" class="auto internal xref">Section 8.1.5</a> <span class="bcp14">MAY</span> also be suitable.<a href="#section-8.2.2.1-3" class="pilcrow">¶</a></p>
+                            For larger downstreams, an approach as documented in <a href="#sec-prefix-filtering-ruleset-size" class="auto internal xref">Section 8.1.6</a> <span class="bcp14">MAY</span> also be suitable.<a href="#section-8.2.2.1-3" class="pilcrow">¶</a></p>
 <p id="section-8.2.2.1-4">
                             Additionally, Rule 11 <span class="bcp14">MUST NOT</span> be set in the rare case of an IXP routeserver providing upstream (see <span>[<a href="#CommunityIX" class="cite xref">CommunityIX</a>]</span>), while it <span class="bcp14">SHOULD</span> be set when providing upstream to a customer with a direct session via IXP LANs (see <a href="#sec-next-hop-filtering" class="auto internal xref">Section 7.4</a>).<a href="#section-8.2.2.1-4" class="pilcrow">¶</a></p>
 </section>
@@ -3111,7 +3192,7 @@ svg {
                     It is <span class="bcp14">RECOMMENDED</span> that other internal routing signalling is handled by a dedicated IGP or via a dedicated VRF/Routing Domain (see <span>[<a href="#NSRC-17" class="cite xref">NSRC-17</a>]</span>) to reduce the likelihood of internal routes leaking due to misconfigurations, with routes appropriately annotated to not be exported (see <a href="#sec-filtering-outbound-prefixes" class="auto internal xref">Section 6.5</a>).
                     Doing so ensures that, e.g., localized misconfigurations, e.g., leaked (internal) routes, remain localized to a region or PoP, instead of spreading throughout the whole AS and to external neighbors, ideally limiting their impact.<a href="#section-8.5-1" class="pilcrow">¶</a></p>
 <p id="section-8.5-2">
-                    If the iBGP mesh/sessions via a route reflector (see <span>[<a href="#RFC4456" class="cite xref">RFC4456</a>]</span>) of BGP speakers connected to external neighbors only carries external NLRI, the following filters are <span class="bcp14">RECOMMENDED</span>, the following rules should be applied when importing or exporting routes.<a href="#section-8.5-2" class="pilcrow">¶</a></p>
+                    If the iBGP mesh/sessions via a route reflector (see <span>[<a href="#RFC4456" class="cite xref">RFC4456</a>]</span>) of BGP speakers connected to external neighbors only carries external NLRI, the following filters <span class="bcp14">MAY</span> be applied when importing or exporting routes.<a href="#section-8.5-2" class="pilcrow">¶</a></p>
 <ul class="normal">
 <li class="normal" id="section-8.5-3.1">
                         1. Prefixes not announced by the local AS not carrying an annotation (either via the OTC attribute evaluated according to <span>[<a href="#RFC9234" class="cite xref">RFC9234</a>]</span>, or a large community as outlined in <a href="#sec-filtering-outbound-prefixes" class="auto internal xref">Section 6.5</a>)<a href="#section-8.5-3.1" class="pilcrow">¶</a>
@@ -3144,9 +3225,9 @@ svg {
 <p id="section-8.5-4">
                     Depending on the local circumstances an operator <span class="bcp14">MAY</span> deviate from this suggestion and refrain from using individual rules.
                     For example, if the AS ingests a default route from at least one neighbor, Rule 9 should be omitted.
-                    Similarly, when allowing downstreams to announce hyperspecifics (see <a href="#sec-filtering-outbound-prefixes-communities" class="auto internal xref">Section 6.5.2</a>), Rule 10 <span class="bcp14">SHOULD</span> be omitted.<a href="#section-8.5-4" class="pilcrow">¶</a></p>
+                    Similarly, when allowing downstreams to announce hyperspecifics (see <a href="#sec-filtering-outbound-prefixes-communities" class="auto internal xref">Section 6.5.2</a>), Rule 10 <span class="bcp14">SHOULD</span> be omitted, as these would otherwise be filtered.<a href="#section-8.5-4" class="pilcrow">¶</a></p>
 <p id="section-8.5-5">
-                    While an operator <span class="bcp14">MAY</span> opt to not use any of the suggested rules, it is <span class="bcp14">RECOMMENDED</span> that at least Rule 1 is applied to iBGP sessions to ensure absent annotations do not propagate and cause route leaks.<a href="#section-8.5-5" class="pilcrow">¶</a></p>
+                    While an operator <span class="bcp14">MAY</span> opt to use these suggested rules, they <span class="bcp14">SHOULD</span> be aware that iBGP filtering also holds significant potential for service disruptions and misconfigurations.<a href="#section-8.5-5" class="pilcrow">¶</a></p>
 </section>
 </div>
 </section>
@@ -3270,6 +3351,10 @@ svg {
 <dt id="I-D.ietf-sidrops-8210bis">[I-D.ietf-sidrops-8210bis]</dt>
         <dd>
 <span class="refAuthor">Bush, R.</span>, <span class="refAuthor">Austein, R.</span>, and <span class="refAuthor">T. Harrison</span>, <span class="refTitle">"The Resource Public Key Infrastructure (RPKI) to Router Protocol, Version 2"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-sidrops-8210bis-26</span>, <time datetime="2026-07-09" class="refDate">9 July 2026</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-sidrops-8210bis-26">https://datatracker.ietf.org/doc/html/draft-ietf-sidrops-8210bis-26</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="I-D.draft-ietf-idr-bgp-attribute-escape">[I-D.draft-ietf-idr-bgp-attribute-escape]</dt>
+        <dd>
+<span class="refAuthor">Haas, J.</span>, <span class="refTitle">"BGP Attribute Escape"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-idr-bgp-attribute-escape-00</span>, <time datetime="2026-06-16" class="refDate">16 June 2026</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/draft-ietf-idr-bgp-attribute-escape/">https://datatracker.ietf.org/doc/draft-ietf-idr-bgp-attribute-escape/</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="I-D.ietf-sidrops-aspa-verification">[I-D.ietf-sidrops-aspa-verification]</dt>
         <dd>
@@ -3517,19 +3602,19 @@ svg {
       </h2>
 <address class="vcard">
         <div dir="auto" class="left"><span class="fn nameRole">Tobias Fiebig</span></div>
-<div dir="auto" class="left"><span class="org">Max-Planck-Institut fuer Informatik</span></div>
-<div dir="auto" class="left"><span class="street-address">Campus E14</span></div>
+<div dir="auto" class="left"><span class="org">Technische Universitaet Wien</span></div>
+<div dir="auto" class="left"><span class="street-address">Treitlstr. 3</span></div>
 <div dir="auto" class="left">
-<span class="postal-code">66123</span> <span class="locality">Saarbruecken</span>
+<span class="postal-code">1050</span> <span class="locality">Wien</span>
 </div>
-<div dir="auto" class="left"><span class="country-name">Germany</span></div>
+<div dir="auto" class="left"><span class="country-name">Austria</span></div>
 <div class="tel">
 <span>Phone:</span>
-<a href="tel:+49%20681%209325%203527" class="tel">+49 681 9325 3527</a>
+<a href="tel:+43%20676%20930%2022%2052" class="tel">+43 676 930 22 52</a>
 </div>
 <div class="email">
 <span>Email:</span>
-<a href="mailto:tfiebig@mpi-inf.mpg.de" class="email">tfiebig@mpi-inf.mpg.de</a>
+<a href="mailto:tobias@internet.wien" class="email">tobias@internet.wien</a>
 </div>
 </address>
 </section>
