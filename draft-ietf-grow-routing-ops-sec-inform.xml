@@ -387,7 +387,7 @@
                     <name>AS-SETs</name>
                     <t>
                         An AS-SET is an object that contains AS numbers or other AS-SETs.
-                        The purpose of AS-SETs is creating a recursively queryable structure documenting the cone of an AS.
+                        The purpose of AS-SETs is creating a recursively queryable structure documenting the cone, i.e., the set of all prefixes announced by the AS itself, or any of its downstreams, of an AS.
                         An operator may create an AS-SET defining all AS numbers of its customers.
                         A transit provider might create an AS-SET listing the AS numbers or AS-SETS of those ASes it provides upstream to. In turn, these ASes describe the AS numbers/AS-SETS of their customers, etc.
                         Using recursion, it is possible to retrieve from an AS-SET the complete list of AS numbers that the neighbor is likely to announce.
