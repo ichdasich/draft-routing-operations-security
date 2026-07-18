@@ -1568,6 +1568,11 @@ svg {
                     Responding hosts, despite egressing through the firewall, may then hit permissible outbound rules, assuming an already established connection, or may establish state due to a SYN-ACK being observed on the wire.<a href="#section-3.3-3" class="pilcrow">¶</a></p>
 <p id="section-3.3-4">
                     Hence, when a BGP speaker is connected to a dedicated management network, it <span class="bcp14">SHOULD</span> be ensured that packets are not forwarded to egress via the management interface.<a href="#section-3.3-4" class="pilcrow">¶</a></p>
+<aside id="section-3.3-5">
+          <p id="section-3.3-5.1">
+                        We acknowledge that there are specific conditions where a BGP speaker may only receive a partial BGP view, and requires a default route to be able to deliver packets with destinations not covered by a more specific prefix.
+                        In that case, operators <span class="bcp14">SHOULD</span> ensure that the default route for data plane traffic does egress via a dedicated port not used for management purposes.<a href="#section-3.3-5.1" class="pilcrow">¶</a></p>
+</aside>
 </section>
 </div>
 <div id="sec-protection-of-the-bgp-speaker-conf">

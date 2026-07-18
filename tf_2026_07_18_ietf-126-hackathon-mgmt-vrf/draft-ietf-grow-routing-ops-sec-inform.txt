@@ -299,6 +299,14 @@ Table of Contents
    network, it SHOULD be ensured that packets are not forwarded to
    egress via the management interface.
 
+      |  We acknowledge that there are specific conditions where a BGP
+      |  speaker may only receive a partial BGP view, and requires a
+      |  default route to be able to deliver packets with destinations
+      |  not covered by a more specific prefix.  In that case, operators
+      |  SHOULD ensure that the default route for data plane traffic
+      |  does egress via a dedicated port not used for management
+      |  purposes.
+
 3.4.  BGP Speaker Configuration Handling
 
    Beyond external influences, operators SHOULD be aware of different
