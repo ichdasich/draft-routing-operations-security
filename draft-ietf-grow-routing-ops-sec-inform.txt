@@ -4,8 +4,8 @@
 
 Global Routing Operations                                      T. Fiebig
 Internet-Draft                                                   MPI-INF
-Intended status: Informational                              7 April 2026
-Expires: 9 October 2026
+Intended status: Informational                              18 July 2026
+Expires: 19 January 2027
 
 
               Current Options for Securing Global Routing
@@ -46,7 +46,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 9 October 2026.
+   This Internet-Draft will expire on 19 January 2027.
 
 Copyright Notice
 
@@ -758,16 +758,23 @@ Table of Contents
 
 6.3.  Inbound Filtering Prefixes Belonging to the Local AS
 
-   A network SHOULD filter its own prefixes on BGP sessions with all its
-   neighbors (inbound direction).  This prevents local traffic (from a
-   local source to a local destination) from leaking over an external
-   BGP session, in case someone else is announcing the prefix over the
-   Internet.  This also protects the infrastructure that may directly
-   suffer if the backbone's prefix is suddenly preferred over the
-   Internet.
+   A network SHOULD filter its own prefixes on BGP sessions with all of
+   its external neighbors (inbound direction).  This can prevent
+   hijacking of local traffic in the event of an internal routing
+   failure.  Operators SHOULD log such filtered prefixes as they may be
+   evidence of a BGP route hijack for the provider's address space.
 
-   In some cases, for example, multihoming scenarios, such filters
-   SHOULD NOT be applied, as this would break the desired redundancy.
+   Under some circumstances, such as repairing a partitioned AS, the
+   provider's address space may be accepted over an external peering
+   session.  In such cases, the AS_PATH is also looped and will require
+   the use of an implementation's "loops" mechanism to accept such
+   looped routes.
+
+   Operators MAY wish to consider deploying null routes covering their
+   address space to prevent forwarding loops in the event that internal
+   traffic would otherwise be attracted to external peers; for example,
+   due to BGP aggregation procedures.  See [RFC9774], Part Appendix C
+   for related discussion.
 
 6.4.  Inbound Filtering Prefixes Belonging to Downstreams
 
@@ -2175,9 +2182,9 @@ Table of Contents
               Bush, R., Austein, R., and T. Harrison, "The Resource
               Public Key Infrastructure (RPKI) to Router Protocol,
               Version 2", Work in Progress, Internet-Draft, draft-ietf-
-              sidrops-8210bis-25, 2 March 2026,
+              sidrops-8210bis-26, 9 July 2026,
               <https://datatracker.ietf.org/doc/html/draft-ietf-sidrops-
-              8210bis-25>.
+              8210bis-26>.
 
    [I-D.ietf-sidrops-aspa-verification]
               Azimov, A., Bogomazov, E., Bush, R., Patel, K., Snijders,
@@ -2285,6 +2292,11 @@ Table of Contents
    [RFC9229]  Chroboczek, J., "IPv4 Routes with an IPv6 Next Hop in the
               Babel Routing Protocol", RFC 9229, DOI 10.17487/RFC9229,
               May 2022, <https://www.rfc-editor.org/info/rfc9229>.
+
+   [RFC9774]  Kumari, W., Sriram, K., Hannachi, L., and J. Haas,
+              "Deprecation of AS_SET and AS_CONFED_SET in BGP",
+              RFC 9774, DOI 10.17487/RFC9774, May 2025,
+              <https://www.rfc-editor.org/info/rfc9774>.
 
    [TBD]      Holder, P., "Reference still to be added", November 2023,
               <https://example.com>.
