@@ -1662,7 +1662,7 @@
                     Doing so ensures that, e.g., localized misconfigurations, e.g., leaked (internal) routes, remain localized to a region or PoP, instead of spreading throughout the whole AS and to external neighbors, ideally limiting their impact.
                 </t>
                 <t>
-                    If the iBGP mesh/sessions via a route reflector (see <xref target="RFC4456" format="default"/>) of BGP speakers connected to external neighbors only carries external NLRI, the following filters are <bcp14>RECOMMENDED</bcp14>, the following rules should be applied when importing or exporting routes.
+                    If the iBGP mesh/sessions via a route reflector (see <xref target="RFC4456" format="default"/>) of BGP speakers connected to external neighbors only carries external NLRI, the following filters <bcp14>MAY</bcp14> be applied when importing or exporting routes.
                 </t>
                 <ul spacing="normal">
                     <li>
@@ -1696,10 +1696,10 @@
                 <t>
                     Depending on the local circumstances an operator <bcp14>MAY</bcp14> deviate from this suggestion and refrain from using individual rules.
                     For example, if the AS ingests a default route from at least one neighbor, Rule 9 should be omitted.
-                    Similarly, when allowing downstreams to announce hyperspecifics (see <xref target="sec-filtering-outbound-prefixes-communities" format="default"/>), Rule 10 <bcp14>SHOULD</bcp14> be omitted.
+                    Similarly, when allowing downstreams to announce hyperspecifics (see <xref target="sec-filtering-outbound-prefixes-communities" format="default"/>), Rule 10 <bcp14>SHOULD</bcp14> be omitted, as these would otherwise be filtered.
                 </t>
                 <t>
-                    While an operator <bcp14>MAY</bcp14> opt to not use any of the suggested rules, it is <bcp14>RECOMMENDED</bcp14> that at least Rule 1 is applied to iBGP sessions to ensure absent annotations do not propagate and cause route leaks.
+                    While an operator <bcp14>MAY</bcp14> opt to use these suggested rules, they <bcp14>SHOULD</bcp14> be aware that iBGP filtering also holds significant potential for service disruptions and misconfigurations.
                 </t>
             </section>
         </section>
