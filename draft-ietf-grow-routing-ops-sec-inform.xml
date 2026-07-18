@@ -542,24 +542,16 @@
 
                 <t>
                     A network <bcp14>SHOULD</bcp14> filter its own prefixes on BGP sessions with all of its external neighbors (inbound direction).
-            This can prevent hijacking of local traffic in the event of an internal routing failure.
-            Operators <bcp14>SHOULD</bcp14> log such filtered prefixes as they may be evidence of a BGP route hijack for the provider's address space.
+                    This can prevent hijacking of local traffic in the event of an internal routing failure.
+                    Operators <bcp14>SHOULD</bcp14> log such filtered prefixes as they may be evidence of a BGP route hijack for the provider's address space.
                 </t>
                 <t>
-            Under some circumstances, such as repairing a partitioned
-            AS, the provider's address space may be accepted over an
-            external peering session.  In such cases, the AS_PATH is
-            also looped and will require the use of an implementation's
-            "loops" mechanism to accept such looped routes.
+                    Under some circumstances, such as repairing a partitioned AS, the provider's address space may be accepted over an external peering session.
+                    In such cases, the AS_PATH is also looped and will require the use of an implementation's "loops" mechanism to accept such looped routes.
                 </t>
                 <t>
-            Operators <bcp14>MAY</bcp14> wish to consider deploying
-            null routes covering their address space to prevent
-            forwarding loops in the event that internal traffic would
-            otherwise be attracted to external peers; for example, due
-            to BGP aggregation procedures.  See
-            <xref target="RFC9774" section="Appendix C" sectionFormat="comma"/>
-            for related discussion.
+                    Operators <bcp14>MAY</bcp14> wish to consider deploying null routes covering their address space to prevent forwarding loops in the event that internal traffic would otherwise be attracted to external peers; for example, due to BGP aggregation procedures.
+                    See <xref target="RFC9774" section="Appendix C" sectionFormat="comma"/> for related discussion.
                 </t>
             </section>
             <section  anchor="sec-filtering-inbound-prefixes-belonging-to-ds">
