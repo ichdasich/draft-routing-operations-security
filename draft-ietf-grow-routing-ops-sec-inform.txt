@@ -74,10 +74,10 @@ Table of Contents
        4.2.1.  Separation of Forwarding
        4.2.2.  No Separation of Forwarding
    5.  Protection of the BGP Sessions
-     5.1.  Protection of TCP Sessions Used by BGP
-       5.1.1.  Integrity Verification and Authentication
-       5.1.2.  Defending Against PMTUD Related Attacks
-     5.2.  BGP TTL Security (GTSM)
+     5.1.  BGP TTL Security (GTSM)
+     5.2.  Protection of TCP Sessions Used by BGP
+       5.2.1.  Authentication and Integrity
+       5.2.2.  Defending Against PMTUD Related Attacks
    6.  Static Prefix Filtering
      6.1.  Special-Purpose Prefixes
        6.1.1.  IPv4 Special-Purpose Prefixes
@@ -347,7 +347,23 @@ Table of Contents
    list the major points raised in this document and give the best
    practices related to TCP session protection for BGP operation.
 
-5.1.  Protection of TCP Sessions Used by BGP
+5.1.  BGP TTL Security (GTSM)
+
+   Directly connected BGP sessions, such as eBGP, can be made more
+   difficult to spoof with the Generalized TTL Security Mechanisms (GTSM
+   aka TTL security), defined in [RFC5082].  Instead of sending TCP
+   packets with TTL value of 1, the BGP speakers send the TCP packets
+   with TTL value of 255, and the receiver verifies that the TTL value
+   equals 255.  Since it's impossible to send an IP packet with TTL of
+   255 to an IP host that is not directly connected, GTSM prevents all
+   spoofing attacks coming from third parties that not directly
+   connected to the same subnet as the BGP-speaking routers.  Operators
+   SHOULD implement GTSM on directly connected BGP neighbors.
+
+   Similar to authentication, GTSM needs to be configured on both ends
+   of a BGP session.
+
+5.2.  Protection of TCP Sessions Used by BGP
 
    Attacks on TCP sessions used by BGP (i.e., BGP sessions) could bring
    down the BGP session.  For example, sending spoofed TCP RST packets.
@@ -357,7 +373,7 @@ Table of Contents
 
    BGP sessions can be secured with a variety of mechanisms.
 
-5.1.1.  Integrity Verification and Authentication
+5.2.1.  Authentication and Integrity
 
    MD5 protection of the TCP session header, described in [RFC5925], was
    the first available mechanism to protect the integrity of a BGP
@@ -408,7 +424,7 @@ Table of Contents
    iBGP sessions SHOULD also be protected using the authentication
    mechanisms discussed above.
 
-5.1.2.  Defending Against PMTUD Related Attacks
+5.2.2.  Defending Against PMTUD Related Attacks
 
    In 2018, an attack on BGP was described which claims to enable BGP
    route injection without Layer 2 adjacency by leveraging PMTUD, see
@@ -417,7 +433,7 @@ Table of Contents
    into an established BGP session.
 
    While the attack would be mitigated by the integrity mechanisms
-   suggested in Section 5.1.1, operators SHOULD additionally take
+   suggested in Section 5.2.1, operators SHOULD additionally take
    precautions to defend against these attacks, especially if
    authentication mechanisms are not in use.
 
@@ -440,22 +456,6 @@ Table of Contents
    Please note that a too low MSS may negatively impact BGP convergence
    due to low TCP performance, especially on high-latency long-haul
    links.
-
-5.2.  BGP TTL Security (GTSM)
-
-   Directly connected BGP sessions, such as eBGP, can be made more
-   difficult to spoof with the Generalized TTL Security Mechanisms (GTSM
-   aka TTL security), defined in [RFC5082].  Instead of sending TCP
-   packets with TTL value of 1, the BGP speakers send the TCP packets
-   with TTL value of 255, and the receiver verifies that the TTL value
-   equals 255.  Since it's impossible to send an IP packet with TTL of
-   255 to an IP host that is not directly connected, GTSM prevents all
-   spoofing attacks coming from third parties that not directly
-   connected to the same subnet as the BGP-speaking routers.  Operators
-   SHOULD implement GTSM on directly connected BGP neighbors.
-
-   Similar to authentication, GTSM needs to be configured on both ends
-   of a BGP session.
 
 6.  Static Prefix Filtering
 
