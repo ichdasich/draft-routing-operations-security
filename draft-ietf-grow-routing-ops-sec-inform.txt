@@ -4,8 +4,8 @@
 
 Global Routing Operations                                      T. Fiebig
 Internet-Draft                                                   TU Wien
-Intended status: Informational                              18 July 2026
-Expires: 19 January 2027
+Intended status: Informational                              19 July 2026
+Expires: 20 January 2027
 
 
               Current Options for Securing Global Routing
@@ -46,7 +46,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 19 January 2027.
+   This Internet-Draft will expire on 20 January 2027.
 
 Copyright Notice
 
@@ -459,14 +459,20 @@ Table of Contents
 
 6.  Static Prefix Filtering
 
-   The main aspect of securing BGP resides in controlling the prefixes
-   that are received and advertised on the BGP session.  Prefixes
-   exchanged between BGP neighbors are controlled with inbound and
-   outbound filters that can match on well-known/statically typed IP
-   prefixes (as described in this section), a combination of Prefix and
-   AS paths (see ), BGP roles as (see Section 7.5.1), or any other
-   attributes of a BGP prefix (for example, BGP communities, as
-   described in Section 7.5.2).
+   Controlling the routes received, originated, or propagated in BGP is
+   critical to BGP operations.  BGP routes exchanged between neighbors
+   are controlled with inbound and outbound filters that can match on
+   specific BGP route properties:
+
+   *  Well-known or statically typed IP prefixes (as described in this
+      section).
+
+   *  A combination of Prefix and AS paths (see XXX).
+
+   *  BGP roles as (see Section 7.5.1).
+
+   *  Any other attributes of a BGP prefix; for example, BGP
+      communities, as described in Section 7.5.2.
 
    This section lists the most commonly used static prefix filters.  We
    define static prefixes as prefixes that are published via an
@@ -550,17 +556,17 @@ Table of Contents
 6.3.  Prefixes That Are Too (Un)Specific
 
    Most ISPs will not accept advertisements beyond a certain level of
-   specificity.  In return, they do not announce prefixes they consider
-   to be too specific.  The level of acceptable specificity is decided
-   for each session between two BGP neighbors.  Some ISP communities
-   have tried to document acceptable specificity.  This document does
-   not make any judgement on what the best approach is, it just notes
-   that there are existing practices on the Internet and recommends that
-   the reader refer to them.  As an example, the RIPE community has
-   documented that, at the time of writing of this document, IPv4
-   prefixes longer than /24 and IPv6 prefixes longer than /48 are
-   generally neither announced nor accepted in the Internet [RIPE-399]
-   [RIPE-532].  These values may change in the future.
+   specificity (prefix length).  In return, they do not announce
+   prefixes they consider to be too specific.  The level of acceptable
+   specificity is decided for each session between two BGP neighbors.
+   Some ISP communities have tried to document acceptable specificity.
+   This document does not make any judgement on what the best approach
+   is, it just notes that there are existing practices on the Internet
+   and recommends that the reader refer to them.  As an example, the
+   RIPE community has documented that, at the time of writing of this
+   document, IPv4 prefixes longer than /24 and IPv6 prefixes longer than
+   /48 are generally neither announced nor accepted in the Internet
+   [RIPE-399] [RIPE-532].  These values may change in the future.
 
    Some operators MAY choose to allow customers to additionally announce
    more specifics than commonly used on the Internet (see Section 6.3).
@@ -569,42 +575,42 @@ Table of Contents
    multiple locations, and/or to sub-delegate IPv4 address space smaller
    than a /24 from the AS' allocation to the customer.
 
-   In such cases, operators SHOULD add a specific accept rule for these
+   In such cases, operators SHOULD add a specific rule to accept these
    exact prefixes before discarding prefixes more specific than the
-   currently agreed upon /24 and /48.  Routes of this type SHOULD be
-   annotated in a way that ensures they are not re-exported to other
-   neighbors (see Section 7.5.2), e.g., using the NO_EXPORT BGP
-   community [RFC1997] or the NOPEER BGP community [RFC8092].
-   Furthermore, in case of using more specifics for traffic steering,
-   the customer SHOULD also announce at least the covering minimally
-   routable network, i.e., currently /24 or /48, to ensure global
-   reachability of the prefix and prevent issues with uRPF (see also
-   [RFC8704] and Section 7.6.3).
+   currently agreed upon /24 and /48.  These routes SHOULD be annotated
+   in a way that ensures they are not exported to other neighbors (see
+   Section 7.5.2); e.g., using the NO_EXPORT BGP community [RFC1997] or
+   the NOPEER BGP community [RFC8092].  Furthermore, in case of using
+   more specific routes for traffic steering, the customer SHOULD also
+   announce at least the covering minimally routable network; i.e.,
+   currently /24 or /48, to ensure global reachability of the prefix and
+   prevent issues with uRPF (see also [RFC8704] and Section 7.6.3).
 
-   Similar to too specific routes, most ISPs will not accept
-   advertisements beyond a certain level of aggregation.  The general
-   guideline here are the least specific allocations commonly handed out
-   by RIRs to LIRs.  At the moment, the largest allocations for IPv4 are
-   continuous /8.  For IPv6, one /13 allocation exists, followed by
-   several LIRs holding /19.  Several operators currently limit the
-   smallest prefix size for IPv6 to /16.  This document does not make
-   any judgement on what the best approach is, it just notes that there
-   are existing practices on the Internet and recommends that the reader
-   refer to them.  These values may change in the future.
+   Similar to overly-specific routes, most ISPs will not accept
+   advertisements beyond a certain level of aggregation (short prefix
+   length).  The general guideline here are the least specific
+   allocations commonly handed out by RIRs to LIRs.  At the moment, the
+   largest allocations for IPv4 are continuous /8.  For IPv6, one /13
+   allocation exists, followed by several LIRs holding /19.  Several
+   operators currently limit the shortest prefix size for IPv6 to /16.
+   This document does not make any judgement on what the best approach
+   is, it just notes that there are existing practices on the Internet
+   and recommends that the reader refer to them.  These values may
+   change in the future.
 
 6.4.  The Default Route
 
 6.4.1.  IPv4
 
-   Typically, the 0.0.0.0/0 prefix is not intended to be accepted or
-   advertised except in specific customer/provider configurations;
-   general filtering outside of these is RECOMMENDED.
+   The 0.0.0.0/0 prefix is not intended to be accepted or advertised
+   except in specific customer/provider configurations.  Filtering
+   outside of these circumstances is RECOMMENDED.
 
 6.4.2.  IPv6
 
-   Typically, the ::/0 prefix is not intended to be accepted or
-   advertised except in specific customer/provider configurations;
-   general filtering outside of these is RECOMMENDED.
+   The ::/0 prefix is not intended to be accepted or advertised except
+   in specific customer/provider configurations.  Filtering outside of
+   these circumstances is RECOMMENDED.
 
 7.  Dynamic Prefix Filtering
 
