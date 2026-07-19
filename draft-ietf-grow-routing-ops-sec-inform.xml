@@ -220,6 +220,20 @@
                 Current security issues of TCP-based protocols (therefore including BGP) have been documented in <xref target="RFC6952" format="default"/>.
                 The following subsections list the major points raised in this document and give the best practices related to TCP session protection for BGP operation.
             </t>
+
+            <section  anchor="sec-bgp-ttl-security-gtsm">
+                <name>BGP TTL Security (GTSM)</name>
+                <t>
+                    Directly connected BGP sessions, such as eBGP, can be made more difficult to spoof with the Generalized TTL Security Mechanisms (GTSM aka TTL security), defined in <xref target="RFC5082" format="default"/>.
+                    Instead of sending TCP packets with TTL value of 1, the BGP speakers send the TCP packets with TTL value of 255, and the receiver verifies that the TTL value equals 255.
+                    Since it's impossible to send an IP packet with TTL of 255 to an IP host that is not directly connected, GTSM prevents all spoofing attacks coming from third parties that not directly connected to the same subnet as the BGP-speaking routers.
+                    Operators <bcp14>SHOULD</bcp14> implement GTSM on directly connected BGP neighbors.
+                </t>
+                <t>
+                    Similar to authentication, GTSM needs to be configured on both ends of a BGP session.
+                </t>
+            </section>
+
             <section  anchor="sec-protection-of-tcp-sessions-used-by-bgp">
                 <name>Protection of TCP Sessions Used by BGP</name>
 
@@ -231,7 +245,7 @@
                     BGP sessions can be secured with a variety of mechanisms.
                 </t>
                 <section  anchor="sec-protection-of-tcp-sessions-used-by-bgp-integrity">
-                    <name>Integrity Verification and Authentication</name>
+                    <name>Authentication and Integrity</name>
                     <t>
                         MD5 protection of the TCP session header, described in <xref target="RFC5925" format="default"/>, was the first available mechanism to protect the integrity of a BGP session.
                         It has been obsoleted by the TCP Authentication Option (TCP-AO; <xref target="RFC5925" format="default"/>), which offers stronger protection.
@@ -287,18 +301,6 @@
                         Please note that a too low MSS may negatively impact BGP convergence due to low TCP performance, especially on high-latency long-haul links.
                     </t>
                 </section>
-            </section>
-            <section  anchor="sec-bgp-ttl-security-gtsm">
-                <name>BGP TTL Security (GTSM)</name>
-                <t>
-                    Directly connected BGP sessions, such as eBGP, can be made more difficult to spoof with the Generalized TTL Security Mechanisms (GTSM aka TTL security), defined in <xref target="RFC5082" format="default"/>.
-                    Instead of sending TCP packets with TTL value of 1, the BGP speakers send the TCP packets with TTL value of 255, and the receiver verifies that the TTL value equals 255.
-                    Since it's impossible to send an IP packet with TTL of 255 to an IP host that is not directly connected, GTSM prevents all spoofing attacks coming from third parties that not directly connected to the same subnet as the BGP-speaking routers.
-                    Operators <bcp14>SHOULD</bcp14> implement GTSM on directly connected BGP neighbors.
-                </t>
-                <t>
-                    Similar to authentication, GTSM needs to be configured on both ends of a BGP session.
-                </t>
             </section>
         </section>
         <section  anchor="sec-static-prefix-filtering">
