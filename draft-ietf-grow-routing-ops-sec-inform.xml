@@ -304,9 +304,17 @@
         <section  anchor="sec-static-prefix-filtering">
             <name>Static Prefix Filtering</name>
             <t>
-                The main aspect of securing BGP resides in controlling the prefixes that are received and advertised on the BGP session.
-                Prefixes exchanged between BGP neighbors are controlled with inbound and outbound filters that can match on well-known/statically typed IP prefixes (as described in this section), a combination of Prefix and AS paths (see ), BGP roles as (see <xref target="sec-filtering-outbound-prefixes-roles" format="default"/>), or any other attributes of a BGP prefix (for example, BGP communities, as described in <xref target="sec-filtering-outbound-prefixes-communities" format="default"/>).
+		Controlling the routes received, originated, or propagated in BGP is critical to BGP operations.
+                BGP routes exchanged between neighbors are controlled with inbound and outbound filters that can match on specific BGP route properties:
             </t>
+
+	    <ul>
+		<li>Well-known or statically typed IP prefixes (as described in this section).</li>
+		<li>A combination of Prefix and AS paths (see XXX).</li>
+		<li>BGP roles as (see <xref target="sec-filtering-outbound-prefixes-roles" format="default"/>).</li>
+		<li>Any other attributes of a BGP prefix; for example, BGP communities, as described in <xref target="sec-filtering-outbound-prefixes-communities" format="default"/>.</li>
+	    </ul>
+
             <t>
                 This section lists the most commonly used static prefix filters.
                 We define static prefixes as prefixes that are published via an authoritative list which changes, on average, not more frequently than every 12 months.
@@ -375,7 +383,7 @@
                 <name>Prefixes That Are Too (Un)Specific</name>
 
                 <t>
-                    Most ISPs will not accept advertisements beyond a certain level of specificity. In return, they do not announce prefixes they consider to be too specific.
+                    Most ISPs will not accept advertisements beyond a certain level of specificity (prefix length). In return, they do not announce prefixes they consider to be too specific.
                     The level of acceptable specificity is decided for each session between two BGP neighbors.
                     Some ISP communities have tried to document acceptable specificity.
                     This document does not make any judgement on what the best approach is, it just notes that there are existing practices on the Internet and recommends that the reader refer to them.
@@ -387,16 +395,16 @@
                     This can be to allow customers more fine-grained traffic steering in case of multiple BGP sessions between the AS and its customer in multiple locations, and/or to sub-delegate IPv4 address space smaller than a /24 from the AS' allocation to the customer.
                 </t>
                 <t>
-                    In such cases, operators <bcp14>SHOULD</bcp14> add a specific accept rule for these exact prefixes before discarding prefixes more specific than the currently agreed upon /24 and /48.
-                    Routes of this type <bcp14>SHOULD</bcp14> be annotated in a way that ensures they are not re-exported to other neighbors (see <xref target="sec-filtering-outbound-prefixes-communities" format="default"/>), e.g., using the NO_EXPORT BGP community <xref target="RFC1997" format="default"/> or the NOPEER BGP community <xref target="RFC8092" format="default"/>.
-                    Furthermore, in case of using more specifics for traffic steering, the customer <bcp14>SHOULD</bcp14> also announce at least the covering minimally routable network, i.e., currently /24 or /48, to ensure global reachability of the prefix and prevent issues with uRPF (see also <xref target="RFC8704" format="default"/> and <xref target="sec-pmtud-and-the-loose-urpf-problem" format="default"/>).
+                    In such cases, operators <bcp14>SHOULD</bcp14> add a specific rule to accept these exact prefixes before discarding prefixes more specific than the currently agreed upon /24 and /48.
+                    These routes <bcp14>SHOULD</bcp14> be annotated in a way that ensures they are not exported to other neighbors (see <xref target="sec-filtering-outbound-prefixes-communities" format="default"/>); e.g., using the NO_EXPORT BGP community <xref target="RFC1997" format="default"/> or the NOPEER BGP community <xref target="RFC8092" format="default"/>.
+                    Furthermore, in case of using more specific routes for traffic steering, the customer <bcp14>SHOULD</bcp14> also announce at least the covering minimally routable network; i.e., currently /24 or /48, to ensure global reachability of the prefix and prevent issues with uRPF (see also <xref target="RFC8704" format="default"/> and <xref target="sec-pmtud-and-the-loose-urpf-problem" format="default"/>).
                 </t>
                 <t>
-                    Similar to too specific routes, most ISPs will not accept advertisements beyond a certain level of aggregation.
+                    Similar to overly-specific routes, most ISPs will not accept advertisements beyond a certain level of aggregation (short prefix length).
                     The general guideline here are the least specific allocations commonly handed out by RIRs to LIRs.
                     At the moment, the largest allocations for IPv4 are continuous /8.
                     For IPv6, one /13 allocation exists, followed by several LIRs holding /19.
-                    Several operators currently limit the smallest prefix size for IPv6 to /16.
+                    Several operators currently limit the shortest prefix size for IPv6 to /16.
                     This document does not make any judgement on what the best approach is, it just notes that there are existing practices on the Internet and recommends that the reader refer to them.
                     These values may change in the future.
                 </t>
@@ -406,13 +414,13 @@
                 <section  anchor="sec-ipv4">
                     <name>IPv4</name>
                     <t>
-                        Typically, the 0.0.0.0/0 prefix is not intended to be accepted or advertised except in specific customer/provider configurations; general filtering outside of these is <bcp14>RECOMMENDED</bcp14>.
+                        The 0.0.0.0/0 prefix is not intended to be accepted or advertised except in specific customer/provider configurations. Filtering outside of these circumstances is <bcp14>RECOMMENDED</bcp14>.
                     </t>
                 </section>
                 <section  anchor="sec-ipv6">
                     <name>IPv6</name>
                     <t>
-                        Typically, the ::/0 prefix is not intended to be accepted or advertised except in specific customer/provider configurations; general filtering outside of these is <bcp14>RECOMMENDED</bcp14>.
+                        The ::/0 prefix is not intended to be accepted or advertised except in specific customer/provider configurations. Filtering outside of these circumstances is <bcp14>RECOMMENDED</bcp14>.
                     </t>
                 </section>
             </section>
