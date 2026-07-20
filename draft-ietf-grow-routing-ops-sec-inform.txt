@@ -4,8 +4,8 @@
 
 Global Routing Operations                                      T. Fiebig
 Internet-Draft                                                   TU Wien
-Intended status: Informational                              19 July 2026
-Expires: 20 January 2027
+Intended status: Informational                              20 July 2026
+Expires: 21 January 2027
 
 
               Current Options for Securing Global Routing
@@ -46,7 +46,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 20 January 2027.
+   This Internet-Draft will expire on 21 January 2027.
 
 Copyright Notice
 
@@ -2566,6 +2566,8 @@ Acknowledgements
    *  Berislav Todorovic
 
    *  Q Misell
+
+   *  Doris Hauser
 
 Author's Address
 
