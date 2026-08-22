@@ -450,6 +450,25 @@
                     However, it should be noted that the list of such prefixes is not necessarily a complete list, and as such the list of routes in an IRR is not the same as the set of RIR-allocated prefixes.
                     Furthermore, IRRs not operated by RIRs regularly list conflicting information, see <xref target="sec-prefix-filters-created-from-internet-routing-registries-irrs-creating-filters" format="default"/>.
                 </t>
+
+                <section anchor="sec-prefix-filters-created-from-internet-routing-registries-irrs-routesets">
+                    <name>ROUTE-SETs</name>
+                    <t>
+                        ROUTE-SETs are used to specify sets of prefixes in import and export RPSL policies, and can be used to generate BGP import and export filters.
+                        ROUTE-SETs are objects that contain prefix ranges <xref target="RFC2622" format="default" section="2"/> and other ROUTE-SETs <xref target="RFC4012" format="default" section="4.2"/>.
+                    </t>
+                    <t>
+                        One flexibility provided by ROUTE-SETs is the ability to use RPSL prefix-range operators, which include exact prefixes (e.g., 192.168.0.0/24), subprefixes (non-inclusive) of a prefix (192.168.0.0/16^-), a prefix and its subprefixes (192.168.0.0/16^+), or any subprefix within a specified prefix length range (e.g., 2001:db8::/32^44-48).
+                        These operators allow for more compact specification of prefix sets in complex configurations.
+                    </t>
+                    <t>
+                        An operator can define ROUTE-SET objects for the routes it plans to announce to neighbors.
+                        Transit providers can define ROUTE-SETs that include ROUTE-SETs defined by their customers.
+                        A network operator can define multiple ROUTE-SETs, each covering different sets of prefixes, to better match different types of peering agreements with neighboring networks.
+                        For example, a transit network may define AS65536:RS-EUROPE for routes learned from customers and announced to peers in Europe, AS65536:RS-NAMERICA for routes learned from customers and announced to peers in North America, and AS65536:RS-ALL for routes announced to its providers.
+                    </t>
+                </section>
+
                 <section  anchor="sec-prefix-filters-created-from-internet-routing-registries-irrs-routeobjects">
                     <name>Route Objects</name>
                     <t>
