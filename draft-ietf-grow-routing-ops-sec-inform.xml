@@ -517,6 +517,13 @@
                         One could check a popular IRR containing many sources (such as RADb <xref target="RADb" format="default"/>, the Routing Assets Database) and only select as sources some desired RIRs and trusted major ISPs (Internet Service Providers).
                     </t>
                     <t>
+                        ROUTE-SETs may contain AS numbers and AS-SETs, which must be mapped to prefixes using the process above.  However, ROUTE-SETs that do not include ASes or AS-SETs are independent of ROUTE/ROUTE6 objects and do not require the mapping described above.
+                    </t>
+                </section>
+
+                <section anchor="sec-prefix-filters-created-from-internet-routing-registries-irrs-management">
+                    <name>Managing and Updating Filters</name>
+                    <t>
                         As objects in IRRs may frequently vary over time, it is important that prefix filters computed using this mechanism are refreshed regularly.
                         Refreshing the filters on a daily basis <bcp14>SHOULD</bcp14> be considered because routing changes must sometimes be done in an emergency and registries may be updated at the very last moment.
                         Note that this approach significantly increases the complexity of the router configurations, as it can quickly add tens of thousands of configuration lines for some important neighbors, e.g., large peers or downstreams.
