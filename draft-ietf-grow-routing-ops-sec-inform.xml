@@ -448,7 +448,7 @@
                 <t>
                     A majority of Regional Internet Registries do also operate an IRR and can control whether registered routes conform to the prefixes that are allocated or directly assigned.
                     However, it should be noted that the list of such prefixes is not necessarily a complete list, and as such the list of routes in an IRR is not the same as the set of RIR-allocated prefixes.
-                    Furthermore, IRRs not operated by RIRs regularly list conflicting information, see <xref target="sec-prefix-filters-created-from-internet-routing-registries-irrs-creating-filters" format="default"/>.
+                    Furthermore, IRRs not operated by RIRs regularly list conflicting information, see <xref target="sec-prefix-filters-created-from-internet-routing-registries-irrs-hierarchical" format="default"/>.
                 </t>
 
                 <section anchor="sec-prefix-filters-created-from-internet-routing-registries-irrs-routesets">
@@ -493,17 +493,6 @@
                         Using recursion, it is possible to retrieve from an AS-SET the complete list of AS numbers that the neighbor is likely to announce.
                         For each of these AS numbers, it is also easy to look in the corresponding IRR for all associated prefixes.
                     </t>
-                    <t>
-                        Please note that different IRR may provide conflicting data, especially on AS-SETs.
-                        Recently, an attack was observed where a malicious party created an empty AS-SET for a large transit provider (see <xref target="NLNOG-22" format="default"/>).
-                        As it was created in an RIR database often taking precedent over other IRR sources, several ASes imported this empty AS-SET, and hence filtered all prefixes advertised by this transit provider.
-                        To mitigate this issue, hierarchical AS-SETs reside in the IRR of the RIR and explicitly list the ASN to which they pertain, e.g., AS65536:AS-EXAMPLE.
-                        Additionally, the IRR source may also be referenced: RIPE::AS65536:AS-EXAMPLE.
-                    </t>
-                    <t>
-                        Operators <bcp14>SHOULD</bcp14> create a hierarchical AS-SET representing their cone.
-                        If AS-SETs are included in another AS-SET, they <bcp14>SHOULD</bcp14> be hierarchical.
-                    </t>
                 </section>
 
                 <section  anchor="sec-prefix-filters-created-from-internet-routing-registries-irrs-creating-filters">
@@ -535,6 +524,22 @@
                     </t>
                     <t>
                         Please note that large BGP filters will negatively impact performance when ingesting routes, even when operators carefully craft and apply their filters to minimize the performance overhead, see <xref target="sec-prefix-filtering-considerations-order" format="default"/>.
+                    </t>
+                </section>
+
+                <section anchor="sec-prefix-filters-created-from-internet-routing-registries-irrs-hierarchical">
+                    <name>Scoping with Hierarchical AS-SETs and ROUTE-SETs</name>
+                    <t>
+                        Please note that different IRRs may provide conflicting data, especially on ROUTE, ROUTE6, AS-SET, and ROUTE-SET objects.
+                        In 2022, an attack was observed where a malicious party created an empty AS-SET for a large transit provider (see <xref target="NLNOG-22" format="default"/>).
+                        As it was created in an RIR database often taking precedence over other IRR sources, several ASes imported this empty AS-SET, and hence filtered all prefixes advertised by this transit provider.
+                        To mitigate this issue, hierarchical AS-SETs and ROUTE-SETs reside in the IRR of the RIR and explicitly list the ASN to which they pertain, e.g., AS65536:AS-EXAMPLE or AS65536:RS-EXAMPLE.
+                        In RIR-operated IRRs, only the maintainer of the ASN (or the corresponding aut-num object) before the colon is authorized to create and modify these objects, preventing unauthorized creation or spoofing.
+                        Additionally, the IRR source may also be referenced: RIPE::AS65536:AS-EXAMPLE or RIPE::AS65536:RS-EXAMPLE.
+                    </t>
+                    <t>
+                        Operators <bcp14>SHOULD</bcp14> create a hierarchical AS-SET representing their cone or hierarchical ROUTE-SETs for prefixes they plan to announce.
+                        If AS-SETs are included in another AS-SET or if ROUTE-SETs are included in another ROUTE-SET, they <bcp14>SHOULD</bcp14> be hierarchical.
                     </t>
                 </section>
             </section>
