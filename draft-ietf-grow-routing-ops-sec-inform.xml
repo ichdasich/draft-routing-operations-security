@@ -24,6 +24,16 @@
                 <email>tobias@internet.wien</email>
             </address>
         </author>
+        <author fullname="Jeff Haas" initials="J" surname="Haas">
+            <organization>HPE</organization>
+            <address>
+                <!-- postal><street/><city/><region/><code/><country/></postal -->
+                <!-- <phone/> -->
+                <!-- <facsimile/> -->
+                <email>jhaas@juniper.net</email>
+                <!-- <uri/> -->
+            </address>
+        </author>
         <area>ops</area>
         <workgroup>Global Routing Operations</workgroup>
         <abstract>
